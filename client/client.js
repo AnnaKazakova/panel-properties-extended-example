@@ -4,7 +4,7 @@ import {
 } from 'camunda-modeler-plugin-helpers';
 
 var extendedPropertiesProvider = require('./ExtendedPropertiesProvider');
-var magicModdle = require('./descriptors/magic.json');
+var paradigmaModdle = require('./descriptors/paradigma.json');
 
 registerBpmnJSPlugin(extendedPropertiesProvider);
-registerBpmnJSModdleExtension(magicModdle);
+registerBpmnJSModdleExtension(paradigmaModdle);

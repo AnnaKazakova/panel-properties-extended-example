@@ -1,0 +1,29 @@
+{
+  "name": "Paradigma",
+  "prefix": "paradigma",
+  "uri": "http://paradigma",
+  "xml": {
+    "tagAlias": "lowerCase"
+  },
+  "associations": [],
+  "types": [
+    {
+      "name": "ParadigmaProcess",
+      "extends": [
+        "bpmn:Process"
+      ],
+      "properties": [
+        {
+          "name": "resourceUrl",
+          "isAttr": true,
+          "type": "String"
+        },
+        {
+          "name": "machineUrl",
+          "isAttr": true,
+          "type": "String"
+        }
+      ]
+    }
+  ]
+}

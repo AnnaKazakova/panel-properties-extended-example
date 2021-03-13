@@ -1,6 +1,6 @@
 'use strict';
 
 module.exports = {
-  name: 'Panel Properties Magic Example with Moddle Extension',
+  name: 'Panel Properties Paradigma Moddle Extension',
   script: './client/client-bundle.js'
 };
