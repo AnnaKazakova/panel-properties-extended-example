@@ -11,10 +11,20 @@ module.exports = {
     rules: [
       {
         test: /\.js$/,
+        exclude: /node_modules/,
         use: {
-          loader: 'babel-loader'
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-react']
+          }
         }
       }
     ]
-  }
+  },
+  resolve: {
+    alias: {
+      react: 'camunda-modeler-plugin-helpers/react'
+    }
+  },
+  devtool: 'cheap-module-source-map'
 };
