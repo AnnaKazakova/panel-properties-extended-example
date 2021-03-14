@@ -9,6 +9,6 @@ var paradigmaModdle = require('./descriptors/paradigma.json');
 registerBpmnJSPlugin(extendedPropertiesProvider);
 registerBpmnJSModdleExtension(paradigmaModdle);
 
-//import ParadigmaPlugin from './global-context/ParadigmaPlugin';
+import ParadigmaPlugin from './global-context/ParadigmaPlugin';
 
-//registerClientExtension(ParadigmaPlugin);
+registerClientExtension(ParadigmaPlugin);
