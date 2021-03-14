@@ -1,1 +1,5641 @@
-!function(t){var e={};function n(r){if(e[r])return e[r].exports;var o=e[r]={i:r,l:!1,exports:{}};return t[r].call(o.exports,o,o.exports,n),o.l=!0,o.exports}n.m=t,n.c=e,n.d=function(t,e,r){n.o(t,e)||Object.defineProperty(t,e,{enumerable:!0,get:r})},n.r=function(t){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(t,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(t,"__esModule",{value:!0})},n.t=function(t,e){if(1&e&&(t=n(t)),8&e)return t;if(4&e&&"object"==typeof t&&t&&t.__esModule)return t;var r=Object.create(null);if(n.r(r),Object.defineProperty(r,"default",{enumerable:!0,value:t}),2&e&&"string"!=typeof t)for(var o in t)n.d(r,o,function(e){return t[e]}.bind(null,o));return r},n.n=function(t){var e=t&&t.__esModule?function(){return t.default}:function(){return t};return n.d(e,"a",e),e},n.o=function(t,e){return Object.prototype.hasOwnProperty.call(t,e)},n.p="",n(n.s=78)}([function(t,e,n){"use strict";Object.defineProperty(e,"__esModule",{value:!0});var r=[].indexOf,o=function(t,e){if(r)return t.indexOf(e);for(var n=0;n<t.length;++n)if(t[n]===e)return n;return-1},i=/\s+/,u=Object.prototype.toString;function s(t){if(!t||!t.nodeType)throw new Error("A DOM element reference is required");this.el=t,this.list=t.classList}s.prototype.add=function(t){if(this.list)return this.list.add(t),this;var e=this.array();return~o(e,t)||e.push(t),this.el.className=e.join(" "),this},s.prototype.remove=function(t){if("[object RegExp]"==u.call(t))return this.removeMatching(t);if(this.list)return this.list.remove(t),this;var e=this.array(),n=o(e,t);return~n&&e.splice(n,1),this.el.className=e.join(" "),this},s.prototype.removeMatching=function(t){for(var e=this.array(),n=0;n<e.length;n++)t.test(e[n])&&this.remove(e[n]);return this},s.prototype.toggle=function(t,e){return this.list?(void 0!==e?e!==this.list.toggle(t,e)&&this.list.toggle(t):this.list.toggle(t),this):(void 0!==e?e?this.add(t):this.remove(t):this.has(t)?this.remove(t):this.add(t),this)},s.prototype.array=function(){var t=(this.el.getAttribute("class")||"").replace(/^\s+|\s+$/g,"").split(i);return""===t[0]&&t.shift(),t},s.prototype.has=s.prototype.contains=function(t){return this.list?this.list.contains(t):!!~o(this.array(),t)};var c="undefined"!=typeof Element?Element.prototype:{},a=c.matches||c.matchesSelector||c.webkitMatchesSelector||c.mozMatchesSelector||c.msMatchesSelector||c.oMatchesSelector,l=function(t,e){if(!t||1!==t.nodeType)return!1;if(a)return a.call(t,e);for(var n=t.parentNode.querySelectorAll(e),r=0;r<n.length;r++)if(n[r]==t)return!0;return!1};function f(t,e,n){for(var r=n?t:t.parentNode;r&&r.nodeType!==document.DOCUMENT_NODE&&r.nodeType!==document.DOCUMENT_FRAGMENT_NODE;){if(l(r,e))return r;r=r.parentNode}return l(r,e)?r:null}var p=window.addEventListener?"addEventListener":"attachEvent",d=window.removeEventListener?"removeEventListener":"detachEvent",v="addEventListener"!==p?"on":"",h={bind:function(t,e,n,r){return t[p](v+e,n,r||!1),n},unbind:function(t,e,n,r){return t[d](v+e,n,r||!1),n}},b=["focus","blur"];var y,m={bind:function(t,e,n,r,o){return-1!==b.indexOf(n)&&(o=!0),h.bind(t,n,(function(n){var o=n.target||n.srcElement;n.delegateTarget=f(o,e,!0),n.delegateTarget&&r.call(t,n)}),o)},unbind:function(t,e,n,r){return-1!==b.indexOf(e)&&(r=!0),h.unbind(t,e,n,r)}},g=function(t,e){if("string"!=typeof t)throw new TypeError("String expected");e||(e=document);var n=/<([\w:]+)/.exec(t);if(!n)return e.createTextNode(t);t=t.replace(/^\s+|\s+$/g,"");var r=n[1];if("body"==r){return(o=e.createElement("html")).innerHTML=t,o.removeChild(o.lastChild)}var o,i=_[r]||_._default,u=i[0],s=i[1],c=i[2];(o=e.createElement("div")).innerHTML=s+t+c;for(;u--;)o=o.lastChild;if(o.firstChild==o.lastChild)return o.removeChild(o.firstChild);var a=e.createDocumentFragment();for(;o.firstChild;)a.appendChild(o.removeChild(o.firstChild));return a},x=!1;"undefined"!=typeof document&&((y=document.createElement("div")).innerHTML='  <link/><table></table><a href="/a">a</a><input type="checkbox"/>',x=!y.getElementsByTagName("link").length,y=void 0);var _={legend:[1,"<fieldset>","</fieldset>"],tr:[2,"<table><tbody>","</tbody></table>"],col:[2,"<table><tbody></tbody><colgroup>","</colgroup></table>"],_default:x?[1,"X<div>","</div>"]:[0,"",""]};_.td=_.th=[3,"<table><tbody><tr>","</tr></tbody></table>"],_.option=_.optgroup=[1,'<select multiple="multiple">',"</select>"],_.thead=_.tbody=_.colgroup=_.caption=_.tfoot=[1,"<table>","</table>"],_.polyline=_.ellipse=_.polygon=_.circle=_.text=_.line=_.path=_.rect=_.g=[1,'<svg xmlns="http://www.w3.org/2000/svg" version="1.1">',"</svg>"],e.attr=function(t,e,n){return 2==arguments.length?t.getAttribute(e):null===n?t.removeAttribute(e):(t.setAttribute(e,n),t)},e.classes=function(t){return new s(t)},e.clear=function(t){for(var e;t.childNodes.length;)e=t.childNodes[0],t.removeChild(e);return t},e.closest=f,e.delegate=m,e.domify=g,e.event=h,e.matches=l,e.query=function(t,e){return(e=e||document).querySelector(t)},e.queryAll=function(t,e){return(e=e||document).querySelectorAll(t)},e.remove=function(t){t.parentNode&&t.parentNode.removeChild(t)}},function(t,e,n){"use strict";var r="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t},o=n(42),i="object"==("undefined"==typeof self?"undefined":r(self))&&self&&self.Object===Object&&self,u=o||i||Function("return this")();t.exports=u},function(t,e,n){"use strict";var r=n(0).query,o=n(0).clear,i=n(0).classes,u=n(7).is,s=n(26),c=n(0).domify,a=n(102).default,l=/\s/,f=/^([a-z][\w-.]*:)?[a-z_][\w-.]*$/i,p=/^[a-z_][\w-.]*$/i,d={"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"};function v(t){if(t.selectedIndex>=0)return t.options[t.selectedIndex].value}function h(t){for(var e=t;e.$parent;)e=e.$parent;return e}function b(t,e){var n=[];return s(t||[],(function(t){u(t,e)&&n.push(t)})),n}function y(t,e){return b(h(t).rootElements,e)}function m(t){return t.push({label:"",value:"",name:""})}function g(t){var e=t.name||"";return t.errorCode&&(e+=" (code="+t.errorCode+")"),t.escalationCode&&(e+=" (code="+t.escalationCode+")"),e}function x(t,e){var n=[],r=y(t,e);return s(r,(function(t){n.push({label:g(t),value:t.id,name:t.name})})),n}function _(t,e){return w(t)?e("Id must not contain spaces."):p.test(t)?void 0:f.test(t)?e("Id must not contain prefix."):e("Id must be a valid QName.")}function w(t){return l.test(t)}function j(t){return(t=""+t)&&t.replace(/[&<>"']/g,(function(t){return d[t]}))}t.exports.selectedOption=v,t.exports.selectedType=function(t,e){return v(r(t,e))},t.exports.getRoot=h,t.exports.filterElementsByType=b,t.exports.findRootElementsByType=y,t.exports.removeAllChildren=function(t){for(;t.firstChild;)t.removeChild(t.firstChild)},t.exports.addEmptyParameter=m,t.exports.refreshOptionsModel=x,t.exports.updateOptionsDropDown=function(t,e,n,i){var u=x(e,n);m(u);var a=r(t,i);return o(a),s(u,(function(t){var e=c('<option value="'+j(t.value)+'">'+j(t.label)+"</option>");a.appendChild(e)})),u},t.exports.isIdValid=function(t,e,n){var r=t.$model.ids.assigned(e);return!e||r&&r!==t?n("Element must have an unique id."):_(e,n)},t.exports.validateId=_,t.exports.containsSpace=w,t.exports.nextId=function(t){return new a([32,32,1]).nextPrefixed(t)},t.exports.triggerClickEvent=function(t){var e;if(document.createEvent){try{e=new MouseEvent("click",{view:window,bubbles:!0,cancelable:!0})}catch(t){(e=document.createEvent("MouseEvent")).initEvent("click",!0,!0)}return t.dispatchEvent(e)}return e=document.createEventObject(),t.fireEvent("onclick",e)},t.exports.escapeHTML=j,t.exports.createDropdown=function(t){var e,n=t.menu,o=c('<div class="group__dropdown"><button class="group__dropdown-button"><svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512"><path fill="currentColor" d="M96 184c39.8 0 72 32.2 72 72s-32.2 72-72 72-72-32.2-72-72 32.2-72 72-72zM24 80c0 39.8 32.2 72 72 72s72-32.2 72-72S135.8 8 96 8 24 40.2 24 80zm0 352c0 39.8 32.2 72 72 72s72-32.2 72-72-32.2-72-72-72-72 32.2-72 72z"></path></svg></button><div class="group__dropdown-menu"></div></div>'),u=r(".group__dropdown-button",o),a=r(".group__dropdown-menu",o);return u.addEventListener("click",(function(t){i(o).toggle("group__dropdown--open"),function(t){function n(e){if(e!==t){var r=e.target;a===r||a.contains(r)||(i(o).remove("group__dropdown--open"),document.removeEventListener("click",n))}}e&&document.removeEventListener("click",e);document.addEventListener("click",n),e=n}(t)})),s(n,(function(t){var e=c('<div class="group__dropdown-menu-item" data-dropdown-action="'+t.id+'">'+j(t.label)+"</div>");e.addEventListener("click",(function(){t.onClick(),i(o).remove("group__dropdown--open")})),a.appendChild(e)})),o}},function(t,e,n){"use strict";var r=Array.isArray;t.exports=r},function(t,e,n){"use strict";var r=n(0).domify,o=n(0).classes,i=n(0).event,u=n(2).escapeHTML;function s(t){for(var e,n=0,r=[],o=/<br\s*\/?>/gi;e=o.exec(t);)e.index>n&&r.push(u(t.substring(n,e.index))),r.push("<br />"),n=e.index+e[0].length;return n<t.length&&r.push(u(t.substring(n))),r.join("")}t.exports=function(t,e,n){for(var u,c,a,l=n&&n.show,f=[],p=/(?:\[([^\]]+)\]\((https?:\/\/[^)]+)\))|(?:<a href="(https?:\/\/[^"]+)">(.+?(?=<\/))<\/a>)/gi,d=0;u=p.exec(e);)u.index>d&&f.push(s(e.substring(d,u.index))),c=u[2]&&encodeURI(u[2])||u[3],a=u[1]||u[4],f.push('<a href="'+c+'" target="_blank">'+s(a)+"</a>"),d=u.index+u[0].length;d<e.length&&f.push(s(e.substring(d))),e=f.join("");var v=r('<div class="bpp-field-description description description--expanded"'+(l?'data-show="'+l+'">':">")+"</div>"),h=r('<span class="description__text">'+e+"</span>");function b(n){n?(o(v).add("description--expanded"),h.textContent=e+" ",m.textContent=t("Less")):(o(v).remove("description--expanded"),h.textContent=y+" ... ",m.textContent=t("More"))}v.appendChild(h);var y,m,g=!1;return e.length>200&&(y=e.slice(0,200),m=r('<span class="bpp-entry-link description__expand">'+t("More")+"</span>"),i.bind(m,"click",(function(){b(g=!g)})),v.appendChild(m),b(g)),v}},function(t,e,n){"use strict";var r="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t};t.exports=function(t){var e=void 0===t?"undefined":r(t);return null!=t&&("object"==e||"function"==e)}},function(t,e,n){"use strict";var r=n(106),o=n(109);t.exports=function(t,e){var n=o(t,e);return r(n)?n:void 0}},function(t,e,n){"use strict";function r(t){return t&&t.businessObject||t}Object.defineProperty(e,"__esModule",{value:!0}),e.is=function(t,e){var n=r(t);return n&&"function"==typeof n.$instanceOf&&n.$instanceOf(e)},e.getBusinessObject=r},function(t,e,n){"use strict";var r=n(87),o=n(97),i=n(11);t.exports=function(t){return i(t)?r(t):o(t)}},function(t,e,n){"use strict";var r="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t};t.exports=function(t){return null!=t&&"object"==(void 0===t?"undefined":r(t))}},function(t,e,n){"use strict";var r=n(13),o=n(91),i=n(92),u=r?r.toStringTag:void 0;t.exports=function(t){return null==t?void 0===t?"[object Undefined]":"[object Null]":u&&u in Object(t)?o(t):i(t)}},function(t,e,n){"use strict";var r=n(47),o=n(27);t.exports=function(t){return null!=t&&o(t.length)&&!r(t)}},function(t,e,n){"use strict";t.exports=function(t){return t}},function(t,e,n){"use strict";var r=n(1).Symbol;t.exports=r},function(t,e,n){"use strict";var r="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t},o=/^(?:0|[1-9]\d*)$/;t.exports=function(t,e){var n=void 0===t?"undefined":r(t);return!!(e=null==e?9007199254740991:e)&&("number"==n||"symbol"!=n&&o.test(t))&&t>-1&&t%1==0&&t<e}},function(t,e,n){"use strict";var r={};t.exports=r,r.updateProperties=function(t,e){return{cmd:"element.updateProperties",context:{element:t,properties:e}}},r.updateBusinessObject=function(t,e,n){return{cmd:"properties-panel.update-businessobject",context:{element:t,businessObject:e,properties:n}}},r.addElementsTolist=function(t,e,n,r,o){return{cmd:"properties-panel.update-businessobject-list",context:{element:t,currentObject:e,propertyName:n,objectsToPrepend:o,objectsToAdd:r}}},r.removeElementsFromList=function(t,e,n,r,o){return{cmd:"properties-panel.update-businessobject-list",context:{element:t,currentObject:e,propertyName:n,referencePropertyName:r,objectsToRemove:o}}},r.addAndRemoveElementsFromList=function(t,e,n,r,o,i){return{cmd:"properties-panel.update-businessobject-list",context:{element:t,currentObject:e,propertyName:n,referencePropertyName:r,objectsToAdd:o,objectsToRemove:i}}},r.setList=function(t,e,n,r){return{cmd:"properties-panel.update-businessobject-list",context:{element:t,currentObject:e,propertyName:n,updatedObjectList:r}}}},function(t,e,n){"use strict";t.exports=function(t,e){return t===e||t!=t&&e!=e}},function(t,e,n){"use strict";var r=n(120),o=n(121),i=n(122),u=n(123),s=n(124);function c(t){var e=-1,n=null==t?0:t.length;for(this.clear();++e<n;){var r=t[e];this.set(r[0],r[1])}}c.prototype.clear=r,c.prototype.delete=o,c.prototype.get=i,c.prototype.has=u,c.prototype.set=s,t.exports=c},function(t,e,n){"use strict";var r=n(16);t.exports=function(t,e){for(var n=t.length;n--;)if(r(t[n][0],e))return n;return-1}},function(t,e,n){"use strict";var r=n(6)(Object,"create");t.exports=r},function(t,e,n){"use strict";var r=n(138);t.exports=function(t,e){var n=t.__data__;return r(e)?n["string"==typeof e?"string":"hash"]:n.map}},function(t,e,n){"use strict";var r="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t},o=n(10),i=n(9);t.exports=function(t){return"symbol"==(void 0===t?"undefined":r(t))||i(t)&&"[object Symbol]"==o(t)}},function(t,e,n){"use strict";var r=n(21);t.exports=function(t){if("string"==typeof t||r(t))return t;var e=t+"";return"0"==e&&1/t==-1/0?"-0":e}},function(t,e,n){"use strict";var r=n(33),o=n(5);t.exports=function(t){return function(){var e=arguments;switch(e.length){case 0:return new t;case 1:return new t(e[0]);case 2:return new t(e[0],e[1]);case 3:return new t(e[0],e[1],e[2]);case 4:return new t(e[0],e[1],e[2],e[3]);case 5:return new t(e[0],e[1],e[2],e[3],e[4]);case 6:return new t(e[0],e[1],e[2],e[3],e[4],e[5]);case 7:return new t(e[0],e[1],e[2],e[3],e[4],e[5],e[6])}var n=r(t.prototype),i=t.apply(n,e);return o(i)?i:n}}},function(t,e,n){"use strict";t.exports=function(t,e){for(var n=-1,r=t.length,o=0,i=[];++n<r;){var u=t[n];u!==e&&"__lodash_placeholder__"!==u||(t[n]="__lodash_placeholder__",i[o++]=n)}return i}},function(t,e,n){"use strict";Object.defineProperty(e,"__esModule",{value:!0});var r=Object.prototype.toString,o=Object.prototype.hasOwnProperty;function i(t){return void 0===t}function u(t){return"[object Array]"===r.call(t)}function s(t){return"[object Object]"===r.call(t)}function c(t){return"[object Function]"===r.call(t)}function a(t){if(!u(t))throw new Error("must supply array")}function l(t,e){return o.call(t,e)}function f(t,e){var n;return e=_(e),p(t,(function(t,r){if(e(t,r))return n=t,!1})),n}function p(t,e){if(!i(t)){var n=u(t)?j:w;for(var r in t){if(l(t,r))if(!1===e(t[r],n(r)))return}}}function d(t,e,n){return p(t,(function(t,r){n=e(n,t,r)})),n}function v(t,e){return d(t,(function(t,n,r){return t&&e(n,r)}),!0)}function h(t,e){var n=[];return p(t,(function(t,r){n.push(e(t,r))})),n}function b(t){return t&&Object.keys(t)||[]}function y(t,e){var n=arguments.length>2&&void 0!==arguments[2]?arguments[2]:{};return e=x(e),p(t,(function(t){var r=e(t)||"_",o=n[r];o||(o=n[r]=[]),o.push(t)})),n}function m(t){t=x(t);for(var e={},n=arguments.length,r=Array(n>1?n-1:0),o=1;o<n;o++)r[o-1]=arguments[o];p(r,(function(n){return y(n,t,e)}));var i=h(e,(function(t,e){return t[0]}));return i}var g=m;function x(t){return c(t)?t:function(e){return e[t]}}function _(t){return c(t)?t:function(e){return e===t}}function w(t){return t}function j(t){return Number(t)}function S(t){if(Array.isArray(t)){for(var e=0,n=Array(t.length);e<t.length;e++)n[e]=t[e];return n}return Array.from(t)}var O=Array.prototype.slice;var P=Object.assign||function(t){for(var e=1;e<arguments.length;e++){var n=arguments[e];for(var r in n)Object.prototype.hasOwnProperty.call(n,r)&&(t[r]=n[r])}return t};e.flatten=function(t){return Array.prototype.concat.apply([],t)},e.find=f,e.findIndex=function(t,e){e=_(e);var n=u(t)?-1:void 0;return p(t,(function(t,r){if(e(t,r))return n=r,!1})),n},e.filter=function(t,e){var n=[];return p(t,(function(t,r){e(t,r)&&n.push(t)})),n},e.forEach=p,e.without=function(t,e){return i(t)?[]:(a(t),e=_(e),t.filter((function(t,n){return!e(t,n)})))},e.reduce=d,e.every=v,e.some=function(t,e){return!!f(t,e)},e.map=h,e.keys=b,e.size=function(t){return b(t).length},e.values=function(t){return h(t,(function(t){return t}))},e.groupBy=y,e.uniqueBy=m,e.unionBy=g,e.sortBy=function(t,e){e=x(e);var n=[];return p(t,(function(t,r){for(var o=e(t,r),i={d:o,v:t},u=0;u<n.length;u++){if(o<n[u].d)return void n.splice(u,0,i)}n.push(i)})),h(n,(function(t){return t.v}))},e.matchPattern=function(t){return function(e){return v(t,(function(t,n){return e[n]===t}))}},e.debounce=function(t,e){var n;return function(){var r=O.call(arguments);n&&clearTimeout(n),n=setTimeout((function(){t.apply(void 0,S(r))}),e)}},e.bind=function(t,e){return t.bind(e)},e.isUndefined=i,e.isDefined=function(t){return void 0!==t},e.isNil=function(t){return null==t},e.isArray=u,e.isObject=s,e.isNumber=function(t){return"[object Number]"===r.call(t)},e.isFunction=c,e.isString=function(t){return"[object String]"===r.call(t)},e.ensureArray=a,e.has=l,e.assign=function(t){for(var e=arguments.length,n=Array(e>1?e-1:0),r=1;r<e;r++)n[r-1]=arguments[r];return P.apply(void 0,[t].concat(n))},e.pick=function(t,e){var n={},r=Object(t);return p(e,(function(e){e in r&&(n[e]=t[e])})),n},e.omit=function(t,e){var n={};return p(Object(t),(function(t,r){-1===e.indexOf(r)&&(n[r]=t)})),n},e.merge=function t(e){for(var n=arguments.length,r=Array(n>1?n-1:0),o=1;o<n;o++)r[o-1]=arguments[o];return r.length?(p(r,(function(n){n&&s(n)&&p(n,(function(n,r){var o=e[r];s(n)?(s(o)||(o={}),e[r]=t(o,n)):e[r]=n}))})),e):e}},function(t,e,n){"use strict";var r=n(39),o=n(40),i=n(101),u=n(3);t.exports=function(t,e){return(u(t)?r:o)(t,i(e))}},function(t,e,n){"use strict";t.exports=function(t){return"number"==typeof t&&t>-1&&t%1==0&&t<=9007199254740991}},function(t,e,n){"use strict";t.exports=function(t,e,n){switch(n.length){case 0:return t.call(e);case 1:return t.call(e,n[0]);case 2:return t.call(e,n[0],n[1]);case 3:return t.call(e,n[0],n[1],n[2])}return t.apply(e,n)}},function(t,e,n){"use strict";var r="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t},o=n(118),i=n(163),u=n(12),s=n(3),c=n(174);t.exports=function(t){return"function"==typeof t?t:null==t?u:"object"==(void 0===t?"undefined":r(t))?s(t)?i(t[0],t[1]):o(t):c(t)}},function(t,e,n){"use strict";var r=n(6)(n(1),"Map");t.exports=r},function(t,e,n){"use strict";var r=n(130),o=n(137),i=n(139),u=n(140),s=n(141);function c(t){var e=-1,n=null==t?0:t.length;for(this.clear();++e<n;){var r=t[e];this.set(r[0],r[1])}}c.prototype.clear=r,c.prototype.delete=o,c.prototype.get=i,c.prototype.has=u,c.prototype.set=s,t.exports=c},function(t,e,n){"use strict";var r="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t},o=n(3),i=n(21),u=/\.|\[(?:[^[\]]*|(["'])(?:(?!\1)[^\\]|\\.)*?\1)\]/,s=/^\w*$/;t.exports=function(t,e){if(o(t))return!1;var n=void 0===t?"undefined":r(t);return!("number"!=n&&"symbol"!=n&&"boolean"!=n&&null!=t&&!i(t))||(s.test(t)||!u.test(t)||null!=e&&t in Object(e))}},function(t,e,n){"use strict";var r=n(5),o=Object.create,i=function(){function t(){}return function(e){if(!r(e))return{};if(o)return o(e);t.prototype=e;var n=new t;return t.prototype=void 0,n}}();t.exports=i},function(t,e,n){"use strict";var r=n(33),o=n(35);function i(t){this.__wrapped__=t,this.__actions__=[],this.__dir__=1,this.__filtered__=!1,this.__iteratees__=[],this.__takeCount__=4294967295,this.__views__=[]}i.prototype=r(o.prototype),i.prototype.constructor=i,t.exports=i},function(t,e,n){"use strict";t.exports=function(){}},function(t,e,n){"use strict";t.exports=function(t){return t.placeholder}},function(t,e,n){"use strict";var r=n(7).getBusinessObject,o=n(38),i=n(103),u=n(48),s=n(104),c=n(182),a=n(183),l=n(184),f=n(188),p=n(189),d=n(211),v=n(212),h=n(213),b=n(15);function y(t){if(!t)throw new Error(t+" must be set.");return t}var m=function(t){return{id:t.id,description:t.description||"",get:t.get||function(e){var n=r(e),o={},i=y(t.modelProperty);return o[i]=n.get(i),o},set:t.set||function(e,n){var r={},o=y(t.modelProperty);return""!==n[o]?r[o]=n[o]:r[o]=void 0,b.updateProperties(e,r)},validate:t.validate||function(){return{}},html:""}};function g(){}g.textField=function(t,e){return o(t,e,m(e))},g.validationAwareTextField=function(t,e){return a(t,e,m(e))},g.checkbox=function(t,e){return i(t,e,m(e))},g.textBox=function(t,e){return c(t,e,m(e))},g.selectBox=function(t,e){return u(t,e,m(e))},g.comboBox=function(t,e){return s(t,e)},g.table=function(t,e){return l(t,e)},g.label=function(t){return f(t)},g.link=function(t,e){return p(t,e)},g.autoSuggest=function(t,e){return d(t,e,m(e))},g.collapsible=function(t){return v(t)},g.toggleSwitch=function(t,e){return h(t,e,m(e))},t.exports=g},function(t,e,n){"use strict";var r=n(2).escapeHTML,o=n(0).domify,i=n(0).query,u=n(4);t.exports=function(t,e,n){var s=n,c=e.label||s.id,a=e.dataValueLabel,l=e.buttonLabel||"X",f=void 0!==e.buttonAction?e.buttonAction.name:"clear",p=void 0!==e.buttonAction?e.buttonAction.method:function(t,n){return i('input[name="'+e.modelProperty+'"]',n).value="",!0},d=void 0!==e.buttonShow?e.buttonShow.name:"canClear",v=void 0!==e.buttonShow?e.buttonShow.method:function(t,n){return""!==i('input[name="'+e.modelProperty+'"]',n).value},h=!!e.disabled&&"function"==typeof e.disabled,b=!!e.hidden&&"function"==typeof e.hidden,y=e.description;return s.html=o('<label for="camunda-'+r(s.id)+'" '+(h?'data-disable="isDisabled" ':"")+(b?'data-show="isHidden" ':"")+(a?'data-value="'+r(a)+'"':"")+">"+r(c)+'</label><div class="bpp-field-wrapper" '+(h?'data-disable="isDisabled"':"")+(b?'data-show="isHidden"':"")+'><input id="camunda-'+r(s.id)+'" type="text" name="'+r(e.modelProperty)+'" '+(h?'data-disable="isDisabled"':"")+(b?'data-show="isHidden"':"")+' /><button class="action-button '+r(f)+'" data-action="'+r(f)+'" data-show="'+r(d)+'" '+(h?'data-disable="isDisabled"':"")+(b?' data-show="isHidden"':"")+"><span>"+r(l)+"</span></button></div>"),y&&s.html.appendChild(u(t,y,{show:b&&"isHidden"})),s[f]=p,s[d]=v,h&&(s.isDisabled=function(){return e.disabled.apply(s,arguments)}),b&&(s.isHidden=function(){return!e.hidden.apply(s,arguments)}),s.cssClasses=["bpp-textfield"],s}},function(t,e,n){"use strict";t.exports=function(t,e){for(var n=-1,r=null==t?0:t.length;++n<r&&!1!==e(t[n],n,t););return t}},function(t,e,n){"use strict";var r=n(84),o=n(100)(r);t.exports=o},function(t,e,n){"use strict";var r=n(89),o=n(9),i=Object.prototype,u=i.hasOwnProperty,s=i.propertyIsEnumerable,c=r(function(){return arguments}())?r:function(t){return o(t)&&u.call(t,"callee")&&!s.call(t,"callee")};t.exports=c},function(t,e,n){"use strict";(function(e){var n="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t},r="object"==(void 0===e?"undefined":n(e))&&e&&e.Object===Object&&e;t.exports=r}).call(this,n(90))},function(t,e,n){"use strict";(function(t){var r="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t},o=n(1),i=n(93),u="object"==r(e)&&e&&!e.nodeType&&e,s=u&&"object"==r(t)&&t&&!t.nodeType&&t,c=s&&s.exports===u?o.Buffer:void 0,a=(c?c.isBuffer:void 0)||i;t.exports=a}).call(this,n(44)(t))},function(t,e,n){"use strict";t.exports=function(t){return t.webpackPolyfill||(t.deprecate=function(){},t.paths=[],t.children||(t.children=[]),Object.defineProperty(t,"loaded",{enumerable:!0,get:function(){return t.l}}),Object.defineProperty(t,"id",{enumerable:!0,get:function(){return t.i}}),t.webpackPolyfill=1),t}},function(t,e,n){"use strict";var r=n(94),o=n(95),i=n(96),u=i&&i.isTypedArray,s=u?o(u):r;t.exports=s},function(t,e,n){"use strict";var r=Object.prototype;t.exports=function(t){var e=t&&t.constructor;return t===("function"==typeof e&&e.prototype||r)}},function(t,e,n){"use strict";var r=n(10),o=n(5);t.exports=function(t){if(!o(t))return!1;var e=r(t);return"[object Function]"==e||"[object GeneratorFunction]"==e||"[object AsyncFunction]"==e||"[object Proxy]"==e}},function(t,e,n){"use strict";var r=n(2).escapeHTML,o=n(0).domify,i=n(0).query,u=n(26),s=n(4);t.exports=function(t,e,n){var c=n,a=e.label||c.id,l=e.selectOptions||[{name:"",value:""}],f=e.modelProperty,p=e.emptyParameter,d=!!e.disabled&&"function"==typeof e.disabled,v=!!e.hidden&&"function"==typeof e.hidden,h=e.description;p&&(l=l.concat([{name:"",value:""}])),c.html=o('<label for="camunda-'+r(c.id)+'"'+(d?'data-disable="isDisabled" ':"")+(v?'data-show="isHidden" ':"")+">"+r(a)+'</label><select id="camunda-'+r(c.id)+'-select" name="'+r(f)+'"'+(d?'data-disable="isDisabled" ':"")+(v?'data-show="isHidden" ':"")+" data-value></select>");var b=i("select",c.html);return function(t){return!(!t||"[object Array]"!==Object.prototype.toString.call(t))}(l)&&u(l,(function(t){b.appendChild(o('<option value="'+r(t.value)+(t.title?'" title="'+r(t.title):"")+'">'+(t.name?r(t.name):"")+"</option>"))})),h&&"function"!=typeof e.showCustomInput&&c.html.appendChild(s(t,h,{show:v&&"isHidden"})),c.setControlValue=function(t,e,n,r,i){if("function"==typeof l){var s=l(t,n);if(s){for(;n.firstChild;)n.removeChild(n.firstChild);u(s,(function(t){var e=o(function(t){return'<option value="'+t.value+'">'+t.name+"</option>"}(t));n.appendChild(e)}))}}void 0!==i&&(n.value=i)},d&&(c.isDisabled=function(){return e.disabled.apply(c,arguments)}),v&&(c.isHidden=function(){return!e.hidden.apply(c,arguments)}),c.cssClasses=["bpp-dropdown"],c}},function(t,e,n){"use strict";var r=n(50),o=n(16),i=Object.prototype.hasOwnProperty;t.exports=function(t,e,n){var u=t[e];i.call(t,e)&&o(u,n)&&(void 0!==n||e in t)||r(t,e,n)}},function(t,e,n){"use strict";var r=n(51);t.exports=function(t,e,n){"__proto__"==e&&r?r(t,e,{configurable:!0,enumerable:!0,value:n,writable:!0}):t[e]=n}},function(t,e,n){"use strict";var r=n(6),o=function(){try{var t=r(Object,"defineProperty");return t({},"",{}),t}catch(t){}}();t.exports=o},function(t,e,n){"use strict";var r=Function.prototype.toString;t.exports=function(t){if(null!=t){try{return r.call(t)}catch(t){}try{return t+""}catch(t){}}return""}},function(t,e,n){"use strict";var r=n(12),o=n(112),i=n(54);t.exports=function(t,e){return i(o(t,e,r),t+"")}},function(t,e,n){"use strict";var r=n(113),o=n(55)(r);t.exports=o},function(t,e,n){"use strict";var r=Date.now;t.exports=function(t){var e=0,n=0;return function(){var o=r(),i=16-(o-n);if(n=o,i>0){if(++e>=800)return arguments[0]}else e=0;return t.apply(void 0,arguments)}}},function(t,e,n){"use strict";var r=n(17),o=n(125),i=n(126),u=n(127),s=n(128),c=n(129);function a(t){var e=this.__data__=new r(t);this.size=e.size}a.prototype.clear=o,a.prototype.delete=i,a.prototype.get=u,a.prototype.has=s,a.prototype.set=c,t.exports=a},function(t,e,n){"use strict";var r=n(142),o=n(9);t.exports=function t(e,n,i,u,s){return e===n||(null==e||null==n||!o(e)&&!o(n)?e!=e&&n!=n:r(e,n,i,u,t,s))}},function(t,e,n){"use strict";var r=n(143),o=n(146),i=n(147);t.exports=function(t,e,n,u,s,c){var a=1&n,l=t.length,f=e.length;if(l!=f&&!(a&&f>l))return!1;var p=c.get(t),d=c.get(e);if(p&&d)return p==e&&d==t;var v=-1,h=!0,b=2&n?new r:void 0;for(c.set(t,e),c.set(e,t);++v<l;){var y=t[v],m=e[v];if(u)var g=a?u(m,y,v,e,t,c):u(y,m,v,t,e,c);if(void 0!==g){if(g)continue;h=!1;break}if(b){if(!o(e,(function(t,e){if(!i(b,e)&&(y===t||s(y,t,n,u,c)))return b.push(e)}))){h=!1;break}}else if(y!==m&&!s(y,m,n,u,c)){h=!1;break}}return c.delete(t),c.delete(e),h}},function(t,e,n){"use strict";t.exports=function(t,e){for(var n=-1,r=null==t?0:t.length,o=0,i=[];++n<r;){var u=t[n];e(u,n,t)&&(i[o++]=u)}return i}},function(t,e,n){"use strict";var r=n(6)(n(1),"WeakMap");t.exports=r},function(t,e,n){"use strict";var r=n(5);t.exports=function(t){return t==t&&!r(t)}},function(t,e,n){"use strict";t.exports=function(t,e){return function(n){return null!=n&&(n[t]===e&&(void 0!==e||t in Object(n)))}}},function(t,e,n){"use strict";var r=n(64),o=n(22);t.exports=function(t,e){for(var n=0,i=(e=r(e,t)).length;null!=t&&n<i;)t=t[o(e[n++])];return n&&n==i?t:void 0}},function(t,e,n){"use strict";var r=n(3),o=n(32),i=n(165),u=n(168);t.exports=function(t,e){return r(t)?t:o(t,e)?[t]:i(u(t))}},function(t,e,n){"use strict";t.exports=function(t,e,n,r){for(var o=t.length,i=n+(r?1:-1);r?i--:++i<o;)if(e(t[i],i,t))return i;return-1}},function(t,e,n){"use strict";var r=n(178);t.exports=function(t){var e=r(t),n=e%1;return e==e?n?e-n:e:0}},function(t,e,n){"use strict";var r=n(12),o=n(68),i=o?function(t,e){return o.set(t,e),t}:r;t.exports=i},function(t,e,n){"use strict";var r=n(60),o=r&&new r;t.exports=o},function(t,e,n){"use strict";var r=n(70),o=n(71),i=n(194),u=n(23),s=n(72),c=n(36),a=n(208),l=n(24),f=n(1);t.exports=function t(e,n,p,d,v,h,b,y,m,g){var x=128&n,_=1&n,w=2&n,j=24&n,S=512&n,O=w?void 0:u(e);return function P(){for(var C=arguments.length,E=Array(C),A=C;A--;)E[A]=arguments[A];if(j)var M=c(P),L=i(E,M);if(d&&(E=r(E,d,v,j)),h&&(E=o(E,h,b,j)),C-=L,j&&C<g){var T=l(E,M);return s(e,n,t,P.placeholder,p,E,T,y,m,g-C)}var k=_?p:this,R=w?k[e]:e;return C=E.length,y?E=a(E,y):S&&C>1&&E.reverse(),x&&m<C&&(E.length=m),this&&this!==f&&this instanceof P&&(R=O||u(R)),R.apply(k,E)}}},function(t,e,n){"use strict";var r=Math.max;t.exports=function(t,e,n,o){for(var i=-1,u=t.length,s=n.length,c=-1,a=e.length,l=r(u-s,0),f=Array(a+l),p=!o;++c<a;)f[c]=e[c];for(;++i<s;)(p||i<u)&&(f[n[i]]=t[i]);for(;l--;)f[c++]=t[i++];return f}},function(t,e,n){"use strict";var r=Math.max;t.exports=function(t,e,n,o){for(var i=-1,u=t.length,s=-1,c=n.length,a=-1,l=e.length,f=r(u-c,0),p=Array(f+l),d=!o;++i<f;)p[i]=t[i];for(var v=i;++a<l;)p[v+a]=e[a];for(;++s<c;)(d||i<u)&&(p[v+n[s]]=t[i++]);return p}},function(t,e,n){"use strict";var r=n(195),o=n(76),i=n(77);t.exports=function(t,e,n,u,s,c,a,l,f,p){var d=8&e;e|=d?32:64,4&(e&=~(d?64:32))||(e&=-4);var v=[t,e,s,d?c:void 0,d?a:void 0,d?void 0:c,d?void 0:a,l,f,p],h=n.apply(void 0,v);return r(t)&&o(h,v),h.placeholder=u,i(h,t,e)}},function(t,e,n){"use strict";var r=n(68),o=n(196),i=r?function(t){return r.get(t)}:o;t.exports=i},function(t,e,n){"use strict";var r=n(33),o=n(35);function i(t,e){this.__wrapped__=t,this.__actions__=[],this.__chain__=!!e,this.__index__=0,this.__values__=void 0}i.prototype=r(o.prototype),i.prototype.constructor=i,t.exports=i},function(t,e,n){"use strict";t.exports=function(t,e){var n=-1,r=t.length;for(e||(e=Array(r));++n<r;)e[n]=t[n];return e}},function(t,e,n){"use strict";var r=n(67),o=n(55)(r);t.exports=o},function(t,e,n){"use strict";var r=n(201),o=n(202),i=n(54),u=n(203);t.exports=function(t,e,n){var s=e+"";return i(t,o(s,u(r(s),n)))}},function(t,e,n){"use strict";var r=n(79),o=n(80),i=n(215);(0,r.registerBpmnJSPlugin)(o),(0,r.registerBpmnJSModdleExtension)(i)},function(t,e,n){"use strict";function r(t,e){var n=window.plugins||[];if(window.plugins=n,!t)throw new Error("plugin not specified");if(!e)throw new Error("type not specified");n.push({plugin:t,type:e})}Object.defineProperty(e,"__esModule",{value:!0}),e.registerClientPlugin=r,e.registerBpmnJSPlugin=function(t){r(t,"bpmn.modeler.additionalModules")},e.registerBpmnJSModdleExtension=function(t){r(t,"bpmn.modeler.moddleExtension")},e.getModelerDirectory=function(){return window.getModelerDirectory()},e.getPluginsDirectory=function(){return window.getPluginsDirectory()}},function(t,e,n){"use strict";var r=n(81),o=n(82),i=n(83),u=n(214);function s(t,e){var n={id:"context-group",label:"Context",entries:[]};i(n,t);var r={id:"global-rule-set-group",label:"GlobalRuleSet",entries:[]};return u(r,t),[n,r]}function c(t,e,n,r){o.call(this,t);var i=r.getTabs;r.getTabs=function(t){var e={id:"paradigma-tab",label:"Paradigma",groups:s(t)},n=i(t);return n.push(e),n}}c.$inject=["eventBus","bpmnFactory","elementRegistry","propertiesProvider"],r(c,o),t.exports={__init__:["paradigmaPropertiesProvider"],paradigmaPropertiesProvider:["type",c]}},function(t,e,n){"use strict";"function"==typeof Object.create?t.exports=function(t,e){t.super_=e,t.prototype=Object.create(e.prototype,{constructor:{value:t,enumerable:!1,writable:!0,configurable:!0}})}:t.exports=function(t,e){t.super_=e;var n=function(){};n.prototype=e.prototype,t.prototype=new n,t.prototype.constructor=t}},function(t,e,n){"use strict";function r(t,e){var n=this;e=e||1e3,t.on("propertiesPanel.isEntryVisible",e,(function(t){var e=t.element,r=t.entry,o=t.group,i=t.tab;return n.isEntryVisible(e,r,o,i)})),t.on("propertiesPanel.isPropertyEditable",e,(function(t){var e=t.element,r=t.entry,o=t.group,i=t.propertyName,u=t.tab;return n.isPropertyEditable(i,e,r,o,u)}))}r.$inject=["eventBus"],t.exports=r,r.prototype.isEntryVisible=function(t,e,n,r){return!0},r.prototype.isPropertyEditable=function(t,e,n,r,o){return!0}},function(t,e,n){"use strict";var r=n(37),o=n(7).is;t.exports=function(t,e){if(o(e,"bpmn:Process")){var n=r.textField({id:"resourceUrl",description:"resourceUrl description",label:"Resource URL",modelProperty:"resourceUrl"}),i=r.textField({id:"machineUrl",description:"machineUrl description",label:"Machine URL",modelProperty:"machineUrl"}),u=r.textField({id:"userDirectoryUrl",description:"userDirectoryUrl description",label:"UserDirectory URL",modelProperty:"userDirectoryUrl"}),s=r.textField({id:"paradigmaUrl",description:"paradigmaUrl description",label:"Paradigma URL",modelProperty:"paradigmaUrl"}),c=r.textField({id:"globalContextEventEndpoint",description:"globalContextEventEndpoint description",label:"GlobalContextEventEndpoint",modelProperty:"globalContextEventEndpoint"});t.entries=t.entries.concat([n,i,u,s,c])}}},function(t,e,n){"use strict";var r=n(85),o=n(8);t.exports=function(t,e){return t&&r(t,e,o)}},function(t,e,n){"use strict";var r=n(86)();t.exports=r},function(t,e,n){"use strict";t.exports=function(t){return function(e,n,r){for(var o=-1,i=Object(e),u=r(e),s=u.length;s--;){var c=u[t?s:++o];if(!1===n(i[c],c,i))break}return e}}},function(t,e,n){"use strict";var r=n(88),o=n(41),i=n(3),u=n(43),s=n(14),c=n(45),a=Object.prototype.hasOwnProperty;t.exports=function(t,e){var n=i(t),l=!n&&o(t),f=!n&&!l&&u(t),p=!n&&!l&&!f&&c(t),d=n||l||f||p,v=d?r(t.length,String):[],h=v.length;for(var b in t)!e&&!a.call(t,b)||d&&("length"==b||f&&("offset"==b||"parent"==b)||p&&("buffer"==b||"byteLength"==b||"byteOffset"==b)||s(b,h))||v.push(b);return v}},function(t,e,n){"use strict";t.exports=function(t,e){for(var n=-1,r=Array(t);++n<t;)r[n]=e(n);return r}},function(t,e,n){"use strict";var r=n(10),o=n(9);t.exports=function(t){return o(t)&&"[object Arguments]"==r(t)}},function(t,e,n){"use strict";var r,o="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t};r=function(){return this}();try{r=r||new Function("return this")()}catch(t){"object"===("undefined"==typeof window?"undefined":o(window))&&(r=window)}t.exports=r},function(t,e,n){"use strict";var r=n(13),o=Object.prototype,i=o.hasOwnProperty,u=o.toString,s=r?r.toStringTag:void 0;t.exports=function(t){var e=i.call(t,s),n=t[s];try{t[s]=void 0;var r=!0}catch(t){}var o=u.call(t);return r&&(e?t[s]=n:delete t[s]),o}},function(t,e,n){"use strict";var r=Object.prototype.toString;t.exports=function(t){return r.call(t)}},function(t,e,n){"use strict";t.exports=function(){return!1}},function(t,e,n){"use strict";var r=n(10),o=n(27),i=n(9),u={};u["[object Float32Array]"]=u["[object Float64Array]"]=u["[object Int8Array]"]=u["[object Int16Array]"]=u["[object Int32Array]"]=u["[object Uint8Array]"]=u["[object Uint8ClampedArray]"]=u["[object Uint16Array]"]=u["[object Uint32Array]"]=!0,u["[object Arguments]"]=u["[object Array]"]=u["[object ArrayBuffer]"]=u["[object Boolean]"]=u["[object DataView]"]=u["[object Date]"]=u["[object Error]"]=u["[object Function]"]=u["[object Map]"]=u["[object Number]"]=u["[object Object]"]=u["[object RegExp]"]=u["[object Set]"]=u["[object String]"]=u["[object WeakMap]"]=!1,t.exports=function(t){return i(t)&&o(t.length)&&!!u[r(t)]}},function(t,e,n){"use strict";t.exports=function(t){return function(e){return t(e)}}},function(t,e,n){"use strict";(function(t){var r="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t},o=n(42),i="object"==r(e)&&e&&!e.nodeType&&e,u=i&&"object"==r(t)&&t&&!t.nodeType&&t,s=u&&u.exports===i&&o.process,c=function(){try{var t=u&&u.require&&u.require("util").types;return t||s&&s.binding&&s.binding("util")}catch(t){}}();t.exports=c}).call(this,n(44)(t))},function(t,e,n){"use strict";var r=n(46),o=n(98),i=Object.prototype.hasOwnProperty;t.exports=function(t){if(!r(t))return o(t);var e=[];for(var n in Object(t))i.call(t,n)&&"constructor"!=n&&e.push(n);return e}},function(t,e,n){"use strict";var r=n(99)(Object.keys,Object);t.exports=r},function(t,e,n){"use strict";t.exports=function(t,e){return function(n){return t(e(n))}}},function(t,e,n){"use strict";var r=n(11);t.exports=function(t,e){return function(n,o){if(null==n)return n;if(!r(n))return t(n,o);for(var i=n.length,u=e?i:-1,s=Object(n);(e?u--:++u<i)&&!1!==o(s[u],u,s););return n}}},function(t,e,n){"use strict";var r=n(12);t.exports=function(t){return"function"==typeof t?t:r}},function(t,e,n){"use strict";Object.defineProperty(e,"__esModule",{value:!0});var r=function(t,e){return t(e={exports:{}},e.exports),e.exports}((function(t){var e=t.exports=function(t,n){if(n||(n=16),void 0===t&&(t=128),t<=0)return"0";for(var r=Math.log(Math.pow(2,t))/Math.log(n),o=2;r===1/0;o*=2)r=Math.log(Math.pow(2,t/o))/Math.log(n)*o;var i=r-Math.floor(r),u="";for(o=0;o<Math.floor(r);o++){u=Math.floor(Math.random()*n).toString(n)+u}if(i){var s=Math.pow(n,i);u=Math.floor(Math.random()*s).toString(n)+u}var c=parseInt(u,n);return c!==1/0&&c>=Math.pow(2,t)?e(t,n):u};e.rack=function(t,n,r){var o=function(o){var u=0;do{if(u++>10){if(!r)throw new Error("too many ID collisions, use more bits");t+=r}var s=e(t,n)}while(Object.hasOwnProperty.call(i,s));return i[s]=o,s},i=o.hats={};return o.get=function(t){return o.hats[t]},o.set=function(t,e){return o.hats[t]=e,o},o.bits=t||128,o.base=n||16,o}}));function o(t){if(!(this instanceof o))return new o(t);t=t||[128,36,1],this._seed=t.length?r.rack(t[0],t[1],t[2]):t}o.prototype.next=function(t){return this._seed(t||!0)},o.prototype.nextPrefixed=function(t,e){var n;do{n=t+this.next(!0)}while(this.assigned(n));return this.claim(n,e),n},o.prototype.claim=function(t,e){this._seed.set(t,e||!0)},o.prototype.assigned=function(t){return this._seed.get(t)||!1},o.prototype.unclaim=function(t){delete this._seed.hats[t]},o.prototype.clear=function(){var t,e=this._seed.hats;for(t in e)this.unclaim(t)},e.default=o},function(t,e,n){"use strict";var r=n(0).domify,o=n(7).getBusinessObject,i=n(15),u=n(2).escapeHTML,s=n(4);t.exports=function(t,e,n){var c=n,a=c.id,l=e.label||a,f=!!e.disabled&&"function"==typeof e.disabled,p=!!e.hidden&&"function"==typeof e.hidden,d=e.description;return c.html=r('<input id="camunda-'+u(a)+'" type="checkbox" name="'+u(e.modelProperty)+'" '+(f?'data-disable="isDisabled"':"")+(p?'data-show="isHidden"':"")+' /><label for="camunda-'+u(a)+'" '+(f?'data-disable="isDisabled"':"")+(p?'data-show="isHidden"':"")+">"+u(l)+"</label>"),d&&c.html.appendChild(s(t,d,{show:p&&"isHidden"})),c.get=function(t){var n=o(t),r={};return r[e.modelProperty]=n.get(e.modelProperty),r},c.set=function(t,n){var r={};return r[e.modelProperty]=!!n[e.modelProperty],i.updateProperties(t,r)},"function"==typeof e.set&&(c.set=e.set),"function"==typeof e.get&&(c.get=e.get),f&&(c.isDisabled=function(){return e.disabled.apply(c,arguments)}),p&&(c.isHidden=function(){return!e.hidden.apply(c,arguments)}),c.cssClasses=["bpp-checkbox"],c}},function(t,e,n){"use strict";var r=n(105),o=n(116),i=n(0).domify,u=n(0).query,s=n(2).escapeHTML,c=n(48),a=n(4);t.exports=function(t,e){var n=e.selectOptions,l=e.modelProperty,f=e.customValue||"custom",p=e.customName||"custom "+l,d=e.description,v=r({},e);v.showCustomInput=function(t,n){var r=u('[data-entry="'+e.id+'"] select',n.parentNode);return!!r&&r.value===f},v.get=function(t,r){var i=e.get(t,r),u={};return function(t){return void 0!==t[l]&&!o(n,(function(e){return t[l]===e.value}))}(i)?(u[l]=f,u["custom-"+l]=i[l],u):(u[l]=i[l]||"",u)},v.set=function(t,n,r){var o={};return n[l]===f?o[l]=n["custom-"+l]||"":e.emptyParameter&&""===n[l]?o[l]=void 0:o[l]=n[l],e.set(t,o,r)},v.selectOptions.push({name:p,value:f});var h=r({},c(t,v,v)),b=document.createDocumentFragment();return b.appendChild(h.html),h.html=b,h.html.appendChild(i('<div class="bpp-field-wrapper bpp-combo-input" data-show="showCustomInput"><input id="camunda-'+s(e.id)+'-input" type="text" name="custom-'+s(l)+'"  /></div>')),d&&h.html.appendChild(a(t,d,{show:"showCustomInput"})),h}},function(t,e,n){"use strict";var r=n(49),o=n(110),i=n(111),u=n(11),s=n(46),c=n(8),a=Object.prototype.hasOwnProperty,l=i((function(t,e){if(s(e)||u(e))o(e,c(e),t);else for(var n in e)a.call(e,n)&&r(t,n,e[n])}));t.exports=l},function(t,e,n){"use strict";var r=n(47),o=n(107),i=n(5),u=n(52),s=/^\[object .+?Constructor\]$/,c=Function.prototype,a=Object.prototype,l=c.toString,f=a.hasOwnProperty,p=RegExp("^"+l.call(f).replace(/[\\^$.*+?()[\]{}|]/g,"\\$&").replace(/hasOwnProperty|(function).*?(?=\\\()| for .+?(?=\\\])/g,"$1.*?")+"$");t.exports=function(t){return!(!i(t)||o(t))&&(r(t)?p:s).test(u(t))}},function(t,e,n){"use strict";var r,o=n(108),i=(r=/[^.]+$/.exec(o&&o.keys&&o.keys.IE_PROTO||""))?"Symbol(src)_1."+r:"";t.exports=function(t){return!!i&&i in t}},function(t,e,n){"use strict";var r=n(1)["__core-js_shared__"];t.exports=r},function(t,e,n){"use strict";t.exports=function(t,e){return null==t?void 0:t[e]}},function(t,e,n){"use strict";var r=n(49),o=n(50);t.exports=function(t,e,n,i){var u=!n;n||(n={});for(var s=-1,c=e.length;++s<c;){var a=e[s],l=i?i(n[a],t[a],a,n,t):void 0;void 0===l&&(l=t[a]),u?o(n,a,l):r(n,a,l)}return n}},function(t,e,n){"use strict";var r=n(53),o=n(115);t.exports=function(t){return r((function(e,n){var r=-1,i=n.length,u=i>1?n[i-1]:void 0,s=i>2?n[2]:void 0;for(u=t.length>3&&"function"==typeof u?(i--,u):void 0,s&&o(n[0],n[1],s)&&(u=i<3?void 0:u,i=1),e=Object(e);++r<i;){var c=n[r];c&&t(e,c,r,u)}return e}))}},function(t,e,n){"use strict";var r=n(28),o=Math.max;t.exports=function(t,e,n){return e=o(void 0===e?t.length-1:e,0),function(){for(var i=arguments,u=-1,s=o(i.length-e,0),c=Array(s);++u<s;)c[u]=i[e+u];u=-1;for(var a=Array(e+1);++u<e;)a[u]=i[u];return a[e]=n(c),r(t,this,a)}}},function(t,e,n){"use strict";var r=n(114),o=n(51),i=n(12),u=o?function(t,e){return o(t,"toString",{configurable:!0,enumerable:!1,value:r(e),writable:!0})}:i;t.exports=u},function(t,e,n){"use strict";t.exports=function(t){return function(){return t}}},function(t,e,n){"use strict";var r="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t},o=n(16),i=n(11),u=n(14),s=n(5);t.exports=function(t,e,n){if(!s(n))return!1;var c=void 0===e?"undefined":r(e);return!!("number"==c?i(n)&&u(e,n.length):"string"==c&&e in n)&&o(n[e],t)}},function(t,e,n){"use strict";var r=n(117)(n(177));t.exports=r},function(t,e,n){"use strict";var r=n(29),o=n(11),i=n(8);t.exports=function(t){return function(e,n,u){var s=Object(e);if(!o(e)){var c=r(n,3);e=i(e),n=function(t){return c(s[t],t,s)}}var a=t(e,n,u);return a>-1?s[c?e[a]:a]:void 0}}},function(t,e,n){"use strict";var r=n(119),o=n(162),i=n(62);t.exports=function(t){var e=o(t);return 1==e.length&&e[0][2]?i(e[0][0],e[0][1]):function(n){return n===t||r(n,t,e)}}},function(t,e,n){"use strict";var r=n(56),o=n(57);t.exports=function(t,e,n,i){var u=n.length,s=u,c=!i;if(null==t)return!s;for(t=Object(t);u--;){var a=n[u];if(c&&a[2]?a[1]!==t[a[0]]:!(a[0]in t))return!1}for(;++u<s;){var l=(a=n[u])[0],f=t[l],p=a[1];if(c&&a[2]){if(void 0===f&&!(l in t))return!1}else{var d=new r;if(i)var v=i(f,p,l,t,e,d);if(!(void 0===v?o(p,f,3,i,d):v))return!1}}return!0}},function(t,e,n){"use strict";t.exports=function(){this.__data__=[],this.size=0}},function(t,e,n){"use strict";var r=n(18),o=Array.prototype.splice;t.exports=function(t){var e=this.__data__,n=r(e,t);return!(n<0)&&(n==e.length-1?e.pop():o.call(e,n,1),--this.size,!0)}},function(t,e,n){"use strict";var r=n(18);t.exports=function(t){var e=this.__data__,n=r(e,t);return n<0?void 0:e[n][1]}},function(t,e,n){"use strict";var r=n(18);t.exports=function(t){return r(this.__data__,t)>-1}},function(t,e,n){"use strict";var r=n(18);t.exports=function(t,e){var n=this.__data__,o=r(n,t);return o<0?(++this.size,n.push([t,e])):n[o][1]=e,this}},function(t,e,n){"use strict";var r=n(17);t.exports=function(){this.__data__=new r,this.size=0}},function(t,e,n){"use strict";t.exports=function(t){var e=this.__data__,n=e.delete(t);return this.size=e.size,n}},function(t,e,n){"use strict";t.exports=function(t){return this.__data__.get(t)}},function(t,e,n){"use strict";t.exports=function(t){return this.__data__.has(t)}},function(t,e,n){"use strict";var r=n(17),o=n(30),i=n(31);t.exports=function(t,e){var n=this.__data__;if(n instanceof r){var u=n.__data__;if(!o||u.length<199)return u.push([t,e]),this.size=++n.size,this;n=this.__data__=new i(u)}return n.set(t,e),this.size=n.size,this}},function(t,e,n){"use strict";var r=n(131),o=n(17),i=n(30);t.exports=function(){this.size=0,this.__data__={hash:new r,map:new(i||o),string:new r}}},function(t,e,n){"use strict";var r=n(132),o=n(133),i=n(134),u=n(135),s=n(136);function c(t){var e=-1,n=null==t?0:t.length;for(this.clear();++e<n;){var r=t[e];this.set(r[0],r[1])}}c.prototype.clear=r,c.prototype.delete=o,c.prototype.get=i,c.prototype.has=u,c.prototype.set=s,t.exports=c},function(t,e,n){"use strict";var r=n(19);t.exports=function(){this.__data__=r?r(null):{},this.size=0}},function(t,e,n){"use strict";t.exports=function(t){var e=this.has(t)&&delete this.__data__[t];return this.size-=e?1:0,e}},function(t,e,n){"use strict";var r=n(19),o=Object.prototype.hasOwnProperty;t.exports=function(t){var e=this.__data__;if(r){var n=e[t];return"__lodash_hash_undefined__"===n?void 0:n}return o.call(e,t)?e[t]:void 0}},function(t,e,n){"use strict";var r=n(19),o=Object.prototype.hasOwnProperty;t.exports=function(t){var e=this.__data__;return r?void 0!==e[t]:o.call(e,t)}},function(t,e,n){"use strict";var r=n(19);t.exports=function(t,e){var n=this.__data__;return this.size+=this.has(t)?0:1,n[t]=r&&void 0===e?"__lodash_hash_undefined__":e,this}},function(t,e,n){"use strict";var r=n(20);t.exports=function(t){var e=r(this,t).delete(t);return this.size-=e?1:0,e}},function(t,e,n){"use strict";var r="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t};t.exports=function(t){var e=void 0===t?"undefined":r(t);return"string"==e||"number"==e||"symbol"==e||"boolean"==e?"__proto__"!==t:null===t}},function(t,e,n){"use strict";var r=n(20);t.exports=function(t){return r(this,t).get(t)}},function(t,e,n){"use strict";var r=n(20);t.exports=function(t){return r(this,t).has(t)}},function(t,e,n){"use strict";var r=n(20);t.exports=function(t,e){var n=r(this,t),o=n.size;return n.set(t,e),this.size+=n.size==o?0:1,this}},function(t,e,n){"use strict";var r=n(56),o=n(58),i=n(148),u=n(152),s=n(158),c=n(3),a=n(43),l=n(45),f="[object Object]",p=Object.prototype.hasOwnProperty;t.exports=function(t,e,n,d,v,h){var b=c(t),y=c(e),m=b?"[object Array]":s(t),g=y?"[object Array]":s(e),x=(m="[object Arguments]"==m?f:m)==f,_=(g="[object Arguments]"==g?f:g)==f,w=m==g;if(w&&a(t)){if(!a(e))return!1;b=!0,x=!1}if(w&&!x)return h||(h=new r),b||l(t)?o(t,e,n,d,v,h):i(t,e,m,n,d,v,h);if(!(1&n)){var j=x&&p.call(t,"__wrapped__"),S=_&&p.call(e,"__wrapped__");if(j||S){var O=j?t.value():t,P=S?e.value():e;return h||(h=new r),v(O,P,n,d,h)}}return!!w&&(h||(h=new r),u(t,e,n,d,v,h))}},function(t,e,n){"use strict";var r=n(31),o=n(144),i=n(145);function u(t){var e=-1,n=null==t?0:t.length;for(this.__data__=new r;++e<n;)this.add(t[e])}u.prototype.add=u.prototype.push=o,u.prototype.has=i,t.exports=u},function(t,e,n){"use strict";t.exports=function(t){return this.__data__.set(t,"__lodash_hash_undefined__"),this}},function(t,e,n){"use strict";t.exports=function(t){return this.__data__.has(t)}},function(t,e,n){"use strict";t.exports=function(t,e){for(var n=-1,r=null==t?0:t.length;++n<r;)if(e(t[n],n,t))return!0;return!1}},function(t,e,n){"use strict";t.exports=function(t,e){return t.has(e)}},function(t,e,n){"use strict";var r=n(13),o=n(149),i=n(16),u=n(58),s=n(150),c=n(151),a=r?r.prototype:void 0,l=a?a.valueOf:void 0;t.exports=function(t,e,n,r,a,f,p){switch(n){case"[object DataView]":if(t.byteLength!=e.byteLength||t.byteOffset!=e.byteOffset)return!1;t=t.buffer,e=e.buffer;case"[object ArrayBuffer]":return!(t.byteLength!=e.byteLength||!f(new o(t),new o(e)));case"[object Boolean]":case"[object Date]":case"[object Number]":return i(+t,+e);case"[object Error]":return t.name==e.name&&t.message==e.message;case"[object RegExp]":case"[object String]":return t==e+"";case"[object Map]":var d=s;case"[object Set]":var v=1&r;if(d||(d=c),t.size!=e.size&&!v)return!1;var h=p.get(t);if(h)return h==e;r|=2,p.set(t,e);var b=u(d(t),d(e),r,a,f,p);return p.delete(t),b;case"[object Symbol]":if(l)return l.call(t)==l.call(e)}return!1}},function(t,e,n){"use strict";var r=n(1).Uint8Array;t.exports=r},function(t,e,n){"use strict";t.exports=function(t){var e=-1,n=Array(t.size);return t.forEach((function(t,r){n[++e]=[r,t]})),n}},function(t,e,n){"use strict";t.exports=function(t){var e=-1,n=Array(t.size);return t.forEach((function(t){n[++e]=t})),n}},function(t,e,n){"use strict";var r=n(153),o=Object.prototype.hasOwnProperty;t.exports=function(t,e,n,i,u,s){var c=1&n,a=r(t),l=a.length;if(l!=r(e).length&&!c)return!1;for(var f=l;f--;){var p=a[f];if(!(c?p in e:o.call(e,p)))return!1}var d=s.get(t),v=s.get(e);if(d&&v)return d==e&&v==t;var h=!0;s.set(t,e),s.set(e,t);for(var b=c;++f<l;){var y=t[p=a[f]],m=e[p];if(i)var g=c?i(m,y,p,e,t,s):i(y,m,p,t,e,s);if(!(void 0===g?y===m||u(y,m,n,i,s):g)){h=!1;break}b||(b="constructor"==p)}if(h&&!b){var x=t.constructor,_=e.constructor;x==_||!("constructor"in t)||!("constructor"in e)||"function"==typeof x&&x instanceof x&&"function"==typeof _&&_ instanceof _||(h=!1)}return s.delete(t),s.delete(e),h}},function(t,e,n){"use strict";var r=n(154),o=n(156),i=n(8);t.exports=function(t){return r(t,i,o)}},function(t,e,n){"use strict";var r=n(155),o=n(3);t.exports=function(t,e,n){var i=e(t);return o(t)?i:r(i,n(t))}},function(t,e,n){"use strict";t.exports=function(t,e){for(var n=-1,r=e.length,o=t.length;++n<r;)t[o+n]=e[n];return t}},function(t,e,n){"use strict";var r=n(59),o=n(157),i=Object.prototype.propertyIsEnumerable,u=Object.getOwnPropertySymbols,s=u?function(t){return null==t?[]:(t=Object(t),r(u(t),(function(e){return i.call(t,e)})))}:o;t.exports=s},function(t,e,n){"use strict";t.exports=function(){return[]}},function(t,e,n){"use strict";var r=n(159),o=n(30),i=n(160),u=n(161),s=n(60),c=n(10),a=n(52),l=a(r),f=a(o),p=a(i),d=a(u),v=a(s),h=c;(r&&"[object DataView]"!=h(new r(new ArrayBuffer(1)))||o&&"[object Map]"!=h(new o)||i&&"[object Promise]"!=h(i.resolve())||u&&"[object Set]"!=h(new u)||s&&"[object WeakMap]"!=h(new s))&&(h=function(t){var e=c(t),n="[object Object]"==e?t.constructor:void 0,r=n?a(n):"";if(r)switch(r){case l:return"[object DataView]";case f:return"[object Map]";case p:return"[object Promise]";case d:return"[object Set]";case v:return"[object WeakMap]"}return e}),t.exports=h},function(t,e,n){"use strict";var r=n(6)(n(1),"DataView");t.exports=r},function(t,e,n){"use strict";var r=n(6)(n(1),"Promise");t.exports=r},function(t,e,n){"use strict";var r=n(6)(n(1),"Set");t.exports=r},function(t,e,n){"use strict";var r=n(61),o=n(8);t.exports=function(t){for(var e=o(t),n=e.length;n--;){var i=e[n],u=t[i];e[n]=[i,u,r(u)]}return e}},function(t,e,n){"use strict";var r=n(57),o=n(164),i=n(171),u=n(32),s=n(61),c=n(62),a=n(22);t.exports=function(t,e){return u(t)&&s(e)?c(a(t),e):function(n){var u=o(n,t);return void 0===u&&u===e?i(n,t):r(e,u,3)}}},function(t,e,n){"use strict";var r=n(63);t.exports=function(t,e,n){var o=null==t?void 0:r(t,e);return void 0===o?n:o}},function(t,e,n){"use strict";var r=n(166),o=/[^.[\]]+|\[(?:(-?\d+(?:\.\d+)?)|(["'])((?:(?!\2)[^\\]|\\.)*?)\2)\]|(?=(?:\.|\[\])(?:\.|\[\]|$))/g,i=/\\(\\)?/g,u=r((function(t){var e=[];return 46===t.charCodeAt(0)&&e.push(""),t.replace(o,(function(t,n,r,o){e.push(r?o.replace(i,"$1"):n||t)})),e}));t.exports=u},function(t,e,n){"use strict";var r=n(167);t.exports=function(t){var e=r(t,(function(t){return 500===n.size&&n.clear(),t})),n=e.cache;return e}},function(t,e,n){"use strict";var r=n(31);function o(t,e){if("function"!=typeof t||null!=e&&"function"!=typeof e)throw new TypeError("Expected a function");var n=function n(){var r=arguments,o=e?e.apply(this,r):r[0],i=n.cache;if(i.has(o))return i.get(o);var u=t.apply(this,r);return n.cache=i.set(o,u)||i,u};return n.cache=new(o.Cache||r),n}o.Cache=r,t.exports=o},function(t,e,n){"use strict";var r=n(169);t.exports=function(t){return null==t?"":r(t)}},function(t,e,n){"use strict";var r=n(13),o=n(170),i=n(3),u=n(21),s=r?r.prototype:void 0,c=s?s.toString:void 0;t.exports=function t(e){if("string"==typeof e)return e;if(i(e))return o(e,t)+"";if(u(e))return c?c.call(e):"";var n=e+"";return"0"==n&&1/e==-1/0?"-0":n}},function(t,e,n){"use strict";t.exports=function(t,e){for(var n=-1,r=null==t?0:t.length,o=Array(r);++n<r;)o[n]=e(t[n],n,t);return o}},function(t,e,n){"use strict";var r=n(172),o=n(173);t.exports=function(t,e){return null!=t&&o(t,e,r)}},function(t,e,n){"use strict";t.exports=function(t,e){return null!=t&&e in Object(t)}},function(t,e,n){"use strict";var r=n(64),o=n(41),i=n(3),u=n(14),s=n(27),c=n(22);t.exports=function(t,e,n){for(var a=-1,l=(e=r(e,t)).length,f=!1;++a<l;){var p=c(e[a]);if(!(f=null!=t&&n(t,p)))break;t=t[p]}return f||++a!=l?f:!!(l=null==t?0:t.length)&&s(l)&&u(p,l)&&(i(t)||o(t))}},function(t,e,n){"use strict";var r=n(175),o=n(176),i=n(32),u=n(22);t.exports=function(t){return i(t)?r(u(t)):o(t)}},function(t,e,n){"use strict";t.exports=function(t){return function(e){return null==e?void 0:e[t]}}},function(t,e,n){"use strict";var r=n(63);t.exports=function(t){return function(e){return r(e,t)}}},function(t,e,n){"use strict";var r=n(65),o=n(29),i=n(66),u=Math.max;t.exports=function(t,e,n){var s=null==t?0:t.length;if(!s)return-1;var c=null==n?0:i(n);return c<0&&(c=u(s+c,0)),r(t,o(e,3),c)}},function(t,e,n){"use strict";var r=n(179);t.exports=function(t){return t?(t=r(t))===1/0||t===-1/0?17976931348623157e292*(t<0?-1:1):t==t?t:0:0===t?t:0}},function(t,e,n){"use strict";var r=n(180),o=n(5),i=n(21),u=/^[-+]0x[0-9a-f]+$/i,s=/^0b[01]+$/i,c=/^0o[0-7]+$/i,a=parseInt;t.exports=function(t){if("number"==typeof t)return t;if(i(t))return NaN;if(o(t)){var e="function"==typeof t.valueOf?t.valueOf():t;t=o(e)?e+"":e}if("string"!=typeof t)return 0===t?t:+t;t=r(t);var n=s.test(t);return n||c.test(t)?a(t.slice(2),n?2:8):u.test(t)?NaN:+t}},function(t,e,n){"use strict";var r=n(181),o=/^\s+/;t.exports=function(t){return t?t.slice(0,r(t)+1).replace(o,""):t}},function(t,e,n){"use strict";var r=/\s/;t.exports=function(t){for(var e=t.length;e--&&r.test(t.charAt(e)););return e}},function(t,e,n){"use strict";var r=n(0).domify,o=n(2).escapeHTML,i=n(4);t.exports=function(t,e,n){var u=n,s=e.label||u.id,c=!!e.show&&"function"==typeof e.show,a=e.description;return u.html=r('<label for="camunda-'+o(u.id)+'" '+(c?'data-show="isShown"':"")+">"+s+'</label><div class="bpp-field-wrapper" '+(c?'data-show="isShown"':"")+'><div contenteditable="true" id="camunda-'+o(u.id)+'" name="'+o(e.modelProperty)+'" /></div>'),a&&u.html.appendChild(i(t,a,{show:c&&"isShown"})),c&&(u.isShown=function(){return e.show.apply(u,arguments)}),u.cssClasses=["bpp-textbox"],u}},function(t,e,n){"use strict";var r=n(38);t.exports=function(t,e,n){var o=e.modelProperty;n.get=function(t,n){var r=this.__lastInvalidValue;delete this.__lastInvalidValue;var i={};return i[o]=void 0!==r?r:e.getProperty(t,n),i},n.set=function(t,n,r){var u=i.apply(this,[t,n,r]),s=n[o];if(u&&u[o])return this.__lastInvalidValue=s,e.setProperty(t,{},r);var c={};return c[o]=s,e.setProperty(t,c,r)};var i=n.validate=function(t,n,r){var i=n[o]||this.__lastInvalidValue,u={};return u[o]=i,e.validate(t,u,r)};return r(t,e,n)}},function(t,e,n){"use strict";var r=n(2).escapeHTML,o=n(15),i=n(0).query,u=n(0).attr,s=n(0).closest,c=n(185),a=n(26),l=n(8),f=n(0).domify,p=n(4),d=n(187);function v(t,e){var n='<div class="bpp-field-wrapper bpp-table-row">';return n+=function(t,e){var n=t.length,o="";return a(t,(function(t){o+='<input class="bpp-table-row-columns-'+n+" "+(e?"bpp-table-row-removable":"")+'" id="camunda-table-row-cell-input-value" type="text" name="'+r(t)+'" />'})),o}(t,e),n+=e?'<button class="action-button clear" data-action="deleteElement"><span>X</span></button>':"",n+="</div>"}function h(t){var e='<div class="bpp-field-wrapper bpp-table-row">';return e+=function(t){var e=t.length,n="";return a(t,(function(t){n+='<label class="bpp-table-row-columns-'+e+'">'+r(t)+"</label>"})),n}(t),e+="</div>"}function b(t,e,n,r,o){return c(n,(function(n,i){return!function(t,e,n,r,o,i){if(n&&!r)return!1;return l(n).concat(l(r)).every((function(u){var s=n[u]||void 0,c=r[u]||void 0;return!o(t,e,u,i)||s===c}))}(t,e,n,r[i],o,i)}))}function y(t){return s(t,"[data-entry]",!0)}function m(t){return i("div[data-list-entry-container]",t)}t.exports=function(t,e){var n=e.id,i=e.modelProperties,c=e.labels,l=e.description,g=h(c),x=e.getElements,_=e.removeElement,w="function"==typeof _,j=e.addElement,S="function"==typeof j,O=e.addLabel||"Add Value",P=e.updateElement,C="function"==typeof P,E=e.editable||function(){return!0},A=e.setControlValue,M=e.show,L="function"==typeof M,T=function(t,e){return function(t,e){return(t||[]).map((function(t){var n={};return a(e,(function(e){n[e]=t[e]||""})),n}))}(x(t,e),i)},k=f((S?'<div class="bpp-table-add-row" '+(L?'data-show="show"':"")+"><label>"+r(O)+'</label><button class="action-button add" data-action="addElement"><span>+</span></button></div>':"")+'<div class="bpp-table" data-show="showTable"><div class="bpp-field-wrapper bpp-table-row">'+g+"</div><div data-list-entry-container></div></div>");l&&k.appendChild(p(t,l,{show:"showTable"}));var R={id:n,html:k,get:function(t,e){var n=T(t,e,this.__invalidValues),r=this.__invalidValues;return delete this.__invalidValues,a(r,(function(t,e){var r=n[e];a(i,(function(e){r[e]=t[e]}))})),n},set:function(t,n,r){var i=this.__action||{};if(delete this.__action,"delete-element"===i.id)return _(t,r,i.idx);if("add-element"===i.id)return j(t,r);if(C){var u=[],s=n;"function"!=typeof e.validate&&(s=b(t,r,n,T(t,r),E));var c=this;return a(s,(function(i){var s,a=n.indexOf(i);if("function"==typeof e.validate&&(s=e.validate(t,i,r,a)),s)c.__invalidValues=c.__invalidValues||{},c.__invalidValues[a]=i,u.push(o.updateProperties(t,{}));else{var l=P(t,i,r,a);l&&u.push(l)}})),u}},createListEntryTemplate:function(t,e,n){return v(i,w)},addElement:function(t,e,n,r){var o=f(v(i,w));return m(e).appendChild(o),this.__action={id:"add-element"},!0},deleteElement:function(t,e,n,r){var o=m(e),i=n.delegateTarget.parentNode,s=parseInt(u(i,"data-index"),10);return o.removeChild(i),this.__action={id:"delete-element",idx:s},!0},editable:function(t,e,n,r,o,i){var u=s(e,"[data-entry]");return E(t,u,r,i)},show:function(t,e,n,r){return e=y(e),M(t,e,n,r)},showTable:function(t,e,n,r){e=y(e);var o=T(t,e);return o&&o.length&&(!L||M(t,e,n,r))},validateListItem:function(t,n,r,o){if("function"==typeof e.validate)return e.validate(t,n,r,o)}};return A&&(R.setControlValue=function(t,e,n,r,o,i){var s,c,a=y(e),l=u(n,"readonly"),f=n.value;(void 0===o&&(o=""),l&&f===o)||(document.activeElement===n&&(s=d({start:(c=n).selectionStart,end:c.selectionEnd},f,o)),A(t,a,n,r,o,i),s&&function(t,e){t.selectionStart=e.start,t.selectionEnd=e.end}(n,s))}),R}},function(t,e,n){"use strict";var r=n(59),o=n(186),i=n(29),u=n(3);t.exports=function(t,e){return(u(t)?r:o)(t,i(e,3))}},function(t,e,n){"use strict";var r=n(40);t.exports=function(t,e){var n=[];return r(t,(function(t,r,o){e(t,r,o)&&n.push(t)})),n}},function(t,e,n){"use strict";function r(t,e){return{start:t,end:void 0===e?t:e}}t.exports=function(t,e,n){var o=t.start,i=o,u=n.length-e.length,s=(n.length,e.length,e.substring(o));return n.lastIndexOf(s)===n.length-s.length&&(e=e.substring(0,e.length-s.length),n=n.substring(0,n.length-s.length)),(u=function(t,e){var n,r,o,i,u,s=0,c=0;e.length>t.length?(r=e,i=t):(r=t,i=e);for(;s<r.length;)o=r.charAt(s),u=i.charAt(c),o!==u?(n||(n={l_start:s,s_start:c}),s++):(n&&!n.complete&&(n.l_end=s,n.s_end=c,n.complete=!0),c++,s++);n&&!n.complete&&(n.complete=!0,n.s_end=i.length,n.l_end=r.length);if(!n)return;return e.length>t.length?{newStart:n.l_start,newEnd:n.l_end,type:"add"}:{newStart:n.s_start,newEnd:n.s_end,type:e.length<t.length?"remove":"replace"}}(e,n))&&(i="remove"===u.type?u.newStart:u.newEnd),r(i)},t.exports.range=r},function(t,e,n){"use strict";t.exports=function(t){return{id:t.id,html:'<label data-value="label" data-show="showLabel" class="entry-label'+(t.divider?" divider":"")+'"></label>',get:function(e,n){return"function"==typeof t.get?t.get(e,n):{label:t.labelText}},showLabel:function(e,n){return"function"!=typeof t.showLabel||t.showLabel(e,n)}}}},function(t,e,n){"use strict";var r=n(0).domify,o=n(2).escapeHTML,i=n(4),u=n(190);t.exports=function(t,e){var n=e.id,s=e.buttonLabel||n,c=e.showLink,a=e.handleClick,l=e.description,f=e.label;if(c&&"function"!=typeof c)throw new Error("options.showLink must be a function");if("function"!=typeof a)throw new Error("options.handleClick must be a function");var p={id:n,html:document.createDocumentFragment()};return f&&p.html.appendChild(r('<label for="camunda-'+o(n)+'" '+(c?'data-show="showLink" ':"")+">"+o(f)+"</label>")),p.html.appendChild(r('<div class="bpp-field-wrapper"><a data-action="handleClick" '+(c?'data-show="showLink" ':"")+'class="bpp-entry-link'+(e.cssClasses?" "+o(e.cssClasses):"")+'">'+o(s)+"</a></div>")),l&&p.html.appendChild(i(t,l,{show:"showLink"})),p.handleClick=u(a,p),"function"==typeof c&&(p.showLink=function(){return c.apply(p,arguments)}),p}},function(t,e,n){"use strict";var r=n(53),o=n(191),i=n(36),u=n(24),s=r((function(t,e,n){var r=1;if(n.length){var c=u(n,i(s));r|=32}return o(t,r,e,n,c)}));s.placeholder={},t.exports=s},function(t,e,n){"use strict";var r=n(67),o=n(192),i=n(193),u=n(69),s=n(209),c=n(73),a=n(210),l=n(76),f=n(77),p=n(66),d=Math.max;t.exports=function(t,e,n,v,h,b,y,m){var g=2&e;if(!g&&"function"!=typeof t)throw new TypeError("Expected a function");var x=v?v.length:0;if(x||(e&=-97,v=h=void 0),y=void 0===y?y:d(p(y),0),m=void 0===m?m:p(m),x-=h?h.length:0,64&e){var _=v,w=h;v=h=void 0}var j=g?void 0:c(t),S=[t,e,n,v,h,_,w,b,y,m];if(j&&a(S,j),t=S[0],e=S[1],n=S[2],v=S[3],h=S[4],!(m=S[9]=void 0===S[9]?g?0:t.length:d(S[9]-x,0))&&24&e&&(e&=-25),e&&1!=e)O=8==e||16==e?i(t,e,m):32!=e&&33!=e||h.length?u.apply(void 0,S):s(t,e,n,v);else var O=o(t,e,n);return f((j?r:l)(O,S),t,e)}},function(t,e,n){"use strict";var r=n(23),o=n(1);t.exports=function(t,e,n){var i=1&e,u=r(t);return function e(){var r=this&&this!==o&&this instanceof e?u:t;return r.apply(i?n:this,arguments)}}},function(t,e,n){"use strict";var r=n(28),o=n(23),i=n(69),u=n(72),s=n(36),c=n(24),a=n(1);t.exports=function(t,e,n){var l=o(t);return function o(){for(var f=arguments.length,p=Array(f),d=f,v=s(o);d--;)p[d]=arguments[d];var h=f<3&&p[0]!==v&&p[f-1]!==v?[]:c(p,v);if((f-=h.length)<n)return u(t,e,i,o.placeholder,void 0,p,h,void 0,void 0,n-f);var b=this&&this!==a&&this instanceof o?l:t;return r(b,this,p)}}},function(t,e,n){"use strict";t.exports=function(t,e){for(var n=t.length,r=0;n--;)t[n]===e&&++r;return r}},function(t,e,n){"use strict";var r=n(34),o=n(73),i=n(197),u=n(199);t.exports=function(t){var e=i(t),n=u[e];if("function"!=typeof n||!(e in r.prototype))return!1;if(t===n)return!0;var s=o(n);return!!s&&t===s[0]}},function(t,e,n){"use strict";t.exports=function(){}},function(t,e,n){"use strict";var r=n(198),o=Object.prototype.hasOwnProperty;t.exports=function(t){for(var e=t.name+"",n=r[e],i=o.call(r,e)?n.length:0;i--;){var u=n[i],s=u.func;if(null==s||s==t)return u.name}return e}},function(t,e,n){"use strict";t.exports={}},function(t,e,n){"use strict";var r=n(34),o=n(74),i=n(35),u=n(3),s=n(9),c=n(200),a=Object.prototype.hasOwnProperty;function l(t){if(s(t)&&!u(t)&&!(t instanceof r)){if(t instanceof o)return t;if(a.call(t,"__wrapped__"))return c(t)}return new o(t)}l.prototype=i.prototype,l.prototype.constructor=l,t.exports=l},function(t,e,n){"use strict";var r=n(34),o=n(74),i=n(75);t.exports=function(t){if(t instanceof r)return t.clone();var e=new o(t.__wrapped__,t.__chain__);return e.__actions__=i(t.__actions__),e.__index__=t.__index__,e.__values__=t.__values__,e}},function(t,e,n){"use strict";var r=/\{\n\/\* \[wrapped with (.+)\] \*/,o=/,? & /;t.exports=function(t){var e=t.match(r);return e?e[1].split(o):[]}},function(t,e,n){"use strict";var r=/\{(?:\n\/\* \[wrapped with .+\] \*\/)?\n?/;t.exports=function(t,e){var n=e.length;if(!n)return t;var o=n-1;return e[o]=(n>1?"& ":"")+e[o],e=e.join(n>2?", ":" "),t.replace(r,"{\n/* [wrapped with "+e+"] */\n")}},function(t,e,n){"use strict";var r=n(39),o=n(204),i=[["ary",128],["bind",1],["bindKey",2],["curry",8],["curryRight",16],["flip",512],["partial",32],["partialRight",64],["rearg",256]];t.exports=function(t,e){return r(i,(function(n){var r="_."+n[0];e&n[1]&&!o(t,r)&&t.push(r)})),t.sort()}},function(t,e,n){"use strict";var r=n(205);t.exports=function(t,e){return!!(null==t?0:t.length)&&r(t,e,0)>-1}},function(t,e,n){"use strict";var r=n(65),o=n(206),i=n(207);t.exports=function(t,e,n){return e==e?i(t,e,n):r(t,o,n)}},function(t,e,n){"use strict";t.exports=function(t){return t!=t}},function(t,e,n){"use strict";t.exports=function(t,e,n){for(var r=n-1,o=t.length;++r<o;)if(t[r]===e)return r;return-1}},function(t,e,n){"use strict";var r=n(75),o=n(14),i=Math.min;t.exports=function(t,e){for(var n=t.length,u=i(e.length,n),s=r(t);u--;){var c=e[u];t[u]=o(c,n)?s[c]:void 0}return t}},function(t,e,n){"use strict";var r=n(28),o=n(23),i=n(1);t.exports=function(t,e,n,u){var s=1&e,c=o(t);return function e(){for(var o=-1,a=arguments.length,l=-1,f=u.length,p=Array(f+a),d=this&&this!==i&&this instanceof e?c:t;++l<f;)p[l]=u[l];for(;a--;)p[l++]=arguments[++o];return r(d,s?n:this,p)}}},function(t,e,n){"use strict";var r=n(70),o=n(71),i=n(24),u=Math.min;t.exports=function(t,e){var n=t[1],s=e[1],c=n|s,a=c<131,l=128==s&&8==n||128==s&&256==n&&t[7].length<=e[8]||384==s&&e[7].length<=e[8]&&8==n;if(!a&&!l)return t;1&s&&(t[2]=e[2],c|=1&n?0:4);var f=e[3];if(f){var p=t[3];t[3]=p?r(p,f,e[4]):f,t[4]=p?i(t[3],"__lodash_placeholder__"):e[4]}return(f=e[5])&&(p=t[5],t[5]=p?o(p,f,e[6]):f,t[6]=p?i(t[5],"__lodash_placeholder__"):e[6]),(f=e[7])&&(t[7]=f),128&s&&(t[8]=null==t[8]?e[8]:u(t[8],e[8])),null==t[9]&&(t[9]=e[9]),t[0]=e[0],t[1]=c,t}},function(t,e,n){"use strict";var r=n(0).classes,o=n(0).domify,i=n(0).query,u=n(25).assign,s=n(25).find,c=n(25).forEach,a=n(25).debounce,l=n(2).escapeHTML,f=n(4),p=function(){};function d(){var t=document.getSelection();return{range:t.getRangeAt(0),focusNode:t.focusNode}}function v(t){var e=i(".bpp-autosuggest-list",t);r(e).remove("active")}function h(t){for(var e=i(".bpp-autosuggest-list",t);e.firstChild;)e.removeChild(e.firstChild)}t.exports=function(t,e,n){var b=n,y=e.label||b.id,m=!!e.show&&"function"==typeof e.show,g=e.description;function x(t,e){var n=d().range.getBoundingClientRect(),r=e.getBoundingClientRect(),o=t.getBoundingClientRect(),i={"top-left":{x:n.right-o.width,y:n.top-o.height},"top-right":{x:n.right,y:n.top-o.height},"bottom-left":{x:n.right-o.width,y:n.top+15},"bottom-right":{x:n.right,y:n.top+15}},u="";return u=n.top+15+o.height>r.height+r.top?"top-":"bottom-",n.right+o.width>r.width+r.left?u+="left":u+="right",{orientation:u,position:i[u]}}return b.html=o('<label for="camunda-'+l(b.id)+'" '+(m?'data-show="isShown"':"")+">"+y+'</label><div class="bpp-field-wrapper" '+(m?'data-show="isShown"':"")+'><div contenteditable="true"id="camunda-'+l(b.id)+'" name="'+l(e.modelProperty)+'" data-auto-suggest="suggestItems"data-blur="handleFocusLeave"></div><div class="bpp-autosuggest-list"></div></div>'),g&&i(".bpp-field-wrapper",b.html).appendChild(f(t,g)),m&&(b.isShown=function(){return e.show.apply(b,arguments)}),b.handleFocusLeave=a((function(t,e){h(e),v(e)}),"150"),b.suggestItems=function(t,n,a){var f=a.delegateTarget,b=d(),y=b.focusNode,m=function(t){return t.startOffset}(b.range),g=e.canSuggest||p,_=e.getItems;function w(t){var e=t.target.innerText,r=P.index,o=r,i=r+P[0].length;!function(t,e,n){var r=document.createRange(),o=window.getSelection();r.setStart(t,e),r.setEnd(t,n),o.removeAllRanges(),o.addRange(r)}(y,o,i),document.execCommand("insertText",!1,e),h(n),v(n)}v(n);var j,S,O,P=(S=m,O=function(t){return function(t,e){for(var n,r=RegExp(e),o=[];null!==(n=r.exec(t));)o.push(n);return o}(t,/[^\s\r\(\)\,\+\-\*\/\{\}]+/g)}("#text"===(j=y).nodeName?j.wholeText:j.innerText),s(O,(function(t){var e=t[0],n=t.index,r=n+e.length-1;return n<=S-1&&r>=S-1}))||[]);if(P&&g(P,f,y)){var C=_(t,n),E=[],A=P[0];c(C,(function(t){var e=t.toLowerCase(),n=A&&A.toLowerCase();0===e.indexOf(n)&&E.push(t)})),c(C,(function(t){var e=t.toLowerCase(t),n=A&&A.toLowerCase();e.indexOf(n)>=1&&E.push(t)})),function(t){var e=i(".bpp-autosuggest-list",n);if(h(n),t.length){r(e).add("active"),c(t,(function(t){!function(t,e){var n=o('<div class="bpp-autosuggest-item"></div>');n.innerText=l(e),t.appendChild(n),n.addEventListener("click",w)}(e,t)}));var s,a,f,p=x(e,document.body).position;s=e,a=p.x,f=p.y,u(s.style,{left:a+"px",top:f+"px"})}}(E)}},b.getSuggestionListPosition=x,b.cssClasses=["bpp-autosuggest-textbox"],b}},function(t,e,n){"use strict";var r=n(2).escapeHTML,o=n(0).query;function i(){}t.exports=function(t){var e=t.id,n=t.title||"",u=t.description||"",s=!!t.open||!1,c=t.onToggle||i,a=t.onRemove,l=t.cssClasses||[],f={id:e,toggle:function(t,e,n,r){var o=!s;p(o,e),c(o,e)},isOpen:function(){return s},set:function(){var t=this._commands;if(t)return delete this._commands,t},setOpen:p,get:function(e,r){if(t.get)return t.get(e,r);return{title:n||"",description:u||""}}};function p(t,e){s=t,e.classList.toggle("bpp-collapsible--collapsed",!t)}return"function"==typeof a&&(f.onRemove=function(t,e,n,r){var i=a(t,e,n,r);if(i)return function(t,e){f._commands=t,o('input[type="hidden"]',e).value=1}(i,e),!0}),f.html='<div class="bpp-field-wrapper" data-action="toggle"><input name="hidden" type="hidden"><span class="bpp-collapsible__icon"></span><label class="bpp-collapsible__title" data-value="title">'+r(n)+'</label><label class="bpp-collapsible__description" data-value="description">'+r(u)+"</label>"+(a?'<button class="bpp-collapsible__remove action-button clear" data-action="onRemove"></button>':"")+"</div>",f.cssClasses=l.concat(s?["bpp-collapsible"]:["bpp-collapsible","bpp-collapsible--collapsed"]),f}},function(t,e,n){"use strict";var r=n(7).getBusinessObject,o=n(15),i=n(2).escapeHTML,u=n(4),s=n(0).domify;t.exports=function(t,e,n){var c=n,a=c.id,l=e.label||a,f=!!e.hidden&&"function"==typeof e.hidden,p=e.isOn,d=e.descriptionOn,v=e.descriptionOff,h=e.labelOn,b=e.labelOff;return c.html=document.createDocumentFragment(),c.html.appendChild(s('<label for="'+i(a)+'" '+(f?'data-show="shouldShow"':"")+">"+i(l)+'</label><div class="bpp-field-wrapper"'+(f?'data-show="shouldShow"':"")+'><label class="bpp-toggle-switch__switcher"><input id="'+i(a)+'" type="checkbox" name="'+i(e.modelProperty)+'" /><span class="bpp-toggle-switch__slider"></span></label><p class="bpp-toggle-switch__label" data-show="isOn">'+i(h)+'</p><p class="bpp-toggle-switch__label" data-show="isOff">'+i(b)+"</p></div>")),d&&c.html.appendChild(u(t,d,{show:"isOn"})),v&&c.html.appendChild(u(t,v,{show:"isOff"})),c.get=function(t){var n=r(t),o={};return o[e.modelProperty]=n.get(e.modelProperty),o},c.set=function(t,n){var r={};return r[e.modelProperty]=!!n[e.modelProperty],o.updateProperties(t,r)},"function"==typeof e.set&&(c.set=e.set),"function"==typeof e.get&&(c.get=e.get),f&&(c.shouldShow=function(){return!e.hidden.apply(c,arguments)}),c.isOn=function(){return!(f&&!c.shouldShow())&&p.apply(c,arguments)},c.isOff=function(){return!(f&&!c.shouldShow())&&!c.isOn()},c.cssClasses=["bpp-toggle-switch"],c}},function(t,e,n){"use strict";var r=n(37),o=n(7).is;t.exports=function(t,e){if(o(e,"bpmn:Process")){var n=r.textField({id:"globalRuleSetUrl",description:"globalRuleSetUrl description",label:"URL",modelProperty:"globalRuleSetUrl"}),i=r.textField({id:"globalRuleSetName",description:"globalRuleSetName description",label:"Name",modelProperty:"globalRuleSetName"}),u=r.textField({id:"globalRuleSetRules",description:"globalRuleSetRules description",label:"Rules",modelProperty:"globalRuleSetRules"});t.entries=t.entries.concat([n,i,u])}}},function(t){t.exports={name:"Paradigma",prefix:"paradigma",uri:"http://paradigma",xml:{tagAlias:"lowerCase"},associations:[],types:[{name:"ParadigmaProcess",extends:["bpmn:Process"],properties:[{name:"resourceUrl",isAttr:!0,type:"String"},{name:"machineUrl",isAttr:!0,type:"String"},{name:"userDirectoryUrl",isAttr:!0,type:"String"},{name:"paradigmaUrl",isAttr:!0,type:"String"},{name:"globalContextEventEndpoint",isAttr:!0,type:"String"},{name:"globalRuleSetUrl",isAttr:!0,type:"String"},{name:"globalRuleSetName",isAttr:!0,type:"String"},{name:"globalRuleSetRules",isAttr:!0,type:"String"}]}]}}]);
+(function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
+'use strict';
+
+var inherits = require('inherits');
+
+var PropertiesActivator = require('bpmn-js-properties-panel/lib/PropertiesActivator');
+
+// Require your custom property entries.
+var contextProps = require('./parts/contextProps');
+var globalRuleSetProps = require('./parts/globalRuleSetProps');
+
+// Create the custom paradigma tab
+function createParadigmaTabGroups(element, elementRegistry) {
+  // Create a group called "Context".
+  var contextGroup = {
+    id: 'context-group',
+    label: 'Context',
+    entries: []
+  };
+
+  // Add the spell props to the black paradigma group.
+  contextProps(contextGroup, element);
+
+  var globalRuleSetGroup = {
+    id: 'global-rule-set-group',
+    label: 'GlobalRuleSet',
+    entries: []
+  };
+
+  globalRuleSetProps(globalRuleSetGroup, element);
+
+  return [contextGroup, globalRuleSetGroup];
+}
+
+function ParadigmaPropertiesProvider(eventBus, bpmnFactory, elementRegistry, propertiesProvider) {
+  PropertiesActivator.call(this, eventBus);
+
+  // Extend the injected existing properties provider
+  var camundaGetTabs = propertiesProvider.getTabs;
+  propertiesProvider.getTabs = function (element) {
+    // The "paradigma" tab
+    var paradigmaTab = {
+      id: 'paradigma-tab',
+      label: 'Paradigma',
+      groups: createParadigmaTabGroups(element, elementRegistry)
+    };
+
+    // get the current tab array
+    var array = camundaGetTabs(element);
+    array.push(paradigmaTab);
+    return array;
+  };
+}
+
+ParadigmaPropertiesProvider.$inject = ['eventBus', 'bpmnFactory', 'elementRegistry', 'propertiesProvider'];
+
+inherits(ParadigmaPropertiesProvider, PropertiesActivator);
+
+module.exports = {
+  __init__: ['paradigmaPropertiesProvider'],
+  paradigmaPropertiesProvider: ['type', ParadigmaPropertiesProvider]
+};
+
+},{"./parts/contextProps":4,"./parts/globalRuleSetProps":5,"bpmn-js-properties-panel/lib/PropertiesActivator":6,"inherits":21}],2:[function(require,module,exports){
+'use strict';
+
+var _camundaModelerPluginHelpers = require('camunda-modeler-plugin-helpers');
+
+var extendedPropertiesProvider = require('./ExtendedPropertiesProvider');
+var paradigmaModdle = require('./descriptors/paradigma.json');
+
+(0, _camundaModelerPluginHelpers.registerBpmnJSPlugin)(extendedPropertiesProvider);
+(0, _camundaModelerPluginHelpers.registerBpmnJSModdleExtension)(paradigmaModdle);
+
+},{"./ExtendedPropertiesProvider":1,"./descriptors/paradigma.json":3,"camunda-modeler-plugin-helpers":20}],3:[function(require,module,exports){
+module.exports={
+  "name": "Paradigma",
+  "prefix": "paradigma",
+  "uri": "http://paradigma",
+  "xml": {
+    "tagAlias": "lowerCase"
+  },
+  "associations": [],
+  "types": [
+    {
+      "name": "ParadigmaProcess",
+      "extends": [
+        "bpmn:Process"
+      ],
+      "properties": [
+        {
+          "name": "resourceUrl",
+          "isAttr": true,
+          "type": "String"
+        },
+        {
+          "name": "machineUrl",
+          "isAttr": true,
+          "type": "String"
+        },
+        {
+          "name": "userDirectoryUrl",
+          "isAttr": true,
+          "type": "String"
+        },
+        {
+          "name": "paradigmaUrl",
+          "isAttr": true,
+          "type": "String"
+        },
+        {
+          "name": "globalContextEventEndpoint",
+          "isAttr": true,
+          "type": "String"
+        },
+        {
+          "name": "globalRuleSetUrl",
+          "isAttr": true,
+          "type": "String"
+        },
+        {
+          "name": "globalRuleSetName",
+          "isAttr": true,
+          "type": "String"
+        },
+        {
+          "name": "globalRuleSetRules",
+          "isAttr": true,
+          "type": "String"
+        }
+      ]
+    }
+  ]
+}
+},{}],4:[function(require,module,exports){
+'use strict';
+
+var entryFactory = require('bpmn-js-properties-panel/lib/factory/EntryFactory');
+
+var is = require('bpmn-js/lib/util/ModelUtil').is;
+
+module.exports = function (group, element) {
+
+  // Only return an entry, if the currently selected
+  // element is a Process.
+
+  if (is(element, 'bpmn:Process')) {
+
+    var resourceUrlEntry = entryFactory.textField({
+      id: 'resourceUrl',
+      description: 'resourceUrl description',
+      label: 'Resource URL',
+      modelProperty: 'resourceUrl'
+    });
+
+    var machineUrlEntry = entryFactory.textField({
+      id: 'machineUrl',
+      description: 'machineUrl description',
+      label: 'Machine URL',
+      modelProperty: 'machineUrl'
+    });
+
+    var userDirectoryUrlEntry = entryFactory.textField({
+      id: 'userDirectoryUrl',
+      description: 'userDirectoryUrl description',
+      label: 'UserDirectory URL',
+      modelProperty: 'userDirectoryUrl'
+    });
+
+    var paradigmaUrlEntry = entryFactory.textField({
+      id: 'paradigmaUrl',
+      description: 'paradigmaUrl description',
+      label: 'Paradigma URL',
+      modelProperty: 'paradigmaUrl'
+    });
+
+    var globalContextEventEndpoint = entryFactory.textField({
+      id: 'globalContextEventEndpoint',
+      description: 'globalContextEventEndpoint description',
+      label: 'GlobalContextEventEndpoint',
+      modelProperty: 'globalContextEventEndpoint'
+    });
+
+    group.entries = group.entries.concat([resourceUrlEntry, machineUrlEntry, userDirectoryUrlEntry, paradigmaUrlEntry, globalContextEventEndpoint]);
+  }
+};
+
+},{"bpmn-js-properties-panel/lib/factory/EntryFactory":9,"bpmn-js/lib/util/ModelUtil":19}],5:[function(require,module,exports){
+'use strict';
+
+var entryFactory = require('bpmn-js-properties-panel/lib/factory/EntryFactory');
+
+var is = require('bpmn-js/lib/util/ModelUtil').is;
+
+module.exports = function (group, element) {
+
+  // Only return an entry, if the currently selected
+  // element is a Process.
+
+  if (is(element, 'bpmn:Process')) {
+
+    var globalRuleSetUrl = entryFactory.textField({
+      id: 'globalRuleSetUrl',
+      description: 'globalRuleSetUrl description',
+      label: 'URL',
+      modelProperty: 'globalRuleSetUrl'
+    });
+
+    var globalRuleSetName = entryFactory.textField({
+      id: 'globalRuleSetName',
+      description: 'globalRuleSetName description',
+      label: 'Name',
+      modelProperty: 'globalRuleSetName'
+    });
+
+    var globalRuleSetRules = entryFactory.textField({
+      id: 'globalRuleSetRules',
+      description: 'globalRuleSetRules description',
+      label: 'Rules',
+      modelProperty: 'globalRuleSetRules'
+    });
+
+    group.entries = group.entries.concat([globalRuleSetUrl, globalRuleSetName, globalRuleSetRules]);
+  }
+};
+
+},{"bpmn-js-properties-panel/lib/factory/EntryFactory":9,"bpmn-js/lib/util/ModelUtil":19}],6:[function(require,module,exports){
+'use strict';
+
+var DEFAULT_PRIORITY = 1000;
+
+/**
+ * A component that decides upon the visibility / editable
+ * state of properties in the properties panel.
+ *
+ * Implementors must subclass this component and override
+ * {@link PropertiesActivator#isEntryVisible} and
+ * {@link PropertiesActivator#isPropertyEditable} to provide
+ * custom behavior.
+ *
+ * @class
+ * @constructor
+ *
+ * @param {EventBus} eventBus
+ * @param {Number} [priority] at which priority to hook into the activation
+ */
+function PropertiesActivator(eventBus, priority) {
+  var self = this;
+
+  priority = priority || DEFAULT_PRIORITY;
+
+  eventBus.on('propertiesPanel.isEntryVisible', priority, function (e) {
+    return self.isEntryVisible(e.entry, e.element);
+  });
+
+  eventBus.on('propertiesPanel.isPropertyEditable', priority, function (e) {
+    return self.isPropertyEditable(e.entry, e.propertyName, e.element);
+  });
+}
+
+PropertiesActivator.$inject = ['eventBus'];
+
+module.exports = PropertiesActivator;
+
+/**
+ * Should the given entry be visible for the specified element.
+ *
+ * @method  PropertiesActivator#isEntryVisible
+ *
+ * @param {EntryDescriptor} entry
+ * @param {ModdleElement} element
+ *
+ * @returns {Boolean}
+ */
+PropertiesActivator.prototype.isEntryVisible = function (entry, element) {
+  return true;
+};
+
+/**
+ * Should the given property be editable for the specified element
+ *
+ * @method  PropertiesActivator#isPropertyEditable
+ *
+ * @param {EntryDescriptor} entry
+ * @param {String} propertyName
+ * @param {ModdleElement} element
+ *
+ * @returns {Boolean}
+ */
+PropertiesActivator.prototype.isPropertyEditable = function (entry, propertyName, element) {
+  return true;
+};
+
+},{}],7:[function(require,module,exports){
+'use strict';
+
+var getBusinessObject = require('bpmn-js/lib/util/ModelUtil').getBusinessObject,
+    cmdHelper = require('../helper/CmdHelper');
+
+var entryFieldDescription = require('./EntryFieldDescription');
+
+var checkbox = function checkbox(options, defaultParameters) {
+  var resource = defaultParameters,
+      label = options.label || resource.id,
+      canBeDisabled = !!options.disabled && typeof options.disabled === 'function',
+      canBeHidden = !!options.hidden && typeof options.hidden === 'function',
+      description = options.description;
+
+  resource.html = '<input id="camunda-' + resource.id + '" ' + 'type="checkbox" ' + 'name="' + options.modelProperty + '" ' + (canBeDisabled ? 'data-disable="isDisabled"' : '') + (canBeHidden ? 'data-show="isHidden"' : '') + ' />' + '<label for="camunda-' + resource.id + '" ' + (canBeDisabled ? 'data-disable="isDisabled"' : '') + (canBeHidden ? 'data-show="isHidden"' : '') + '>' + label + '</label>';
+
+  // add description below checkbox entry field
+  if (description) {
+    resource.html += entryFieldDescription(description);
+  }
+
+  resource.get = function (element) {
+    var bo = getBusinessObject(element),
+        res = {};
+
+    res[options.modelProperty] = bo.get(options.modelProperty);
+
+    return res;
+  };
+
+  resource.set = function (element, values) {
+    var res = {};
+
+    res[options.modelProperty] = !!values[options.modelProperty];
+
+    return cmdHelper.updateProperties(element, res);
+  };
+
+  if (typeof options.set === 'function') {
+    resource.set = options.set;
+  }
+
+  if (typeof options.get === 'function') {
+    resource.get = options.get;
+  }
+
+  if (canBeDisabled) {
+    resource.isDisabled = function () {
+      return options.disabled.apply(resource, arguments);
+    };
+  }
+
+  if (canBeHidden) {
+    resource.isHidden = function () {
+      return !options.hidden.apply(resource, arguments);
+    };
+  }
+
+  resource.cssClasses = ['bpp-checkbox'];
+
+  return resource;
+};
+
+module.exports = checkbox;
+
+},{"../helper/CmdHelper":18,"./EntryFieldDescription":10,"bpmn-js/lib/util/ModelUtil":19}],8:[function(require,module,exports){
+'use strict';
+
+var assign = require('lodash/object/assign'),
+    find = require('lodash/collection/find');
+
+var domQuery = require('min-dom').query;
+
+var selectEntryFactory = require('./SelectEntryFactory'),
+    entryFieldDescription = require('./EntryFieldDescription');
+
+/**
+ * The combo box is a special implementation of the select entry and adds the option 'custom' to the
+ * select box. If 'custom' is selected, an additional text input field is shown which allows to define
+ * a custom value.
+ *
+ * @param  {Object} options
+ * @param  {string} options.id
+ * @param  {string} options.label
+ * @param  {Array<Object>} options.selectOptions list of name/value pairs
+ * @param  {string} options.modelProperty
+ * @param  {function} options.get
+ * @param  {function} options.set
+ * @param  {string} [options.customValue] custom select option value (default: 'custom')
+ * @param  {string} [options.customName] custom select option name visible in the select box (default: 'custom')
+ *
+ * @return {Object}
+ */
+var comboBox = function comboBox(options) {
+
+  var selectOptions = options.selectOptions,
+      modelProperty = options.modelProperty,
+      customValue = options.customValue || 'custom',
+      customName = options.customName || 'custom ' + modelProperty,
+      description = options.description;
+
+  // check if a value is not a built in value
+  var isCustomValue = function isCustomValue(value) {
+    if (typeof value[modelProperty] === 'undefined') {
+      return false;
+    }
+
+    var isCustom = !find(selectOptions, function (option) {
+      return value[modelProperty] === option.value;
+    });
+
+    return isCustom;
+  };
+
+  var comboOptions = assign({}, options);
+
+  // true if the selected value in the select box is customValue
+  comboOptions.showCustomInput = function (element, node) {
+    var selectBox = domQuery('[data-entry="' + options.id + '"] select', node.parentNode);
+
+    if (selectBox) {
+      return selectBox.value === customValue;
+    }
+
+    return false;
+  };
+
+  comboOptions.get = function (element, node) {
+    var value = options.get(element, node);
+
+    var modifiedValues = {};
+
+    if (!isCustomValue(value)) {
+      modifiedValues[modelProperty] = value[modelProperty] || '';
+
+      return modifiedValues;
+    }
+
+    modifiedValues[modelProperty] = customValue;
+    modifiedValues['custom-' + modelProperty] = value[modelProperty];
+
+    return modifiedValues;
+  };
+
+  comboOptions.set = function (element, values, node) {
+    var modifiedValues = {};
+
+    // if the custom select option has been selected
+    // take the value from the text input field
+    if (values[modelProperty] === customValue) {
+      modifiedValues[modelProperty] = values['custom-' + modelProperty] || '';
+    } else if (options.emptyParameter && values[modelProperty] === '') {
+      modifiedValues[modelProperty] = undefined;
+    } else {
+      modifiedValues[modelProperty] = values[modelProperty];
+    }
+    return options.set(element, modifiedValues, node);
+  };
+
+  comboOptions.selectOptions.push({ name: customName, value: customValue });
+
+  var comboBoxEntry = assign({}, selectEntryFactory(comboOptions, comboOptions));
+
+  comboBoxEntry.html += '<div class="bpp-field-wrapper bpp-combo-input" ' + 'data-show="showCustomInput"' + '>' + '<input id="camunda-' + options.id + '-input" type="text" name="custom-' + modelProperty + '" ' + ' />' + '</div>';
+
+  // add description below combo box entry field
+  if (description) {
+    comboBoxEntry.html += entryFieldDescription(description);
+  }
+
+  return comboBoxEntry;
+};
+
+module.exports = comboBox;
+
+},{"./EntryFieldDescription":10,"./SelectEntryFactory":13,"lodash/collection/find":25,"lodash/object/assign":104,"min-dom":111}],9:[function(require,module,exports){
+'use strict';
+
+var getBusinessObject = require('bpmn-js/lib/util/ModelUtil').getBusinessObject;
+
+// input entities
+var textInputField = require('./TextInputEntryFactory'),
+    checkboxField = require('./CheckboxEntryFactory'),
+    selectBoxField = require('./SelectEntryFactory'),
+    comboBoxField = require('./ComboEntryFactory'),
+    textBoxField = require('./TextBoxEntryFactory'),
+    validationAwareTextInputField = require('./ValidationAwareTextInput'),
+    tableField = require('./TableEntryFactory'),
+    labelEntry = require('./LabelFactory'),
+    link = require('./LinkEntryFactory');
+
+var cmdHelper = require('../helper/CmdHelper');
+
+// helpers ////////////////////////////////////////
+
+function ensureNotNull(prop) {
+  if (!prop) {
+    throw new Error(prop + ' must be set.');
+  }
+
+  return prop;
+}
+
+/**
+ * sets the default parameters which are needed to create an entry
+ *
+ * @param options
+ * @returns {{id: *, description: (*|string), get: (*|Function), set: (*|Function),
+ *            validate: (*|Function), html: string}}
+ */
+var setDefaultParameters = function setDefaultParameters(options) {
+
+  // default method to fetch the current value of the input field
+  var defaultGet = function defaultGet(element) {
+    var bo = getBusinessObject(element),
+        res = {},
+        prop = ensureNotNull(options.modelProperty);
+    res[prop] = bo.get(prop);
+
+    return res;
+  };
+
+  // default method to set a new value to the input field
+  var defaultSet = function defaultSet(element, values) {
+    var res = {},
+        prop = ensureNotNull(options.modelProperty);
+    if (values[prop] !== '') {
+      res[prop] = values[prop];
+    } else {
+      res[prop] = undefined;
+    }
+
+    return cmdHelper.updateProperties(element, res);
+  };
+
+  // default validation method
+  var defaultValidate = function defaultValidate() {
+    return {};
+  };
+
+  return {
+    id: options.id,
+    description: options.description || '',
+    get: options.get || defaultGet,
+    set: options.set || defaultSet,
+    validate: options.validate || defaultValidate,
+    html: ''
+  };
+};
+
+function EntryFactory() {}
+
+/**
+ * Generates an text input entry object for a property panel.
+ * options are:
+ * - id: id of the entry - String
+ *
+ * - description: description of the property - String
+ *
+ * - label: label for the input field - String
+ *
+ * - set: setter method - Function
+ *
+ * - get: getter method - Function
+ *
+ * - validate: validation mehtod - Function
+ *
+ * - modelProperty: name of the model property - String
+ *
+ * - buttonAction: Object which contains the following properties: - Object
+ * ---- name: name of the [data-action] callback - String
+ * ---- method: callback function for [data-action] - Function
+ *
+ * - buttonShow: Object which contains the following properties: - Object
+ * ---- name: name of the [data-show] callback - String
+ * ---- method: callback function for [data-show] - Function
+ *
+ * @param options
+ * @returns the propertyPanel entry resource object
+ */
+EntryFactory.textField = function (options) {
+  return textInputField(options, setDefaultParameters(options));
+};
+
+EntryFactory.validationAwareTextField = function (options) {
+  return validationAwareTextInputField(options, setDefaultParameters(options));
+};
+
+/**
+ * Generates a checkbox input entry object for a property panel.
+ * options are:
+ * - id: id of the entry - String
+ *
+ * - description: description of the property - String
+ *
+ * - label: label for the input field - String
+ *
+ * - set: setter method - Function
+ *
+ * - get: getter method - Function
+ *
+ * - validate: validation mehtod - Function
+ *
+ * - modelProperty: name of the model property - String
+ *
+ * @param options
+ * @returns the propertyPanel entry resource object
+ */
+EntryFactory.checkbox = function (options) {
+  return checkboxField(options, setDefaultParameters(options));
+};
+
+EntryFactory.textBox = function (options) {
+  return textBoxField(options, setDefaultParameters(options));
+};
+
+EntryFactory.selectBox = function (options) {
+  return selectBoxField(options, setDefaultParameters(options));
+};
+
+EntryFactory.comboBox = function (options) {
+  return comboBoxField(options);
+};
+
+EntryFactory.table = function (options) {
+  return tableField(options);
+};
+
+EntryFactory.label = function (options) {
+  return labelEntry(options);
+};
+
+EntryFactory.link = function (options) {
+  return link(options);
+};
+
+module.exports = EntryFactory;
+
+},{"../helper/CmdHelper":18,"./CheckboxEntryFactory":7,"./ComboEntryFactory":8,"./LabelFactory":11,"./LinkEntryFactory":12,"./SelectEntryFactory":13,"./TableEntryFactory":14,"./TextBoxEntryFactory":15,"./TextInputEntryFactory":16,"./ValidationAwareTextInput":17,"bpmn-js/lib/util/ModelUtil":19}],10:[function(require,module,exports){
+'use strict';
+
+var MARKDOWN_LINK_REGEX = /\[([^\)]+)\]\(([^\]]+)\)/g;
+
+/**
+ * Replace MarkDown Link Syntax with HTML Link Syntax
+ * [myLink](http://www.myLink.de) -> <a href=http://www.myLink.de>myLink</a>
+ *
+ * @param {String} value
+ *
+ * @return {String}
+ */
+function linkify(text) {
+  return text.replace(MARKDOWN_LINK_REGEX, '<a href="$2" target="_blank">$1</a>');
+}
+
+module.exports = function entryFieldDescription(description) {
+  description = linkify(description);
+
+  return '<div class="bpp-field-description">' + description + '</div>';
+};
+
+},{}],11:[function(require,module,exports){
+'use strict';
+
+/**
+ * The label factory provides a label entry. For the label text
+ * it expects either a string provided by the options.labelText
+ * parameter or it could be generated programmatically using a
+ * function passed as the options.get parameter.
+ *
+ * @param  {Object} options
+ * @param  {string} options.id
+ * @param  {string} [options.labelText]
+ * @param  {Function} [options.get]
+ * @param  {Function} [options.showLabel]
+ * @param  {Boolean} [options.divider] adds a divider at the top of the label if true; default: false
+ */
+
+var label = function label(options) {
+  return {
+    id: options.id,
+    html: '<label data-value="label" ' + 'data-show="showLabel" ' + 'class="entry-label' + (options.divider ? ' divider' : '') + '">' + '</label>',
+    get: function get(element, node) {
+      if (typeof options.get === 'function') {
+        return options.get(element, node);
+      }
+      return { label: options.labelText };
+    },
+    showLabel: function showLabel(element, node) {
+      if (typeof options.showLabel === 'function') {
+        return options.showLabel(element, node);
+      }
+      return true;
+    }
+  };
+};
+
+module.exports = label;
+
+},{}],12:[function(require,module,exports){
+'use strict';
+
+var entryFieldDescription = require('./EntryFieldDescription');
+
+var bind = require('lodash/function/bind');
+
+/**
+ * An entry that renders a clickable link.
+ *
+ * A passed {@link options#handleClick} handler is responsible
+ * to process the click.
+ *
+ * The link may be conditionally shown or hidden. This can be
+ * controlled via the {@link options.showLink}.
+ *
+ * @param {Object} options
+ * @param {String} options.id
+ * @param {String} [options.label]
+ * @param {Function} options.handleClick
+ * @param {Function} [options.showLink] returning false to hide link
+ * @param {String} [options.description]
+ *
+ * @example
+ *
+ * var linkEntry = link({
+ *   id: 'foo',
+ *   description: 'Some Description',
+ *   handleClick: function(element, node, event) { ... },
+ *   showLink: function(element, node) { ... }
+ * });
+ *
+ * @return {Entry} the newly created entry
+ */
+function link(options) {
+
+  var id = options.id,
+      label = options.label || id,
+      showLink = options.showLink,
+      handleClick = options.handleClick,
+      description = options.description;
+
+  if (showLink && typeof showLink !== 'function') {
+    throw new Error('options.showLink must be a function');
+  }
+
+  if (typeof handleClick !== 'function') {
+    throw new Error('options.handleClick must be a function');
+  }
+
+  var resource = {
+    id: id
+  };
+
+  resource.html = '<a data-action="handleClick" ' + (showLink ? 'data-show="showLink" ' : '') + 'class="bpp-entry-link' + (options.cssClasses ? ' ' + options.cssClasses : '') + '">' + label + '</a>';
+
+  // add description below link entry field
+  if (description) {
+    resource.html += entryFieldDescription(description);
+  }
+
+  resource.handleClick = bind(handleClick, resource);
+
+  if (typeof showLink === 'function') {
+    resource.showLink = function () {
+      return showLink.apply(resource, arguments);
+    };
+  }
+
+  return resource;
+}
+
+module.exports = link;
+
+},{"./EntryFieldDescription":10,"lodash/function/bind":28}],13:[function(require,module,exports){
+'use strict';
+
+var domify = require('min-dom').domify;
+
+var forEach = require('lodash/collection/forEach');
+
+var entryFieldDescription = require('./EntryFieldDescription');
+
+var isList = function isList(list) {
+  return !(!list || Object.prototype.toString.call(list) !== '[object Array]');
+};
+
+var addEmptyParameter = function addEmptyParameter(list) {
+  return list.concat([{ name: '', value: '' }]);
+};
+
+var createOption = function createOption(option) {
+  return '<option value="' + option.value + '">' + option.name + '</option>';
+};
+
+/**
+ * @param  {Object} options
+ * @param  {string} options.id
+ * @param  {string} [options.label]
+ * @param  {Array<Object>} options.selectOptions
+ * @param  {string} options.modelProperty
+ * @param  {boolean} options.emptyParameter
+ * @param  {function} options.disabled
+ * @param  {function} options.hidden
+ * @param  {Object} defaultParameters
+ *
+ * @return {Object}
+ */
+var selectbox = function selectbox(options, defaultParameters) {
+  var resource = defaultParameters,
+      label = options.label || resource.id,
+      selectOptions = options.selectOptions || [{ name: '', value: '' }],
+      modelProperty = options.modelProperty,
+      emptyParameter = options.emptyParameter,
+      canBeDisabled = !!options.disabled && typeof options.disabled === 'function',
+      canBeHidden = !!options.hidden && typeof options.hidden === 'function',
+      description = options.description;
+
+  if (emptyParameter) {
+    selectOptions = addEmptyParameter(selectOptions);
+  }
+
+  resource.html = '<label for="camunda-' + resource.id + '"' + (canBeDisabled ? 'data-disable="isDisabled" ' : '') + (canBeHidden ? 'data-show="isHidden" ' : '') + '>' + label + '</label>' + '<select id="camunda-' + resource.id + '-select" name="' + modelProperty + '"' + (canBeDisabled ? 'data-disable="isDisabled" ' : '') + (canBeHidden ? 'data-show="isHidden" ' : '') + ' data-value>';
+
+  if (isList(selectOptions)) {
+    forEach(selectOptions, function (option) {
+      resource.html += '<option value="' + option.value + '">' + (option.name || '') + '</option>';
+    });
+  }
+
+  resource.html += '</select>';
+
+  // add description below select box entry field
+  if (description && typeof options.showCustomInput !== 'function') {
+    resource.html += entryFieldDescription(description);
+  }
+
+  /**
+   * Fill the select box options dynamically.
+   *
+   * Calls the defined function #selectOptions in the entry to get the
+   * values for the options and set the value to the inputNode.
+   *
+   * @param {djs.model.Base} element
+   * @param {HTMLElement} entryNode
+   * @param {EntryDescriptor} inputNode
+   * @param {Object} inputName
+   * @param {Object} newValue
+   */
+  resource.setControlValue = function (element, entryNode, inputNode, inputName, newValue) {
+    if (typeof selectOptions === 'function') {
+
+      var options = selectOptions(element, inputNode);
+
+      if (options) {
+
+        // remove existing options
+        while (inputNode.firstChild) {
+          inputNode.removeChild(inputNode.firstChild);
+        }
+
+        // add options
+        forEach(options, function (option) {
+          var template = domify(createOption(option));
+
+          inputNode.appendChild(template);
+        });
+      }
+    }
+
+    // set select value
+    if (newValue !== undefined) {
+      inputNode.value = newValue;
+    }
+  };
+
+  if (canBeDisabled) {
+    resource.isDisabled = function () {
+      return options.disabled.apply(resource, arguments);
+    };
+  }
+
+  if (canBeHidden) {
+    resource.isHidden = function () {
+      return !options.hidden.apply(resource, arguments);
+    };
+  }
+
+  resource.cssClasses = ['bpp-dropdown'];
+
+  return resource;
+};
+
+module.exports = selectbox;
+
+},{"./EntryFieldDescription":10,"lodash/collection/forEach":26,"min-dom":111}],14:[function(require,module,exports){
+'use strict';
+
+var cmdHelper = require('../helper/CmdHelper');
+
+var domQuery = require('min-dom').query,
+    domAttr = require('min-dom').attr,
+    domClosest = require('min-dom').closest;
+
+var filter = require('lodash/collection/filter'),
+    forEach = require('lodash/collection/forEach'),
+    keys = require('lodash/object/keys');
+
+var domify = require('min-dom').domify;
+
+var entryFieldDescription = require('./EntryFieldDescription');
+
+var updateSelection = require('selection-update');
+
+var TABLE_ROW_DIV_SNIPPET = '<div class="bpp-field-wrapper bpp-table-row">';
+var DELETE_ROW_BUTTON_SNIPPET = '<button class="clear" data-action="deleteElement">' + '<span>X</span>' + '</button>';
+
+function createInputRowTemplate(properties, canRemove) {
+  var template = TABLE_ROW_DIV_SNIPPET;
+  template += createInputTemplate(properties, canRemove);
+  template += canRemove ? DELETE_ROW_BUTTON_SNIPPET : '';
+  template += '</div>';
+
+  return template;
+}
+
+function createInputTemplate(properties, canRemove) {
+  var columns = properties.length;
+  var template = '';
+  forEach(properties, function (prop) {
+    template += '<input class="bpp-table-row-columns-' + columns + ' ' + (canRemove ? 'bpp-table-row-removable' : '') + '" ' + 'id="camunda-table-row-cell-input-value" ' + 'type="text" ' + 'name="' + prop + '" />';
+  });
+  return template;
+}
+
+function createLabelRowTemplate(labels) {
+  var template = TABLE_ROW_DIV_SNIPPET;
+  template += createLabelTemplate(labels);
+  template += '</div>';
+
+  return template;
+}
+
+function createLabelTemplate(labels) {
+  var columns = labels.length;
+  var template = '';
+  forEach(labels, function (label) {
+    template += '<label class="bpp-table-row-columns-' + columns + '">' + label + '</label>';
+  });
+  return template;
+}
+
+function pick(elements, properties) {
+  return (elements || []).map(function (elem) {
+    var newElement = {};
+    forEach(properties, function (prop) {
+      newElement[prop] = elem[prop] || '';
+    });
+    return newElement;
+  });
+}
+
+function diff(element, node, values, oldValues, editable) {
+  return filter(values, function (value, idx) {
+    return !valueEqual(element, node, value, oldValues[idx], editable, idx);
+  });
+}
+
+function valueEqual(element, node, value, oldValue, editable, idx) {
+  if (value && !oldValue) {
+    return false;
+  }
+  var allKeys = keys(value).concat(keys(oldValue));
+
+  return allKeys.every(function (key) {
+    var n = value[key] || undefined;
+    var o = oldValue[key] || undefined;
+    return !editable(element, node, key, idx) || n === o;
+  });
+}
+
+function getEntryNode(node) {
+  return domClosest(node, '[data-entry]', true);
+}
+
+function getContainer(node) {
+  return domQuery('div[data-list-entry-container]', node);
+}
+
+function getSelection(node) {
+  return {
+    start: node.selectionStart,
+    end: node.selectionEnd
+  };
+}
+
+function setSelection(node, selection) {
+  node.selectionStart = selection.start;
+  node.selectionEnd = selection.end;
+}
+
+/**
+ * @param  {Object} options
+ * @param  {string} options.id
+ * @param  {string} options.description
+ * @param  {Array<string>} options.modelProperties
+ * @param  {Array<string>} options.labels
+ * @param  {Function} options.getElements - this callback function must return a list of business object items
+ * @param  {Function} options.removeElement
+ * @param  {Function} options.addElement
+ * @param  {Function} options.updateElement
+ * @param  {Function} options.editable
+ * @param  {Function} options.setControlValue
+ * @param  {Function} options.show
+ *
+ * @return {Object}
+ */
+module.exports = function (options) {
+
+  var id = options.id,
+      modelProperties = options.modelProperties,
+      labels = options.labels,
+      description = options.description;
+
+  var labelRow = createLabelRowTemplate(labels);
+
+  var getElements = options.getElements;
+
+  var removeElement = options.removeElement,
+      canRemove = typeof removeElement === 'function';
+
+  var addElement = options.addElement,
+      canAdd = typeof addElement === 'function',
+      addLabel = options.addLabel || 'Add Value';
+
+  var updateElement = options.updateElement,
+      canUpdate = typeof updateElement === 'function';
+
+  var _editable = options.editable || function () {
+    return true;
+  },
+      setControlValue = options.setControlValue;
+
+  var _show = options.show,
+      canBeShown = typeof _show === 'function';
+
+  var elements = function elements(element, node) {
+    return pick(getElements(element, node), modelProperties);
+  };
+
+  var factory = {
+    id: id,
+    html: (canAdd ? '<div class="bpp-table-add-row" ' + (canBeShown ? 'data-show="show"' : '') + '>' + '<label>' + addLabel + '</label>' + '<button class="add" data-action="addElement"><span>+</span></button>' + '</div>' : '') + '<div class="bpp-table" data-show="showTable">' + '<div class="bpp-field-wrapper bpp-table-row">' + labelRow + '</div>' + '<div data-list-entry-container>' + '</div>' + '</div>' + (
+
+    // add description below table entry field
+    description ? entryFieldDescription(description) : ''),
+
+    get: function get(element, node) {
+      var boElements = elements(element, node, this.__invalidValues);
+
+      var invalidValues = this.__invalidValues;
+
+      delete this.__invalidValues;
+
+      forEach(invalidValues, function (value, idx) {
+        var element = boElements[idx];
+
+        forEach(modelProperties, function (prop) {
+          element[prop] = value[prop];
+        });
+      });
+
+      return boElements;
+    },
+
+    set: function set(element, values, node) {
+      var action = this.__action || {};
+      delete this.__action;
+
+      if (action.id === 'delete-element') {
+        return removeElement(element, node, action.idx);
+      } else if (action.id === 'add-element') {
+        return addElement(element, node);
+      } else if (canUpdate) {
+        var commands = [],
+            valuesToValidate = values;
+
+        if (typeof options.validate !== 'function') {
+          valuesToValidate = diff(element, node, values, elements(element, node), _editable);
+        }
+
+        var self = this;
+
+        forEach(valuesToValidate, function (value) {
+          var validationError,
+              idx = values.indexOf(value);
+
+          if (typeof options.validate === 'function') {
+            validationError = options.validate(element, value, node, idx);
+          }
+
+          if (!validationError) {
+            var cmd = updateElement(element, value, node, idx);
+
+            if (cmd) {
+              commands.push(cmd);
+            }
+          } else {
+            // cache invalid value in an object by index as key
+            self.__invalidValues = self.__invalidValues || {};
+            self.__invalidValues[idx] = value;
+
+            // execute a command, which does not do anything
+            commands.push(cmdHelper.updateProperties(element, {}));
+          }
+        });
+
+        return commands;
+      }
+    },
+    createListEntryTemplate: function createListEntryTemplate(value, index, selectBox) {
+      return createInputRowTemplate(modelProperties, canRemove);
+    },
+
+    addElement: function addElement(element, node, event, scopeNode) {
+      var template = domify(createInputRowTemplate(modelProperties, canRemove));
+
+      var container = getContainer(node);
+      container.appendChild(template);
+
+      this.__action = {
+        id: 'add-element'
+      };
+
+      return true;
+    },
+
+    deleteElement: function deleteElement(element, node, event, scopeNode) {
+      var container = getContainer(node);
+      var rowToDelete = event.delegateTarget.parentNode;
+      var idx = parseInt(domAttr(rowToDelete, 'data-index'), 10);
+
+      container.removeChild(rowToDelete);
+
+      this.__action = {
+        id: 'delete-element',
+        idx: idx
+      };
+
+      return true;
+    },
+
+    editable: function editable(element, rowNode, input, prop, value, idx) {
+      var entryNode = domClosest(rowNode, '[data-entry]');
+      return _editable(element, entryNode, prop, idx);
+    },
+
+    show: function show(element, entryNode, node, scopeNode) {
+      entryNode = getEntryNode(entryNode);
+      return _show(element, entryNode, node, scopeNode);
+    },
+
+    showTable: function showTable(element, entryNode, node, scopeNode) {
+      entryNode = getEntryNode(entryNode);
+      var elems = elements(element, entryNode);
+      return elems && elems.length && (!canBeShown || _show(element, entryNode, node, scopeNode));
+    },
+
+    validateListItem: function validateListItem(element, value, node, idx) {
+      if (typeof options.validate === 'function') {
+        return options.validate(element, value, node, idx);
+      }
+    }
+
+  };
+
+  // Update/set the selection on the correct position.
+  // It's the same code like for an input value in the PropertiesPanel.js.
+  if (setControlValue) {
+    factory.setControlValue = function (element, rowNode, input, prop, value, idx) {
+      var entryNode = getEntryNode(rowNode);
+
+      var isReadOnly = domAttr(input, 'readonly');
+      var oldValue = input.value;
+
+      var selection;
+
+      // prevents input fields from having the value 'undefined'
+      if (value === undefined) {
+        value = '';
+      }
+
+      // when the attribute 'readonly' exists, ignore the comparison
+      // with 'oldValue' and 'value'
+      if (!!isReadOnly && oldValue === value) {
+        return;
+      }
+
+      // update selection on undo/redo
+      if (document.activeElement === input) {
+        selection = updateSelection(getSelection(input), oldValue, value);
+      }
+
+      setControlValue(element, entryNode, input, prop, value, idx);
+
+      if (selection) {
+        setSelection(input, selection);
+      }
+    };
+  }
+
+  return factory;
+};
+
+},{"../helper/CmdHelper":18,"./EntryFieldDescription":10,"lodash/collection/filter":24,"lodash/collection/forEach":26,"lodash/object/keys":105,"min-dom":111,"selection-update":112}],15:[function(require,module,exports){
+'use strict';
+
+var entryFieldDescription = require('./EntryFieldDescription');
+
+var textBox = function textBox(options, defaultParameters) {
+
+  var resource = defaultParameters,
+      label = options.label || resource.id,
+      canBeShown = !!options.show && typeof options.show === 'function',
+      description = options.description;
+
+  resource.html = '<label for="camunda-' + resource.id + '" ' + (canBeShown ? 'data-show="isShown"' : '') + '>' + label + '</label>' + '<div class="bpp-field-wrapper" ' + (canBeShown ? 'data-show="isShown"' : '') + '>' + '<div contenteditable="true" id="camunda-' + resource.id + '" ' + 'name="' + options.modelProperty + '" />' + '</div>';
+
+  // add description below text box entry field
+  if (description) {
+    resource.html += entryFieldDescription(description);
+  }
+
+  if (canBeShown) {
+    resource.isShown = function () {
+      return options.show.apply(resource, arguments);
+    };
+  }
+
+  resource.cssClasses = ['bpp-textbox'];
+
+  return resource;
+};
+
+module.exports = textBox;
+
+},{"./EntryFieldDescription":10}],16:[function(require,module,exports){
+'use strict';
+
+var domQuery = require('min-dom').query;
+
+var entryFieldDescription = require('./EntryFieldDescription');
+
+var textField = function textField(options, defaultParameters) {
+
+  // Default action for the button next to the input-field
+  var defaultButtonAction = function defaultButtonAction(element, inputNode) {
+    var input = domQuery('input[name="' + options.modelProperty + '"]', inputNode);
+    input.value = '';
+
+    return true;
+  };
+
+  // default method to determine if the button should be visible
+  var defaultButtonShow = function defaultButtonShow(element, inputNode) {
+    var input = domQuery('input[name="' + options.modelProperty + '"]', inputNode);
+
+    return input.value !== '';
+  };
+
+  var resource = defaultParameters,
+      label = options.label || resource.id,
+      dataValueLabel = options.dataValueLabel,
+      buttonLabel = options.buttonLabel || 'X',
+      actionName = typeof options.buttonAction != 'undefined' ? options.buttonAction.name : 'clear',
+      actionMethod = typeof options.buttonAction != 'undefined' ? options.buttonAction.method : defaultButtonAction,
+      showName = typeof options.buttonShow != 'undefined' ? options.buttonShow.name : 'canClear',
+      showMethod = typeof options.buttonShow != 'undefined' ? options.buttonShow.method : defaultButtonShow,
+      canBeDisabled = !!options.disabled && typeof options.disabled === 'function',
+      canBeHidden = !!options.hidden && typeof options.hidden === 'function',
+      description = options.description;
+
+  resource.html = '<label for="camunda-' + resource.id + '" ' + (canBeDisabled ? 'data-disable="isDisabled" ' : '') + (canBeHidden ? 'data-show="isHidden" ' : '') + (dataValueLabel ? 'data-value="' + dataValueLabel + '"' : '') + '>' + label + '</label>' + '<div class="bpp-field-wrapper" ' + (canBeDisabled ? 'data-disable="isDisabled"' : '') + (canBeHidden ? 'data-show="isHidden"' : '') + '>' + '<input id="camunda-' + resource.id + '" type="text" name="' + options.modelProperty + '" ' + (canBeDisabled ? 'data-disable="isDisabled"' : '') + (canBeHidden ? 'data-show="isHidden"' : '') + ' />' + '<button class="' + actionName + '" data-action="' + actionName + '" data-show="' + showName + '" ' + (canBeDisabled ? 'data-disable="isDisabled"' : '') + (canBeHidden ? ' data-show="isHidden"' : '') + '>' + '<span>' + buttonLabel + '</span>' + '</button>' + '</div>';
+
+  // add description below text input entry field
+  if (description) {
+    resource.html += entryFieldDescription(description);
+  }
+
+  resource[actionName] = actionMethod;
+  resource[showName] = showMethod;
+
+  if (canBeDisabled) {
+    resource.isDisabled = function () {
+      return options.disabled.apply(resource, arguments);
+    };
+  }
+
+  if (canBeHidden) {
+    resource.isHidden = function () {
+      return !options.hidden.apply(resource, arguments);
+    };
+  }
+
+  resource.cssClasses = ['bpp-textfield'];
+
+  return resource;
+};
+
+module.exports = textField;
+
+},{"./EntryFieldDescription":10,"min-dom":111}],17:[function(require,module,exports){
+'use strict';
+
+var textField = require('./TextInputEntryFactory');
+
+/**
+ * This function is a wrapper around TextInputEntryFactory.
+ * It adds functionality to cache an invalid value entered in the
+ * text input, instead of setting it on the business object.
+ */
+var validationAwareTextField = function validationAwareTextField(options, defaultParameters) {
+
+  var modelProperty = options.modelProperty;
+
+  defaultParameters.get = function (element, node) {
+    var value = this.__lastInvalidValue;
+
+    delete this.__lastInvalidValue;
+
+    var properties = {};
+
+    properties[modelProperty] = value !== undefined ? value : options.getProperty(element, node);
+
+    return properties;
+  };
+
+  defaultParameters.set = function (element, values, node) {
+    var validationErrors = validate.apply(this, [element, values, node]),
+        propertyValue = values[modelProperty];
+
+    // make sure we do not update the id
+    if (validationErrors && validationErrors[modelProperty]) {
+      this.__lastInvalidValue = propertyValue;
+
+      return options.setProperty(element, {}, node);
+    } else {
+      var properties = {};
+
+      properties[modelProperty] = propertyValue;
+
+      return options.setProperty(element, properties, node);
+    }
+  };
+
+  var validate = defaultParameters.validate = function (element, values, node) {
+    var value = values[modelProperty] || this.__lastInvalidValue;
+
+    var property = {};
+    property[modelProperty] = value;
+
+    return options.validate(element, property, node);
+  };
+
+  return textField(options, defaultParameters);
+};
+
+module.exports = validationAwareTextField;
+
+},{"./TextInputEntryFactory":16}],18:[function(require,module,exports){
+'use strict';
+
+var CmdHelper = {};
+module.exports = CmdHelper;
+
+CmdHelper.updateProperties = function (element, properties) {
+  return {
+    cmd: 'element.updateProperties',
+    context: { element: element, properties: properties }
+  };
+};
+
+CmdHelper.updateBusinessObject = function (element, businessObject, newProperties) {
+  return {
+    cmd: 'properties-panel.update-businessobject',
+    context: {
+      element: element,
+      businessObject: businessObject,
+      properties: newProperties
+    }
+  };
+};
+
+CmdHelper.addElementsTolist = function (element, businessObject, listPropertyName, objectsToAdd) {
+  return {
+    cmd: 'properties-panel.update-businessobject-list',
+    context: {
+      element: element,
+      currentObject: businessObject,
+      propertyName: listPropertyName,
+      objectsToAdd: objectsToAdd
+    }
+  };
+};
+
+CmdHelper.removeElementsFromList = function (element, businessObject, listPropertyName, referencePropertyName, objectsToRemove) {
+
+  return {
+    cmd: 'properties-panel.update-businessobject-list',
+    context: {
+      element: element,
+      currentObject: businessObject,
+      propertyName: listPropertyName,
+      referencePropertyName: referencePropertyName,
+      objectsToRemove: objectsToRemove
+    }
+  };
+};
+
+CmdHelper.addAndRemoveElementsFromList = function (element, businessObject, listPropertyName, referencePropertyName, objectsToAdd, objectsToRemove) {
+
+  return {
+    cmd: 'properties-panel.update-businessobject-list',
+    context: {
+      element: element,
+      currentObject: businessObject,
+      propertyName: listPropertyName,
+      referencePropertyName: referencePropertyName,
+      objectsToAdd: objectsToAdd,
+      objectsToRemove: objectsToRemove
+    }
+  };
+};
+
+CmdHelper.setList = function (element, businessObject, listPropertyName, updatedObjectList) {
+  return {
+    cmd: 'properties-panel.update-businessobject-list',
+    context: {
+      element: element,
+      currentObject: businessObject,
+      propertyName: listPropertyName,
+      updatedObjectList: updatedObjectList
+    }
+  };
+};
+
+},{}],19:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.is = is;
+exports.getBusinessObject = getBusinessObject;
+/**
+ * Is an element of the given BPMN type?
+ *
+ * @param  {djs.model.Base|ModdleElement} element
+ * @param  {String} type
+ *
+ * @return {Boolean}
+ */
+function is(element, type) {
+  var bo = getBusinessObject(element);
+
+  return bo && typeof bo.$instanceOf === 'function' && bo.$instanceOf(type);
+}
+
+/**
+ * Return the business object for a given element.
+ *
+ * @param  {djs.model.Base|ModdleElement} element
+ *
+ * @return {ModdleElement}
+ */
+function getBusinessObject(element) {
+  return element && element.businessObject || element;
+}
+
+},{}],20:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.registerClientPlugin = registerClientPlugin;
+exports.registerBpmnJSPlugin = registerBpmnJSPlugin;
+exports.registerBpmnJSModdleExtension = registerBpmnJSModdleExtension;
+exports.getModelerDirectory = getModelerDirectory;
+exports.getPluginsDirectory = getPluginsDirectory;
+/**
+ * Validate and register a client plugin.
+ *
+ * @param {Object} plugin
+ * @param {String} type
+ */
+function registerClientPlugin(plugin, type) {
+  var plugins = window.plugins || [];
+  window.plugins = plugins;
+
+  if (!plugin) {
+    throw new Error('plugin not specified');
+  }
+
+  if (!type) {
+    throw new Error('type not specified');
+  }
+
+  plugins.push({
+    plugin: plugin,
+    type: type
+  });
+}
+
+/**
+ * Validate and register a bpmn-js plugin.
+ *
+ * @param {Object} module
+ *
+ * @example
+ *
+ * import {
+ *   registerBpmnJSPlugin
+ * } from 'camunda-modeler-plugin-helpers';
+ *
+ * const BpmnJSModule = {
+ *   __init__: [ 'myService' ],
+ *   myService: [ 'type', ... ]
+ * };
+ *
+ * registerBpmnJSPlugin(BpmnJSModule);
+ */
+function registerBpmnJSPlugin(module) {
+  registerClientPlugin(module, 'bpmn.modeler.additionalModules');
+}
+
+/**
+ * Validate and register a bpmn-moddle extension plugin.
+ *
+ * @param {Object} descriptor
+ *
+ * @example
+ * import {
+ *   registerBpmnJSModdleExtension
+ * } from 'camunda-modeler-plugin-helpers';
+ *
+ * var moddleDescriptor = {
+ *   name: 'my descriptor',
+ *   uri: 'http://example.my.company.localhost/schema/my-descriptor/1.0',
+ *   prefix: 'mydesc',
+ *
+ *   ...
+ * };
+ *
+ * registerBpmnJSModdleExtension(moddleDescriptor);
+ */
+function registerBpmnJSModdleExtension(descriptor) {
+  registerClientPlugin(descriptor, 'bpmn.modeler.moddleExtension');
+}
+
+/**
+ * Return the modeler directory, as a string.
+ *
+ * @deprecated Will be removed in future Camunda Modeler versions without replacement.
+ *
+ * @return {String}
+ */
+function getModelerDirectory() {
+  return window.getModelerDirectory();
+}
+
+/**
+ * Return the modeler plugin directory, as a string.
+ *
+ * @deprecated Will be removed in future Camunda Modeler versions without replacement.
+ *
+ * @return {String}
+ */
+function getPluginsDirectory() {
+  return window.getPluginsDirectory();
+}
+
+},{}],21:[function(require,module,exports){
+'use strict';
+
+if (typeof Object.create === 'function') {
+  // implementation from standard node.js 'util' module
+  module.exports = function inherits(ctor, superCtor) {
+    ctor.super_ = superCtor;
+    ctor.prototype = Object.create(superCtor.prototype, {
+      constructor: {
+        value: ctor,
+        enumerable: false,
+        writable: true,
+        configurable: true
+      }
+    });
+  };
+} else {
+  // old school shim for old browsers
+  module.exports = function inherits(ctor, superCtor) {
+    ctor.super_ = superCtor;
+    var TempCtor = function TempCtor() {};
+    TempCtor.prototype = superCtor.prototype;
+    ctor.prototype = new TempCtor();
+    ctor.prototype.constructor = ctor;
+  };
+}
+
+},{}],22:[function(require,module,exports){
+"use strict";
+
+/**
+ * Gets the last element of `array`.
+ *
+ * @static
+ * @memberOf _
+ * @category Array
+ * @param {Array} array The array to query.
+ * @returns {*} Returns the last element of `array`.
+ * @example
+ *
+ * _.last([1, 2, 3]);
+ * // => 3
+ */
+function last(array) {
+  var length = array ? array.length : 0;
+  return length ? array[length - 1] : undefined;
+}
+
+module.exports = last;
+
+},{}],23:[function(require,module,exports){
+'use strict';
+
+var LazyWrapper = require('../internal/LazyWrapper'),
+    LodashWrapper = require('../internal/LodashWrapper'),
+    baseLodash = require('../internal/baseLodash'),
+    isArray = require('../lang/isArray'),
+    isObjectLike = require('../internal/isObjectLike'),
+    wrapperClone = require('../internal/wrapperClone');
+
+/** Used for native method references. */
+var objectProto = Object.prototype;
+
+/** Used to check objects for own properties. */
+var hasOwnProperty = objectProto.hasOwnProperty;
+
+/**
+ * Creates a `lodash` object which wraps `value` to enable implicit chaining.
+ * Methods that operate on and return arrays, collections, and functions can
+ * be chained together. Methods that retrieve a single value or may return a
+ * primitive value will automatically end the chain returning the unwrapped
+ * value. Explicit chaining may be enabled using `_.chain`. The execution of
+ * chained methods is lazy, that is, execution is deferred until `_#value`
+ * is implicitly or explicitly called.
+ *
+ * Lazy evaluation allows several methods to support shortcut fusion. Shortcut
+ * fusion is an optimization strategy which merge iteratee calls; this can help
+ * to avoid the creation of intermediate data structures and greatly reduce the
+ * number of iteratee executions.
+ *
+ * Chaining is supported in custom builds as long as the `_#value` method is
+ * directly or indirectly included in the build.
+ *
+ * In addition to lodash methods, wrappers have `Array` and `String` methods.
+ *
+ * The wrapper `Array` methods are:
+ * `concat`, `join`, `pop`, `push`, `reverse`, `shift`, `slice`, `sort`,
+ * `splice`, and `unshift`
+ *
+ * The wrapper `String` methods are:
+ * `replace` and `split`
+ *
+ * The wrapper methods that support shortcut fusion are:
+ * `compact`, `drop`, `dropRight`, `dropRightWhile`, `dropWhile`, `filter`,
+ * `first`, `initial`, `last`, `map`, `pluck`, `reject`, `rest`, `reverse`,
+ * `slice`, `take`, `takeRight`, `takeRightWhile`, `takeWhile`, `toArray`,
+ * and `where`
+ *
+ * The chainable wrapper methods are:
+ * `after`, `ary`, `assign`, `at`, `before`, `bind`, `bindAll`, `bindKey`,
+ * `callback`, `chain`, `chunk`, `commit`, `compact`, `concat`, `constant`,
+ * `countBy`, `create`, `curry`, `debounce`, `defaults`, `defaultsDeep`,
+ * `defer`, `delay`, `difference`, `drop`, `dropRight`, `dropRightWhile`,
+ * `dropWhile`, `fill`, `filter`, `flatten`, `flattenDeep`, `flow`, `flowRight`,
+ * `forEach`, `forEachRight`, `forIn`, `forInRight`, `forOwn`, `forOwnRight`,
+ * `functions`, `groupBy`, `indexBy`, `initial`, `intersection`, `invert`,
+ * `invoke`, `keys`, `keysIn`, `map`, `mapKeys`, `mapValues`, `matches`,
+ * `matchesProperty`, `memoize`, `merge`, `method`, `methodOf`, `mixin`,
+ * `modArgs`, `negate`, `omit`, `once`, `pairs`, `partial`, `partialRight`,
+ * `partition`, `pick`, `plant`, `pluck`, `property`, `propertyOf`, `pull`,
+ * `pullAt`, `push`, `range`, `rearg`, `reject`, `remove`, `rest`, `restParam`,
+ * `reverse`, `set`, `shuffle`, `slice`, `sort`, `sortBy`, `sortByAll`,
+ * `sortByOrder`, `splice`, `spread`, `take`, `takeRight`, `takeRightWhile`,
+ * `takeWhile`, `tap`, `throttle`, `thru`, `times`, `toArray`, `toPlainObject`,
+ * `transform`, `union`, `uniq`, `unshift`, `unzip`, `unzipWith`, `values`,
+ * `valuesIn`, `where`, `without`, `wrap`, `xor`, `zip`, `zipObject`, `zipWith`
+ *
+ * The wrapper methods that are **not** chainable by default are:
+ * `add`, `attempt`, `camelCase`, `capitalize`, `ceil`, `clone`, `cloneDeep`,
+ * `deburr`, `endsWith`, `escape`, `escapeRegExp`, `every`, `find`, `findIndex`,
+ * `findKey`, `findLast`, `findLastIndex`, `findLastKey`, `findWhere`, `first`,
+ * `floor`, `get`, `gt`, `gte`, `has`, `identity`, `includes`, `indexOf`,
+ * `inRange`, `isArguments`, `isArray`, `isBoolean`, `isDate`, `isElement`,
+ * `isEmpty`, `isEqual`, `isError`, `isFinite` `isFunction`, `isMatch`,
+ * `isNative`, `isNaN`, `isNull`, `isNumber`, `isObject`, `isPlainObject`,
+ * `isRegExp`, `isString`, `isUndefined`, `isTypedArray`, `join`, `kebabCase`,
+ * `last`, `lastIndexOf`, `lt`, `lte`, `max`, `min`, `noConflict`, `noop`,
+ * `now`, `pad`, `padLeft`, `padRight`, `parseInt`, `pop`, `random`, `reduce`,
+ * `reduceRight`, `repeat`, `result`, `round`, `runInContext`, `shift`, `size`,
+ * `snakeCase`, `some`, `sortedIndex`, `sortedLastIndex`, `startCase`,
+ * `startsWith`, `sum`, `template`, `trim`, `trimLeft`, `trimRight`, `trunc`,
+ * `unescape`, `uniqueId`, `value`, and `words`
+ *
+ * The wrapper method `sample` will return a wrapped value when `n` is provided,
+ * otherwise an unwrapped value is returned.
+ *
+ * @name _
+ * @constructor
+ * @category Chain
+ * @param {*} value The value to wrap in a `lodash` instance.
+ * @returns {Object} Returns the new `lodash` wrapper instance.
+ * @example
+ *
+ * var wrapped = _([1, 2, 3]);
+ *
+ * // returns an unwrapped value
+ * wrapped.reduce(function(total, n) {
+ *   return total + n;
+ * });
+ * // => 6
+ *
+ * // returns a wrapped value
+ * var squares = wrapped.map(function(n) {
+ *   return n * n;
+ * });
+ *
+ * _.isArray(squares);
+ * // => false
+ *
+ * _.isArray(squares.value());
+ * // => true
+ */
+function lodash(value) {
+  if (isObjectLike(value) && !isArray(value) && !(value instanceof LazyWrapper)) {
+    if (value instanceof LodashWrapper) {
+      return value;
+    }
+    if (hasOwnProperty.call(value, '__chain__') && hasOwnProperty.call(value, '__wrapped__')) {
+      return wrapperClone(value);
+    }
+  }
+  return new LodashWrapper(value);
+}
+
+// Ensure wrappers are instances of `baseLodash`.
+lodash.prototype = baseLodash.prototype;
+
+module.exports = lodash;
+
+},{"../internal/LazyWrapper":30,"../internal/LodashWrapper":31,"../internal/baseLodash":51,"../internal/isObjectLike":86,"../internal/wrapperClone":97,"../lang/isArray":99}],24:[function(require,module,exports){
+'use strict';
+
+var arrayFilter = require('../internal/arrayFilter'),
+    baseCallback = require('../internal/baseCallback'),
+    baseFilter = require('../internal/baseFilter'),
+    isArray = require('../lang/isArray');
+
+/**
+ * Iterates over elements of `collection`, returning an array of all elements
+ * `predicate` returns truthy for. The predicate is bound to `thisArg` and
+ * invoked with three arguments: (value, index|key, collection).
+ *
+ * If a property name is provided for `predicate` the created `_.property`
+ * style callback returns the property value of the given element.
+ *
+ * If a value is also provided for `thisArg` the created `_.matchesProperty`
+ * style callback returns `true` for elements that have a matching property
+ * value, else `false`.
+ *
+ * If an object is provided for `predicate` the created `_.matches` style
+ * callback returns `true` for elements that have the properties of the given
+ * object, else `false`.
+ *
+ * @static
+ * @memberOf _
+ * @alias select
+ * @category Collection
+ * @param {Array|Object|string} collection The collection to iterate over.
+ * @param {Function|Object|string} [predicate=_.identity] The function invoked
+ *  per iteration.
+ * @param {*} [thisArg] The `this` binding of `predicate`.
+ * @returns {Array} Returns the new filtered array.
+ * @example
+ *
+ * _.filter([4, 5, 6], function(n) {
+ *   return n % 2 == 0;
+ * });
+ * // => [4, 6]
+ *
+ * var users = [
+ *   { 'user': 'barney', 'age': 36, 'active': true },
+ *   { 'user': 'fred',   'age': 40, 'active': false }
+ * ];
+ *
+ * // using the `_.matches` callback shorthand
+ * _.pluck(_.filter(users, { 'age': 36, 'active': true }), 'user');
+ * // => ['barney']
+ *
+ * // using the `_.matchesProperty` callback shorthand
+ * _.pluck(_.filter(users, 'active', false), 'user');
+ * // => ['fred']
+ *
+ * // using the `_.property` callback shorthand
+ * _.pluck(_.filter(users, 'active'), 'user');
+ * // => ['barney']
+ */
+function filter(collection, predicate, thisArg) {
+  var func = isArray(collection) ? arrayFilter : baseFilter;
+  predicate = baseCallback(predicate, thisArg, 3);
+  return func(collection, predicate);
+}
+
+module.exports = filter;
+
+},{"../internal/arrayFilter":34,"../internal/baseCallback":38,"../internal/baseFilter":42,"../lang/isArray":99}],25:[function(require,module,exports){
+'use strict';
+
+var baseEach = require('../internal/baseEach'),
+    createFind = require('../internal/createFind');
+
+/**
+ * Iterates over elements of `collection`, returning the first element
+ * `predicate` returns truthy for. The predicate is bound to `thisArg` and
+ * invoked with three arguments: (value, index|key, collection).
+ *
+ * If a property name is provided for `predicate` the created `_.property`
+ * style callback returns the property value of the given element.
+ *
+ * If a value is also provided for `thisArg` the created `_.matchesProperty`
+ * style callback returns `true` for elements that have a matching property
+ * value, else `false`.
+ *
+ * If an object is provided for `predicate` the created `_.matches` style
+ * callback returns `true` for elements that have the properties of the given
+ * object, else `false`.
+ *
+ * @static
+ * @memberOf _
+ * @alias detect
+ * @category Collection
+ * @param {Array|Object|string} collection The collection to search.
+ * @param {Function|Object|string} [predicate=_.identity] The function invoked
+ *  per iteration.
+ * @param {*} [thisArg] The `this` binding of `predicate`.
+ * @returns {*} Returns the matched element, else `undefined`.
+ * @example
+ *
+ * var users = [
+ *   { 'user': 'barney',  'age': 36, 'active': true },
+ *   { 'user': 'fred',    'age': 40, 'active': false },
+ *   { 'user': 'pebbles', 'age': 1,  'active': true }
+ * ];
+ *
+ * _.result(_.find(users, function(chr) {
+ *   return chr.age < 40;
+ * }), 'user');
+ * // => 'barney'
+ *
+ * // using the `_.matches` callback shorthand
+ * _.result(_.find(users, { 'age': 1, 'active': true }), 'user');
+ * // => 'pebbles'
+ *
+ * // using the `_.matchesProperty` callback shorthand
+ * _.result(_.find(users, 'active', false), 'user');
+ * // => 'fred'
+ *
+ * // using the `_.property` callback shorthand
+ * _.result(_.find(users, 'active'), 'user');
+ * // => 'barney'
+ */
+var find = createFind(baseEach);
+
+module.exports = find;
+
+},{"../internal/baseEach":41,"../internal/createFind":67}],26:[function(require,module,exports){
+'use strict';
+
+var arrayEach = require('../internal/arrayEach'),
+    baseEach = require('../internal/baseEach'),
+    createForEach = require('../internal/createForEach');
+
+/**
+ * Iterates over elements of `collection` invoking `iteratee` for each element.
+ * The `iteratee` is bound to `thisArg` and invoked with three arguments:
+ * (value, index|key, collection). Iteratee functions may exit iteration early
+ * by explicitly returning `false`.
+ *
+ * **Note:** As with other "Collections" methods, objects with a "length" property
+ * are iterated like arrays. To avoid this behavior `_.forIn` or `_.forOwn`
+ * may be used for object iteration.
+ *
+ * @static
+ * @memberOf _
+ * @alias each
+ * @category Collection
+ * @param {Array|Object|string} collection The collection to iterate over.
+ * @param {Function} [iteratee=_.identity] The function invoked per iteration.
+ * @param {*} [thisArg] The `this` binding of `iteratee`.
+ * @returns {Array|Object|string} Returns `collection`.
+ * @example
+ *
+ * _([1, 2]).forEach(function(n) {
+ *   console.log(n);
+ * }).value();
+ * // => logs each value from left to right and returns the array
+ *
+ * _.forEach({ 'a': 1, 'b': 2 }, function(n, key) {
+ *   console.log(n, key);
+ * });
+ * // => logs each value-key pair and returns the object (iteration order is not guaranteed)
+ */
+var forEach = createForEach(arrayEach, baseEach);
+
+module.exports = forEach;
+
+},{"../internal/arrayEach":33,"../internal/baseEach":41,"../internal/createForEach":68}],27:[function(require,module,exports){
+'use strict';
+
+var getNative = require('../internal/getNative');
+
+/* Native method references for those with the same name as other `lodash` methods. */
+var nativeNow = getNative(Date, 'now');
+
+/**
+ * Gets the number of milliseconds that have elapsed since the Unix epoch
+ * (1 January 1970 00:00:00 UTC).
+ *
+ * @static
+ * @memberOf _
+ * @category Date
+ * @example
+ *
+ * _.defer(function(stamp) {
+ *   console.log(_.now() - stamp);
+ * }, _.now());
+ * // => logs the number of milliseconds it took for the deferred function to be invoked
+ */
+var now = nativeNow || function () {
+  return new Date().getTime();
+};
+
+module.exports = now;
+
+},{"../internal/getNative":79}],28:[function(require,module,exports){
+'use strict';
+
+var createWrapper = require('../internal/createWrapper'),
+    replaceHolders = require('../internal/replaceHolders'),
+    restParam = require('./restParam');
+
+/** Used to compose bitmasks for wrapper metadata. */
+var BIND_FLAG = 1,
+    PARTIAL_FLAG = 32;
+
+/**
+ * Creates a function that invokes `func` with the `this` binding of `thisArg`
+ * and prepends any additional `_.bind` arguments to those provided to the
+ * bound function.
+ *
+ * The `_.bind.placeholder` value, which defaults to `_` in monolithic builds,
+ * may be used as a placeholder for partially applied arguments.
+ *
+ * **Note:** Unlike native `Function#bind` this method does not set the "length"
+ * property of bound functions.
+ *
+ * @static
+ * @memberOf _
+ * @category Function
+ * @param {Function} func The function to bind.
+ * @param {*} thisArg The `this` binding of `func`.
+ * @param {...*} [partials] The arguments to be partially applied.
+ * @returns {Function} Returns the new bound function.
+ * @example
+ *
+ * var greet = function(greeting, punctuation) {
+ *   return greeting + ' ' + this.user + punctuation;
+ * };
+ *
+ * var object = { 'user': 'fred' };
+ *
+ * var bound = _.bind(greet, object, 'hi');
+ * bound('!');
+ * // => 'hi fred!'
+ *
+ * // using placeholders
+ * var bound = _.bind(greet, object, _, '!');
+ * bound('hi');
+ * // => 'hi fred!'
+ */
+var bind = restParam(function (func, thisArg, partials) {
+  var bitmask = BIND_FLAG;
+  if (partials.length) {
+    var holders = replaceHolders(partials, bind.placeholder);
+    bitmask |= PARTIAL_FLAG;
+  }
+  return createWrapper(func, bitmask, thisArg, partials, holders);
+});
+
+// Assign default placeholders.
+bind.placeholder = {};
+
+module.exports = bind;
+
+},{"../internal/createWrapper":71,"../internal/replaceHolders":92,"./restParam":29}],29:[function(require,module,exports){
+'use strict';
+
+/** Used as the `TypeError` message for "Functions" methods. */
+var FUNC_ERROR_TEXT = 'Expected a function';
+
+/* Native method references for those with the same name as other `lodash` methods. */
+var nativeMax = Math.max;
+
+/**
+ * Creates a function that invokes `func` with the `this` binding of the
+ * created function and arguments from `start` and beyond provided as an array.
+ *
+ * **Note:** This method is based on the [rest parameter](https://developer.mozilla.org/Web/JavaScript/Reference/Functions/rest_parameters).
+ *
+ * @static
+ * @memberOf _
+ * @category Function
+ * @param {Function} func The function to apply a rest parameter to.
+ * @param {number} [start=func.length-1] The start position of the rest parameter.
+ * @returns {Function} Returns the new function.
+ * @example
+ *
+ * var say = _.restParam(function(what, names) {
+ *   return what + ' ' + _.initial(names).join(', ') +
+ *     (_.size(names) > 1 ? ', & ' : '') + _.last(names);
+ * });
+ *
+ * say('hello', 'fred', 'barney', 'pebbles');
+ * // => 'hello fred, barney, & pebbles'
+ */
+function restParam(func, start) {
+  if (typeof func != 'function') {
+    throw new TypeError(FUNC_ERROR_TEXT);
+  }
+  start = nativeMax(start === undefined ? func.length - 1 : +start || 0, 0);
+  return function () {
+    var args = arguments,
+        index = -1,
+        length = nativeMax(args.length - start, 0),
+        rest = Array(length);
+
+    while (++index < length) {
+      rest[index] = args[start + index];
+    }
+    switch (start) {
+      case 0:
+        return func.call(this, rest);
+      case 1:
+        return func.call(this, args[0], rest);
+      case 2:
+        return func.call(this, args[0], args[1], rest);
+    }
+    var otherArgs = Array(start + 1);
+    index = -1;
+    while (++index < start) {
+      otherArgs[index] = args[index];
+    }
+    otherArgs[start] = rest;
+    return func.apply(this, otherArgs);
+  };
+}
+
+module.exports = restParam;
+
+},{}],30:[function(require,module,exports){
+'use strict';
+
+var baseCreate = require('./baseCreate'),
+    baseLodash = require('./baseLodash');
+
+/** Used as references for `-Infinity` and `Infinity`. */
+var POSITIVE_INFINITY = Number.POSITIVE_INFINITY;
+
+/**
+ * Creates a lazy wrapper object which wraps `value` to enable lazy evaluation.
+ *
+ * @private
+ * @param {*} value The value to wrap.
+ */
+function LazyWrapper(value) {
+  this.__wrapped__ = value;
+  this.__actions__ = [];
+  this.__dir__ = 1;
+  this.__filtered__ = false;
+  this.__iteratees__ = [];
+  this.__takeCount__ = POSITIVE_INFINITY;
+  this.__views__ = [];
+}
+
+LazyWrapper.prototype = baseCreate(baseLodash.prototype);
+LazyWrapper.prototype.constructor = LazyWrapper;
+
+module.exports = LazyWrapper;
+
+},{"./baseCreate":40,"./baseLodash":51}],31:[function(require,module,exports){
+'use strict';
+
+var baseCreate = require('./baseCreate'),
+    baseLodash = require('./baseLodash');
+
+/**
+ * The base constructor for creating `lodash` wrapper objects.
+ *
+ * @private
+ * @param {*} value The value to wrap.
+ * @param {boolean} [chainAll] Enable chaining for all wrapper methods.
+ * @param {Array} [actions=[]] Actions to peform to resolve the unwrapped value.
+ */
+function LodashWrapper(value, chainAll, actions) {
+  this.__wrapped__ = value;
+  this.__actions__ = actions || [];
+  this.__chain__ = !!chainAll;
+}
+
+LodashWrapper.prototype = baseCreate(baseLodash.prototype);
+LodashWrapper.prototype.constructor = LodashWrapper;
+
+module.exports = LodashWrapper;
+
+},{"./baseCreate":40,"./baseLodash":51}],32:[function(require,module,exports){
+"use strict";
+
+/**
+ * Copies the values of `source` to `array`.
+ *
+ * @private
+ * @param {Array} source The array to copy values from.
+ * @param {Array} [array=[]] The array to copy values to.
+ * @returns {Array} Returns `array`.
+ */
+function arrayCopy(source, array) {
+  var index = -1,
+      length = source.length;
+
+  array || (array = Array(length));
+  while (++index < length) {
+    array[index] = source[index];
+  }
+  return array;
+}
+
+module.exports = arrayCopy;
+
+},{}],33:[function(require,module,exports){
+"use strict";
+
+/**
+ * A specialized version of `_.forEach` for arrays without support for callback
+ * shorthands and `this` binding.
+ *
+ * @private
+ * @param {Array} array The array to iterate over.
+ * @param {Function} iteratee The function invoked per iteration.
+ * @returns {Array} Returns `array`.
+ */
+function arrayEach(array, iteratee) {
+  var index = -1,
+      length = array.length;
+
+  while (++index < length) {
+    if (iteratee(array[index], index, array) === false) {
+      break;
+    }
+  }
+  return array;
+}
+
+module.exports = arrayEach;
+
+},{}],34:[function(require,module,exports){
+"use strict";
+
+/**
+ * A specialized version of `_.filter` for arrays without support for callback
+ * shorthands and `this` binding.
+ *
+ * @private
+ * @param {Array} array The array to iterate over.
+ * @param {Function} predicate The function invoked per iteration.
+ * @returns {Array} Returns the new filtered array.
+ */
+function arrayFilter(array, predicate) {
+  var index = -1,
+      length = array.length,
+      resIndex = -1,
+      result = [];
+
+  while (++index < length) {
+    var value = array[index];
+    if (predicate(value, index, array)) {
+      result[++resIndex] = value;
+    }
+  }
+  return result;
+}
+
+module.exports = arrayFilter;
+
+},{}],35:[function(require,module,exports){
+"use strict";
+
+/**
+ * A specialized version of `_.some` for arrays without support for callback
+ * shorthands and `this` binding.
+ *
+ * @private
+ * @param {Array} array The array to iterate over.
+ * @param {Function} predicate The function invoked per iteration.
+ * @returns {boolean} Returns `true` if any element passes the predicate check,
+ *  else `false`.
+ */
+function arraySome(array, predicate) {
+  var index = -1,
+      length = array.length;
+
+  while (++index < length) {
+    if (predicate(array[index], index, array)) {
+      return true;
+    }
+  }
+  return false;
+}
+
+module.exports = arraySome;
+
+},{}],36:[function(require,module,exports){
+'use strict';
+
+var keys = require('../object/keys');
+
+/**
+ * A specialized version of `_.assign` for customizing assigned values without
+ * support for argument juggling, multiple sources, and `this` binding `customizer`
+ * functions.
+ *
+ * @private
+ * @param {Object} object The destination object.
+ * @param {Object} source The source object.
+ * @param {Function} customizer The function to customize assigned values.
+ * @returns {Object} Returns `object`.
+ */
+function assignWith(object, source, customizer) {
+  var index = -1,
+      props = keys(source),
+      length = props.length;
+
+  while (++index < length) {
+    var key = props[index],
+        value = object[key],
+        result = customizer(value, source[key], key, object, source);
+
+    if ((result === result ? result !== value : value === value) || value === undefined && !(key in object)) {
+      object[key] = result;
+    }
+  }
+  return object;
+}
+
+module.exports = assignWith;
+
+},{"../object/keys":105}],37:[function(require,module,exports){
+'use strict';
+
+var baseCopy = require('./baseCopy'),
+    keys = require('../object/keys');
+
+/**
+ * The base implementation of `_.assign` without support for argument juggling,
+ * multiple sources, and `customizer` functions.
+ *
+ * @private
+ * @param {Object} object The destination object.
+ * @param {Object} source The source object.
+ * @returns {Object} Returns `object`.
+ */
+function baseAssign(object, source) {
+    return source == null ? object : baseCopy(source, keys(source), object);
+}
+
+module.exports = baseAssign;
+
+},{"../object/keys":105,"./baseCopy":39}],38:[function(require,module,exports){
+'use strict';
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+var baseMatches = require('./baseMatches'),
+    baseMatchesProperty = require('./baseMatchesProperty'),
+    bindCallback = require('./bindCallback'),
+    identity = require('../utility/identity'),
+    property = require('../utility/property');
+
+/**
+ * The base implementation of `_.callback` which supports specifying the
+ * number of arguments to provide to `func`.
+ *
+ * @private
+ * @param {*} [func=_.identity] The value to convert to a callback.
+ * @param {*} [thisArg] The `this` binding of `func`.
+ * @param {number} [argCount] The number of arguments to provide to `func`.
+ * @returns {Function} Returns the callback.
+ */
+function baseCallback(func, thisArg, argCount) {
+  var type = typeof func === 'undefined' ? 'undefined' : _typeof(func);
+  if (type == 'function') {
+    return thisArg === undefined ? func : bindCallback(func, thisArg, argCount);
+  }
+  if (func == null) {
+    return identity;
+  }
+  if (type == 'object') {
+    return baseMatches(func);
+  }
+  return thisArg === undefined ? property(func) : baseMatchesProperty(func, thisArg);
+}
+
+module.exports = baseCallback;
+
+},{"../utility/identity":108,"../utility/property":110,"./baseMatches":52,"./baseMatchesProperty":53,"./bindCallback":59}],39:[function(require,module,exports){
+"use strict";
+
+/**
+ * Copies properties of `source` to `object`.
+ *
+ * @private
+ * @param {Object} source The object to copy properties from.
+ * @param {Array} props The property names to copy.
+ * @param {Object} [object={}] The object to copy properties to.
+ * @returns {Object} Returns `object`.
+ */
+function baseCopy(source, props, object) {
+  object || (object = {});
+
+  var index = -1,
+      length = props.length;
+
+  while (++index < length) {
+    var key = props[index];
+    object[key] = source[key];
+  }
+  return object;
+}
+
+module.exports = baseCopy;
+
+},{}],40:[function(require,module,exports){
+'use strict';
+
+var isObject = require('../lang/isObject');
+
+/**
+ * The base implementation of `_.create` without support for assigning
+ * properties to the created object.
+ *
+ * @private
+ * @param {Object} prototype The object to inherit from.
+ * @returns {Object} Returns the new object.
+ */
+var baseCreate = function () {
+  function object() {}
+  return function (prototype) {
+    if (isObject(prototype)) {
+      object.prototype = prototype;
+      var result = new object();
+      object.prototype = undefined;
+    }
+    return result || {};
+  };
+}();
+
+module.exports = baseCreate;
+
+},{"../lang/isObject":102}],41:[function(require,module,exports){
+'use strict';
+
+var baseForOwn = require('./baseForOwn'),
+    createBaseEach = require('./createBaseEach');
+
+/**
+ * The base implementation of `_.forEach` without support for callback
+ * shorthands and `this` binding.
+ *
+ * @private
+ * @param {Array|Object|string} collection The collection to iterate over.
+ * @param {Function} iteratee The function invoked per iteration.
+ * @returns {Array|Object|string} Returns `collection`.
+ */
+var baseEach = createBaseEach(baseForOwn);
+
+module.exports = baseEach;
+
+},{"./baseForOwn":46,"./createBaseEach":63}],42:[function(require,module,exports){
+'use strict';
+
+var baseEach = require('./baseEach');
+
+/**
+ * The base implementation of `_.filter` without support for callback
+ * shorthands and `this` binding.
+ *
+ * @private
+ * @param {Array|Object|string} collection The collection to iterate over.
+ * @param {Function} predicate The function invoked per iteration.
+ * @returns {Array} Returns the new filtered array.
+ */
+function baseFilter(collection, predicate) {
+  var result = [];
+  baseEach(collection, function (value, index, collection) {
+    if (predicate(value, index, collection)) {
+      result.push(value);
+    }
+  });
+  return result;
+}
+
+module.exports = baseFilter;
+
+},{"./baseEach":41}],43:[function(require,module,exports){
+"use strict";
+
+/**
+ * The base implementation of `_.find`, `_.findLast`, `_.findKey`, and `_.findLastKey`,
+ * without support for callback shorthands and `this` binding, which iterates
+ * over `collection` using the provided `eachFunc`.
+ *
+ * @private
+ * @param {Array|Object|string} collection The collection to search.
+ * @param {Function} predicate The function invoked per iteration.
+ * @param {Function} eachFunc The function to iterate over `collection`.
+ * @param {boolean} [retKey] Specify returning the key of the found element
+ *  instead of the element itself.
+ * @returns {*} Returns the found element or its key, else `undefined`.
+ */
+function baseFind(collection, predicate, eachFunc, retKey) {
+  var result;
+  eachFunc(collection, function (value, key, collection) {
+    if (predicate(value, key, collection)) {
+      result = retKey ? key : value;
+      return false;
+    }
+  });
+  return result;
+}
+
+module.exports = baseFind;
+
+},{}],44:[function(require,module,exports){
+"use strict";
+
+/**
+ * The base implementation of `_.findIndex` and `_.findLastIndex` without
+ * support for callback shorthands and `this` binding.
+ *
+ * @private
+ * @param {Array} array The array to search.
+ * @param {Function} predicate The function invoked per iteration.
+ * @param {boolean} [fromRight] Specify iterating from right to left.
+ * @returns {number} Returns the index of the matched value, else `-1`.
+ */
+function baseFindIndex(array, predicate, fromRight) {
+  var length = array.length,
+      index = fromRight ? length : -1;
+
+  while (fromRight ? index-- : ++index < length) {
+    if (predicate(array[index], index, array)) {
+      return index;
+    }
+  }
+  return -1;
+}
+
+module.exports = baseFindIndex;
+
+},{}],45:[function(require,module,exports){
+'use strict';
+
+var createBaseFor = require('./createBaseFor');
+
+/**
+ * The base implementation of `baseForIn` and `baseForOwn` which iterates
+ * over `object` properties returned by `keysFunc` invoking `iteratee` for
+ * each property. Iteratee functions may exit iteration early by explicitly
+ * returning `false`.
+ *
+ * @private
+ * @param {Object} object The object to iterate over.
+ * @param {Function} iteratee The function invoked per iteration.
+ * @param {Function} keysFunc The function to get the keys of `object`.
+ * @returns {Object} Returns `object`.
+ */
+var baseFor = createBaseFor();
+
+module.exports = baseFor;
+
+},{"./createBaseFor":64}],46:[function(require,module,exports){
+'use strict';
+
+var baseFor = require('./baseFor'),
+    keys = require('../object/keys');
+
+/**
+ * The base implementation of `_.forOwn` without support for callback
+ * shorthands and `this` binding.
+ *
+ * @private
+ * @param {Object} object The object to iterate over.
+ * @param {Function} iteratee The function invoked per iteration.
+ * @returns {Object} Returns `object`.
+ */
+function baseForOwn(object, iteratee) {
+  return baseFor(object, iteratee, keys);
+}
+
+module.exports = baseForOwn;
+
+},{"../object/keys":105,"./baseFor":45}],47:[function(require,module,exports){
+'use strict';
+
+var toObject = require('./toObject');
+
+/**
+ * The base implementation of `get` without support for string paths
+ * and default values.
+ *
+ * @private
+ * @param {Object} object The object to query.
+ * @param {Array} path The path of the property to get.
+ * @param {string} [pathKey] The key representation of path.
+ * @returns {*} Returns the resolved value.
+ */
+function baseGet(object, path, pathKey) {
+  if (object == null) {
+    return;
+  }
+  if (pathKey !== undefined && pathKey in toObject(object)) {
+    path = [pathKey];
+  }
+  var index = 0,
+      length = path.length;
+
+  while (object != null && index < length) {
+    object = object[path[index++]];
+  }
+  return index && index == length ? object : undefined;
+}
+
+module.exports = baseGet;
+
+},{"./toObject":95}],48:[function(require,module,exports){
+'use strict';
+
+var baseIsEqualDeep = require('./baseIsEqualDeep'),
+    isObject = require('../lang/isObject'),
+    isObjectLike = require('./isObjectLike');
+
+/**
+ * The base implementation of `_.isEqual` without support for `this` binding
+ * `customizer` functions.
+ *
+ * @private
+ * @param {*} value The value to compare.
+ * @param {*} other The other value to compare.
+ * @param {Function} [customizer] The function to customize comparing values.
+ * @param {boolean} [isLoose] Specify performing partial comparisons.
+ * @param {Array} [stackA] Tracks traversed `value` objects.
+ * @param {Array} [stackB] Tracks traversed `other` objects.
+ * @returns {boolean} Returns `true` if the values are equivalent, else `false`.
+ */
+function baseIsEqual(value, other, customizer, isLoose, stackA, stackB) {
+  if (value === other) {
+    return true;
+  }
+  if (value == null || other == null || !isObject(value) && !isObjectLike(other)) {
+    return value !== value && other !== other;
+  }
+  return baseIsEqualDeep(value, other, baseIsEqual, customizer, isLoose, stackA, stackB);
+}
+
+module.exports = baseIsEqual;
+
+},{"../lang/isObject":102,"./baseIsEqualDeep":49,"./isObjectLike":86}],49:[function(require,module,exports){
+'use strict';
+
+var equalArrays = require('./equalArrays'),
+    equalByTag = require('./equalByTag'),
+    equalObjects = require('./equalObjects'),
+    isArray = require('../lang/isArray'),
+    isTypedArray = require('../lang/isTypedArray');
+
+/** `Object#toString` result references. */
+var argsTag = '[object Arguments]',
+    arrayTag = '[object Array]',
+    objectTag = '[object Object]';
+
+/** Used for native method references. */
+var objectProto = Object.prototype;
+
+/** Used to check objects for own properties. */
+var hasOwnProperty = objectProto.hasOwnProperty;
+
+/**
+ * Used to resolve the [`toStringTag`](http://ecma-international.org/ecma-262/6.0/#sec-object.prototype.tostring)
+ * of values.
+ */
+var objToString = objectProto.toString;
+
+/**
+ * A specialized version of `baseIsEqual` for arrays and objects which performs
+ * deep comparisons and tracks traversed objects enabling objects with circular
+ * references to be compared.
+ *
+ * @private
+ * @param {Object} object The object to compare.
+ * @param {Object} other The other object to compare.
+ * @param {Function} equalFunc The function to determine equivalents of values.
+ * @param {Function} [customizer] The function to customize comparing objects.
+ * @param {boolean} [isLoose] Specify performing partial comparisons.
+ * @param {Array} [stackA=[]] Tracks traversed `value` objects.
+ * @param {Array} [stackB=[]] Tracks traversed `other` objects.
+ * @returns {boolean} Returns `true` if the objects are equivalent, else `false`.
+ */
+function baseIsEqualDeep(object, other, equalFunc, customizer, isLoose, stackA, stackB) {
+  var objIsArr = isArray(object),
+      othIsArr = isArray(other),
+      objTag = arrayTag,
+      othTag = arrayTag;
+
+  if (!objIsArr) {
+    objTag = objToString.call(object);
+    if (objTag == argsTag) {
+      objTag = objectTag;
+    } else if (objTag != objectTag) {
+      objIsArr = isTypedArray(object);
+    }
+  }
+  if (!othIsArr) {
+    othTag = objToString.call(other);
+    if (othTag == argsTag) {
+      othTag = objectTag;
+    } else if (othTag != objectTag) {
+      othIsArr = isTypedArray(other);
+    }
+  }
+  var objIsObj = objTag == objectTag,
+      othIsObj = othTag == objectTag,
+      isSameTag = objTag == othTag;
+
+  if (isSameTag && !(objIsArr || objIsObj)) {
+    return equalByTag(object, other, objTag);
+  }
+  if (!isLoose) {
+    var objIsWrapped = objIsObj && hasOwnProperty.call(object, '__wrapped__'),
+        othIsWrapped = othIsObj && hasOwnProperty.call(other, '__wrapped__');
+
+    if (objIsWrapped || othIsWrapped) {
+      return equalFunc(objIsWrapped ? object.value() : object, othIsWrapped ? other.value() : other, customizer, isLoose, stackA, stackB);
+    }
+  }
+  if (!isSameTag) {
+    return false;
+  }
+  // Assume cyclic values are equal.
+  // For more information on detecting circular references see https://es5.github.io/#JO.
+  stackA || (stackA = []);
+  stackB || (stackB = []);
+
+  var length = stackA.length;
+  while (length--) {
+    if (stackA[length] == object) {
+      return stackB[length] == other;
+    }
+  }
+  // Add `object` and `other` to the stack of traversed objects.
+  stackA.push(object);
+  stackB.push(other);
+
+  var result = (objIsArr ? equalArrays : equalObjects)(object, other, equalFunc, customizer, isLoose, stackA, stackB);
+
+  stackA.pop();
+  stackB.pop();
+
+  return result;
+}
+
+module.exports = baseIsEqualDeep;
+
+},{"../lang/isArray":99,"../lang/isTypedArray":103,"./equalArrays":72,"./equalByTag":73,"./equalObjects":74}],50:[function(require,module,exports){
+'use strict';
+
+var baseIsEqual = require('./baseIsEqual'),
+    toObject = require('./toObject');
+
+/**
+ * The base implementation of `_.isMatch` without support for callback
+ * shorthands and `this` binding.
+ *
+ * @private
+ * @param {Object} object The object to inspect.
+ * @param {Array} matchData The propery names, values, and compare flags to match.
+ * @param {Function} [customizer] The function to customize comparing objects.
+ * @returns {boolean} Returns `true` if `object` is a match, else `false`.
+ */
+function baseIsMatch(object, matchData, customizer) {
+  var index = matchData.length,
+      length = index,
+      noCustomizer = !customizer;
+
+  if (object == null) {
+    return !length;
+  }
+  object = toObject(object);
+  while (index--) {
+    var data = matchData[index];
+    if (noCustomizer && data[2] ? data[1] !== object[data[0]] : !(data[0] in object)) {
+      return false;
+    }
+  }
+  while (++index < length) {
+    data = matchData[index];
+    var key = data[0],
+        objValue = object[key],
+        srcValue = data[1];
+
+    if (noCustomizer && data[2]) {
+      if (objValue === undefined && !(key in object)) {
+        return false;
+      }
+    } else {
+      var result = customizer ? customizer(objValue, srcValue, key) : undefined;
+      if (!(result === undefined ? baseIsEqual(srcValue, objValue, customizer, true) : result)) {
+        return false;
+      }
+    }
+  }
+  return true;
+}
+
+module.exports = baseIsMatch;
+
+},{"./baseIsEqual":48,"./toObject":95}],51:[function(require,module,exports){
+"use strict";
+
+/**
+ * The function whose prototype all chaining wrappers inherit from.
+ *
+ * @private
+ */
+function baseLodash() {
+  // No operation performed.
+}
+
+module.exports = baseLodash;
+
+},{}],52:[function(require,module,exports){
+'use strict';
+
+var baseIsMatch = require('./baseIsMatch'),
+    getMatchData = require('./getMatchData'),
+    toObject = require('./toObject');
+
+/**
+ * The base implementation of `_.matches` which does not clone `source`.
+ *
+ * @private
+ * @param {Object} source The object of property values to match.
+ * @returns {Function} Returns the new function.
+ */
+function baseMatches(source) {
+  var matchData = getMatchData(source);
+  if (matchData.length == 1 && matchData[0][2]) {
+    var key = matchData[0][0],
+        value = matchData[0][1];
+
+    return function (object) {
+      if (object == null) {
+        return false;
+      }
+      return object[key] === value && (value !== undefined || key in toObject(object));
+    };
+  }
+  return function (object) {
+    return baseIsMatch(object, matchData);
+  };
+}
+
+module.exports = baseMatches;
+
+},{"./baseIsMatch":50,"./getMatchData":78,"./toObject":95}],53:[function(require,module,exports){
+'use strict';
+
+var baseGet = require('./baseGet'),
+    baseIsEqual = require('./baseIsEqual'),
+    baseSlice = require('./baseSlice'),
+    isArray = require('../lang/isArray'),
+    isKey = require('./isKey'),
+    isStrictComparable = require('./isStrictComparable'),
+    last = require('../array/last'),
+    toObject = require('./toObject'),
+    toPath = require('./toPath');
+
+/**
+ * The base implementation of `_.matchesProperty` which does not clone `srcValue`.
+ *
+ * @private
+ * @param {string} path The path of the property to get.
+ * @param {*} srcValue The value to compare.
+ * @returns {Function} Returns the new function.
+ */
+function baseMatchesProperty(path, srcValue) {
+  var isArr = isArray(path),
+      isCommon = isKey(path) && isStrictComparable(srcValue),
+      pathKey = path + '';
+
+  path = toPath(path);
+  return function (object) {
+    if (object == null) {
+      return false;
+    }
+    var key = pathKey;
+    object = toObject(object);
+    if ((isArr || !isCommon) && !(key in object)) {
+      object = path.length == 1 ? object : baseGet(object, baseSlice(path, 0, -1));
+      if (object == null) {
+        return false;
+      }
+      key = last(path);
+      object = toObject(object);
+    }
+    return object[key] === srcValue ? srcValue !== undefined || key in object : baseIsEqual(srcValue, object[key], undefined, true);
+  };
+}
+
+module.exports = baseMatchesProperty;
+
+},{"../array/last":22,"../lang/isArray":99,"./baseGet":47,"./baseIsEqual":48,"./baseSlice":57,"./isKey":83,"./isStrictComparable":87,"./toObject":95,"./toPath":96}],54:[function(require,module,exports){
+"use strict";
+
+/**
+ * The base implementation of `_.property` without support for deep paths.
+ *
+ * @private
+ * @param {string} key The key of the property to get.
+ * @returns {Function} Returns the new function.
+ */
+function baseProperty(key) {
+  return function (object) {
+    return object == null ? undefined : object[key];
+  };
+}
+
+module.exports = baseProperty;
+
+},{}],55:[function(require,module,exports){
+'use strict';
+
+var baseGet = require('./baseGet'),
+    toPath = require('./toPath');
+
+/**
+ * A specialized version of `baseProperty` which supports deep paths.
+ *
+ * @private
+ * @param {Array|string} path The path of the property to get.
+ * @returns {Function} Returns the new function.
+ */
+function basePropertyDeep(path) {
+  var pathKey = path + '';
+  path = toPath(path);
+  return function (object) {
+    return baseGet(object, path, pathKey);
+  };
+}
+
+module.exports = basePropertyDeep;
+
+},{"./baseGet":47,"./toPath":96}],56:[function(require,module,exports){
+'use strict';
+
+var identity = require('../utility/identity'),
+    metaMap = require('./metaMap');
+
+/**
+ * The base implementation of `setData` without support for hot loop detection.
+ *
+ * @private
+ * @param {Function} func The function to associate metadata with.
+ * @param {*} data The metadata.
+ * @returns {Function} Returns `func`.
+ */
+var baseSetData = !metaMap ? identity : function (func, data) {
+  metaMap.set(func, data);
+  return func;
+};
+
+module.exports = baseSetData;
+
+},{"../utility/identity":108,"./metaMap":89}],57:[function(require,module,exports){
+"use strict";
+
+/**
+ * The base implementation of `_.slice` without an iteratee call guard.
+ *
+ * @private
+ * @param {Array} array The array to slice.
+ * @param {number} [start=0] The start position.
+ * @param {number} [end=array.length] The end position.
+ * @returns {Array} Returns the slice of `array`.
+ */
+function baseSlice(array, start, end) {
+  var index = -1,
+      length = array.length;
+
+  start = start == null ? 0 : +start || 0;
+  if (start < 0) {
+    start = -start > length ? 0 : length + start;
+  }
+  end = end === undefined || end > length ? length : +end || 0;
+  if (end < 0) {
+    end += length;
+  }
+  length = start > end ? 0 : end - start >>> 0;
+  start >>>= 0;
+
+  var result = Array(length);
+  while (++index < length) {
+    result[index] = array[index + start];
+  }
+  return result;
+}
+
+module.exports = baseSlice;
+
+},{}],58:[function(require,module,exports){
+'use strict';
+
+/**
+ * Converts `value` to a string if it's not one. An empty string is returned
+ * for `null` or `undefined` values.
+ *
+ * @private
+ * @param {*} value The value to process.
+ * @returns {string} Returns the string.
+ */
+function baseToString(value) {
+  return value == null ? '' : value + '';
+}
+
+module.exports = baseToString;
+
+},{}],59:[function(require,module,exports){
+'use strict';
+
+var identity = require('../utility/identity');
+
+/**
+ * A specialized version of `baseCallback` which only supports `this` binding
+ * and specifying the number of arguments to provide to `func`.
+ *
+ * @private
+ * @param {Function} func The function to bind.
+ * @param {*} thisArg The `this` binding of `func`.
+ * @param {number} [argCount] The number of arguments to provide to `func`.
+ * @returns {Function} Returns the callback.
+ */
+function bindCallback(func, thisArg, argCount) {
+  if (typeof func != 'function') {
+    return identity;
+  }
+  if (thisArg === undefined) {
+    return func;
+  }
+  switch (argCount) {
+    case 1:
+      return function (value) {
+        return func.call(thisArg, value);
+      };
+    case 3:
+      return function (value, index, collection) {
+        return func.call(thisArg, value, index, collection);
+      };
+    case 4:
+      return function (accumulator, value, index, collection) {
+        return func.call(thisArg, accumulator, value, index, collection);
+      };
+    case 5:
+      return function (value, other, key, object, source) {
+        return func.call(thisArg, value, other, key, object, source);
+      };
+  }
+  return function () {
+    return func.apply(thisArg, arguments);
+  };
+}
+
+module.exports = bindCallback;
+
+},{"../utility/identity":108}],60:[function(require,module,exports){
+"use strict";
+
+/* Native method references for those with the same name as other `lodash` methods. */
+var nativeMax = Math.max;
+
+/**
+ * Creates an array that is the composition of partially applied arguments,
+ * placeholders, and provided arguments into a single array of arguments.
+ *
+ * @private
+ * @param {Array|Object} args The provided arguments.
+ * @param {Array} partials The arguments to prepend to those provided.
+ * @param {Array} holders The `partials` placeholder indexes.
+ * @returns {Array} Returns the new array of composed arguments.
+ */
+function composeArgs(args, partials, holders) {
+  var holdersLength = holders.length,
+      argsIndex = -1,
+      argsLength = nativeMax(args.length - holdersLength, 0),
+      leftIndex = -1,
+      leftLength = partials.length,
+      result = Array(leftLength + argsLength);
+
+  while (++leftIndex < leftLength) {
+    result[leftIndex] = partials[leftIndex];
+  }
+  while (++argsIndex < holdersLength) {
+    result[holders[argsIndex]] = args[argsIndex];
+  }
+  while (argsLength--) {
+    result[leftIndex++] = args[argsIndex++];
+  }
+  return result;
+}
+
+module.exports = composeArgs;
+
+},{}],61:[function(require,module,exports){
+"use strict";
+
+/* Native method references for those with the same name as other `lodash` methods. */
+var nativeMax = Math.max;
+
+/**
+ * This function is like `composeArgs` except that the arguments composition
+ * is tailored for `_.partialRight`.
+ *
+ * @private
+ * @param {Array|Object} args The provided arguments.
+ * @param {Array} partials The arguments to append to those provided.
+ * @param {Array} holders The `partials` placeholder indexes.
+ * @returns {Array} Returns the new array of composed arguments.
+ */
+function composeArgsRight(args, partials, holders) {
+  var holdersIndex = -1,
+      holdersLength = holders.length,
+      argsIndex = -1,
+      argsLength = nativeMax(args.length - holdersLength, 0),
+      rightIndex = -1,
+      rightLength = partials.length,
+      result = Array(argsLength + rightLength);
+
+  while (++argsIndex < argsLength) {
+    result[argsIndex] = args[argsIndex];
+  }
+  var offset = argsIndex;
+  while (++rightIndex < rightLength) {
+    result[offset + rightIndex] = partials[rightIndex];
+  }
+  while (++holdersIndex < holdersLength) {
+    result[offset + holders[holdersIndex]] = args[argsIndex++];
+  }
+  return result;
+}
+
+module.exports = composeArgsRight;
+
+},{}],62:[function(require,module,exports){
+'use strict';
+
+var bindCallback = require('./bindCallback'),
+    isIterateeCall = require('./isIterateeCall'),
+    restParam = require('../function/restParam');
+
+/**
+ * Creates a `_.assign`, `_.defaults`, or `_.merge` function.
+ *
+ * @private
+ * @param {Function} assigner The function to assign values.
+ * @returns {Function} Returns the new assigner function.
+ */
+function createAssigner(assigner) {
+  return restParam(function (object, sources) {
+    var index = -1,
+        length = object == null ? 0 : sources.length,
+        customizer = length > 2 ? sources[length - 2] : undefined,
+        guard = length > 2 ? sources[2] : undefined,
+        thisArg = length > 1 ? sources[length - 1] : undefined;
+
+    if (typeof customizer == 'function') {
+      customizer = bindCallback(customizer, thisArg, 5);
+      length -= 2;
+    } else {
+      customizer = typeof thisArg == 'function' ? thisArg : undefined;
+      length -= customizer ? 1 : 0;
+    }
+    if (guard && isIterateeCall(sources[0], sources[1], guard)) {
+      customizer = length < 3 ? undefined : customizer;
+      length = 1;
+    }
+    while (++index < length) {
+      var source = sources[index];
+      if (source) {
+        assigner(object, source, customizer);
+      }
+    }
+    return object;
+  });
+}
+
+module.exports = createAssigner;
+
+},{"../function/restParam":29,"./bindCallback":59,"./isIterateeCall":82}],63:[function(require,module,exports){
+'use strict';
+
+var getLength = require('./getLength'),
+    isLength = require('./isLength'),
+    toObject = require('./toObject');
+
+/**
+ * Creates a `baseEach` or `baseEachRight` function.
+ *
+ * @private
+ * @param {Function} eachFunc The function to iterate over a collection.
+ * @param {boolean} [fromRight] Specify iterating from right to left.
+ * @returns {Function} Returns the new base function.
+ */
+function createBaseEach(eachFunc, fromRight) {
+  return function (collection, iteratee) {
+    var length = collection ? getLength(collection) : 0;
+    if (!isLength(length)) {
+      return eachFunc(collection, iteratee);
+    }
+    var index = fromRight ? length : -1,
+        iterable = toObject(collection);
+
+    while (fromRight ? index-- : ++index < length) {
+      if (iteratee(iterable[index], index, iterable) === false) {
+        break;
+      }
+    }
+    return collection;
+  };
+}
+
+module.exports = createBaseEach;
+
+},{"./getLength":77,"./isLength":85,"./toObject":95}],64:[function(require,module,exports){
+'use strict';
+
+var toObject = require('./toObject');
+
+/**
+ * Creates a base function for `_.forIn` or `_.forInRight`.
+ *
+ * @private
+ * @param {boolean} [fromRight] Specify iterating from right to left.
+ * @returns {Function} Returns the new base function.
+ */
+function createBaseFor(fromRight) {
+  return function (object, iteratee, keysFunc) {
+    var iterable = toObject(object),
+        props = keysFunc(object),
+        length = props.length,
+        index = fromRight ? length : -1;
+
+    while (fromRight ? index-- : ++index < length) {
+      var key = props[index];
+      if (iteratee(iterable[key], key, iterable) === false) {
+        break;
+      }
+    }
+    return object;
+  };
+}
+
+module.exports = createBaseFor;
+
+},{"./toObject":95}],65:[function(require,module,exports){
+(function (global){
+'use strict';
+
+var createCtorWrapper = require('./createCtorWrapper');
+
+/**
+ * Creates a function that wraps `func` and invokes it with the `this`
+ * binding of `thisArg`.
+ *
+ * @private
+ * @param {Function} func The function to bind.
+ * @param {*} [thisArg] The `this` binding of `func`.
+ * @returns {Function} Returns the new bound function.
+ */
+function createBindWrapper(func, thisArg) {
+  var Ctor = createCtorWrapper(func);
+
+  function wrapper() {
+    var fn = this && this !== global && this instanceof wrapper ? Ctor : func;
+    return fn.apply(thisArg, arguments);
+  }
+  return wrapper;
+}
+
+module.exports = createBindWrapper;
+
+}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{"./createCtorWrapper":66}],66:[function(require,module,exports){
+'use strict';
+
+var baseCreate = require('./baseCreate'),
+    isObject = require('../lang/isObject');
+
+/**
+ * Creates a function that produces an instance of `Ctor` regardless of
+ * whether it was invoked as part of a `new` expression or by `call` or `apply`.
+ *
+ * @private
+ * @param {Function} Ctor The constructor to wrap.
+ * @returns {Function} Returns the new wrapped function.
+ */
+function createCtorWrapper(Ctor) {
+  return function () {
+    // Use a `switch` statement to work with class constructors.
+    // See http://ecma-international.org/ecma-262/6.0/#sec-ecmascript-function-objects-call-thisargument-argumentslist
+    // for more details.
+    var args = arguments;
+    switch (args.length) {
+      case 0:
+        return new Ctor();
+      case 1:
+        return new Ctor(args[0]);
+      case 2:
+        return new Ctor(args[0], args[1]);
+      case 3:
+        return new Ctor(args[0], args[1], args[2]);
+      case 4:
+        return new Ctor(args[0], args[1], args[2], args[3]);
+      case 5:
+        return new Ctor(args[0], args[1], args[2], args[3], args[4]);
+      case 6:
+        return new Ctor(args[0], args[1], args[2], args[3], args[4], args[5]);
+      case 7:
+        return new Ctor(args[0], args[1], args[2], args[3], args[4], args[5], args[6]);
+    }
+    var thisBinding = baseCreate(Ctor.prototype),
+        result = Ctor.apply(thisBinding, args);
+
+    // Mimic the constructor's `return` behavior.
+    // See https://es5.github.io/#x13.2.2 for more details.
+    return isObject(result) ? result : thisBinding;
+  };
+}
+
+module.exports = createCtorWrapper;
+
+},{"../lang/isObject":102,"./baseCreate":40}],67:[function(require,module,exports){
+'use strict';
+
+var baseCallback = require('./baseCallback'),
+    baseFind = require('./baseFind'),
+    baseFindIndex = require('./baseFindIndex'),
+    isArray = require('../lang/isArray');
+
+/**
+ * Creates a `_.find` or `_.findLast` function.
+ *
+ * @private
+ * @param {Function} eachFunc The function to iterate over a collection.
+ * @param {boolean} [fromRight] Specify iterating from right to left.
+ * @returns {Function} Returns the new find function.
+ */
+function createFind(eachFunc, fromRight) {
+  return function (collection, predicate, thisArg) {
+    predicate = baseCallback(predicate, thisArg, 3);
+    if (isArray(collection)) {
+      var index = baseFindIndex(collection, predicate, fromRight);
+      return index > -1 ? collection[index] : undefined;
+    }
+    return baseFind(collection, predicate, eachFunc);
+  };
+}
+
+module.exports = createFind;
+
+},{"../lang/isArray":99,"./baseCallback":38,"./baseFind":43,"./baseFindIndex":44}],68:[function(require,module,exports){
+'use strict';
+
+var bindCallback = require('./bindCallback'),
+    isArray = require('../lang/isArray');
+
+/**
+ * Creates a function for `_.forEach` or `_.forEachRight`.
+ *
+ * @private
+ * @param {Function} arrayFunc The function to iterate over an array.
+ * @param {Function} eachFunc The function to iterate over a collection.
+ * @returns {Function} Returns the new each function.
+ */
+function createForEach(arrayFunc, eachFunc) {
+  return function (collection, iteratee, thisArg) {
+    return typeof iteratee == 'function' && thisArg === undefined && isArray(collection) ? arrayFunc(collection, iteratee) : eachFunc(collection, bindCallback(iteratee, thisArg, 3));
+  };
+}
+
+module.exports = createForEach;
+
+},{"../lang/isArray":99,"./bindCallback":59}],69:[function(require,module,exports){
+(function (global){
+'use strict';
+
+var arrayCopy = require('./arrayCopy'),
+    composeArgs = require('./composeArgs'),
+    composeArgsRight = require('./composeArgsRight'),
+    createCtorWrapper = require('./createCtorWrapper'),
+    isLaziable = require('./isLaziable'),
+    reorder = require('./reorder'),
+    replaceHolders = require('./replaceHolders'),
+    setData = require('./setData');
+
+/** Used to compose bitmasks for wrapper metadata. */
+var BIND_FLAG = 1,
+    BIND_KEY_FLAG = 2,
+    CURRY_BOUND_FLAG = 4,
+    CURRY_FLAG = 8,
+    CURRY_RIGHT_FLAG = 16,
+    PARTIAL_FLAG = 32,
+    PARTIAL_RIGHT_FLAG = 64,
+    ARY_FLAG = 128;
+
+/* Native method references for those with the same name as other `lodash` methods. */
+var nativeMax = Math.max;
+
+/**
+ * Creates a function that wraps `func` and invokes it with optional `this`
+ * binding of, partial application, and currying.
+ *
+ * @private
+ * @param {Function|string} func The function or method name to reference.
+ * @param {number} bitmask The bitmask of flags. See `createWrapper` for more details.
+ * @param {*} [thisArg] The `this` binding of `func`.
+ * @param {Array} [partials] The arguments to prepend to those provided to the new function.
+ * @param {Array} [holders] The `partials` placeholder indexes.
+ * @param {Array} [partialsRight] The arguments to append to those provided to the new function.
+ * @param {Array} [holdersRight] The `partialsRight` placeholder indexes.
+ * @param {Array} [argPos] The argument positions of the new function.
+ * @param {number} [ary] The arity cap of `func`.
+ * @param {number} [arity] The arity of `func`.
+ * @returns {Function} Returns the new wrapped function.
+ */
+function createHybridWrapper(func, bitmask, thisArg, partials, holders, partialsRight, holdersRight, argPos, ary, arity) {
+  var isAry = bitmask & ARY_FLAG,
+      isBind = bitmask & BIND_FLAG,
+      isBindKey = bitmask & BIND_KEY_FLAG,
+      isCurry = bitmask & CURRY_FLAG,
+      isCurryBound = bitmask & CURRY_BOUND_FLAG,
+      isCurryRight = bitmask & CURRY_RIGHT_FLAG,
+      Ctor = isBindKey ? undefined : createCtorWrapper(func);
+
+  function wrapper() {
+    // Avoid `arguments` object use disqualifying optimizations by
+    // converting it to an array before providing it to other functions.
+    var length = arguments.length,
+        index = length,
+        args = Array(length);
+
+    while (index--) {
+      args[index] = arguments[index];
+    }
+    if (partials) {
+      args = composeArgs(args, partials, holders);
+    }
+    if (partialsRight) {
+      args = composeArgsRight(args, partialsRight, holdersRight);
+    }
+    if (isCurry || isCurryRight) {
+      var placeholder = wrapper.placeholder,
+          argsHolders = replaceHolders(args, placeholder);
+
+      length -= argsHolders.length;
+      if (length < arity) {
+        var newArgPos = argPos ? arrayCopy(argPos) : undefined,
+            newArity = nativeMax(arity - length, 0),
+            newsHolders = isCurry ? argsHolders : undefined,
+            newHoldersRight = isCurry ? undefined : argsHolders,
+            newPartials = isCurry ? args : undefined,
+            newPartialsRight = isCurry ? undefined : args;
+
+        bitmask |= isCurry ? PARTIAL_FLAG : PARTIAL_RIGHT_FLAG;
+        bitmask &= ~(isCurry ? PARTIAL_RIGHT_FLAG : PARTIAL_FLAG);
+
+        if (!isCurryBound) {
+          bitmask &= ~(BIND_FLAG | BIND_KEY_FLAG);
+        }
+        var newData = [func, bitmask, thisArg, newPartials, newsHolders, newPartialsRight, newHoldersRight, newArgPos, ary, newArity],
+            result = createHybridWrapper.apply(undefined, newData);
+
+        if (isLaziable(func)) {
+          setData(result, newData);
+        }
+        result.placeholder = placeholder;
+        return result;
+      }
+    }
+    var thisBinding = isBind ? thisArg : this,
+        fn = isBindKey ? thisBinding[func] : func;
+
+    if (argPos) {
+      args = reorder(args, argPos);
+    }
+    if (isAry && ary < args.length) {
+      args.length = ary;
+    }
+    if (this && this !== global && this instanceof wrapper) {
+      fn = Ctor || createCtorWrapper(func);
+    }
+    return fn.apply(thisBinding, args);
+  }
+  return wrapper;
+}
+
+module.exports = createHybridWrapper;
+
+}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{"./arrayCopy":32,"./composeArgs":60,"./composeArgsRight":61,"./createCtorWrapper":66,"./isLaziable":84,"./reorder":91,"./replaceHolders":92,"./setData":93}],70:[function(require,module,exports){
+(function (global){
+'use strict';
+
+var createCtorWrapper = require('./createCtorWrapper');
+
+/** Used to compose bitmasks for wrapper metadata. */
+var BIND_FLAG = 1;
+
+/**
+ * Creates a function that wraps `func` and invokes it with the optional `this`
+ * binding of `thisArg` and the `partials` prepended to those provided to
+ * the wrapper.
+ *
+ * @private
+ * @param {Function} func The function to partially apply arguments to.
+ * @param {number} bitmask The bitmask of flags. See `createWrapper` for more details.
+ * @param {*} thisArg The `this` binding of `func`.
+ * @param {Array} partials The arguments to prepend to those provided to the new function.
+ * @returns {Function} Returns the new bound function.
+ */
+function createPartialWrapper(func, bitmask, thisArg, partials) {
+  var isBind = bitmask & BIND_FLAG,
+      Ctor = createCtorWrapper(func);
+
+  function wrapper() {
+    // Avoid `arguments` object use disqualifying optimizations by
+    // converting it to an array before providing it `func`.
+    var argsIndex = -1,
+        argsLength = arguments.length,
+        leftIndex = -1,
+        leftLength = partials.length,
+        args = Array(leftLength + argsLength);
+
+    while (++leftIndex < leftLength) {
+      args[leftIndex] = partials[leftIndex];
+    }
+    while (argsLength--) {
+      args[leftIndex++] = arguments[++argsIndex];
+    }
+    var fn = this && this !== global && this instanceof wrapper ? Ctor : func;
+    return fn.apply(isBind ? thisArg : this, args);
+  }
+  return wrapper;
+}
+
+module.exports = createPartialWrapper;
+
+}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{"./createCtorWrapper":66}],71:[function(require,module,exports){
+'use strict';
+
+var baseSetData = require('./baseSetData'),
+    createBindWrapper = require('./createBindWrapper'),
+    createHybridWrapper = require('./createHybridWrapper'),
+    createPartialWrapper = require('./createPartialWrapper'),
+    getData = require('./getData'),
+    mergeData = require('./mergeData'),
+    setData = require('./setData');
+
+/** Used to compose bitmasks for wrapper metadata. */
+var BIND_FLAG = 1,
+    BIND_KEY_FLAG = 2,
+    PARTIAL_FLAG = 32,
+    PARTIAL_RIGHT_FLAG = 64;
+
+/** Used as the `TypeError` message for "Functions" methods. */
+var FUNC_ERROR_TEXT = 'Expected a function';
+
+/* Native method references for those with the same name as other `lodash` methods. */
+var nativeMax = Math.max;
+
+/**
+ * Creates a function that either curries or invokes `func` with optional
+ * `this` binding and partially applied arguments.
+ *
+ * @private
+ * @param {Function|string} func The function or method name to reference.
+ * @param {number} bitmask The bitmask of flags.
+ *  The bitmask may be composed of the following flags:
+ *     1 - `_.bind`
+ *     2 - `_.bindKey`
+ *     4 - `_.curry` or `_.curryRight` of a bound function
+ *     8 - `_.curry`
+ *    16 - `_.curryRight`
+ *    32 - `_.partial`
+ *    64 - `_.partialRight`
+ *   128 - `_.rearg`
+ *   256 - `_.ary`
+ * @param {*} [thisArg] The `this` binding of `func`.
+ * @param {Array} [partials] The arguments to be partially applied.
+ * @param {Array} [holders] The `partials` placeholder indexes.
+ * @param {Array} [argPos] The argument positions of the new function.
+ * @param {number} [ary] The arity cap of `func`.
+ * @param {number} [arity] The arity of `func`.
+ * @returns {Function} Returns the new wrapped function.
+ */
+function createWrapper(func, bitmask, thisArg, partials, holders, argPos, ary, arity) {
+  var isBindKey = bitmask & BIND_KEY_FLAG;
+  if (!isBindKey && typeof func != 'function') {
+    throw new TypeError(FUNC_ERROR_TEXT);
+  }
+  var length = partials ? partials.length : 0;
+  if (!length) {
+    bitmask &= ~(PARTIAL_FLAG | PARTIAL_RIGHT_FLAG);
+    partials = holders = undefined;
+  }
+  length -= holders ? holders.length : 0;
+  if (bitmask & PARTIAL_RIGHT_FLAG) {
+    var partialsRight = partials,
+        holdersRight = holders;
+
+    partials = holders = undefined;
+  }
+  var data = isBindKey ? undefined : getData(func),
+      newData = [func, bitmask, thisArg, partials, holders, partialsRight, holdersRight, argPos, ary, arity];
+
+  if (data) {
+    mergeData(newData, data);
+    bitmask = newData[1];
+    arity = newData[9];
+  }
+  newData[9] = arity == null ? isBindKey ? 0 : func.length : nativeMax(arity - length, 0) || 0;
+
+  if (bitmask == BIND_FLAG) {
+    var result = createBindWrapper(newData[0], newData[2]);
+  } else if ((bitmask == PARTIAL_FLAG || bitmask == (BIND_FLAG | PARTIAL_FLAG)) && !newData[4].length) {
+    result = createPartialWrapper.apply(undefined, newData);
+  } else {
+    result = createHybridWrapper.apply(undefined, newData);
+  }
+  var setter = data ? baseSetData : setData;
+  return setter(result, newData);
+}
+
+module.exports = createWrapper;
+
+},{"./baseSetData":56,"./createBindWrapper":65,"./createHybridWrapper":69,"./createPartialWrapper":70,"./getData":75,"./mergeData":88,"./setData":93}],72:[function(require,module,exports){
+'use strict';
+
+var arraySome = require('./arraySome');
+
+/**
+ * A specialized version of `baseIsEqualDeep` for arrays with support for
+ * partial deep comparisons.
+ *
+ * @private
+ * @param {Array} array The array to compare.
+ * @param {Array} other The other array to compare.
+ * @param {Function} equalFunc The function to determine equivalents of values.
+ * @param {Function} [customizer] The function to customize comparing arrays.
+ * @param {boolean} [isLoose] Specify performing partial comparisons.
+ * @param {Array} [stackA] Tracks traversed `value` objects.
+ * @param {Array} [stackB] Tracks traversed `other` objects.
+ * @returns {boolean} Returns `true` if the arrays are equivalent, else `false`.
+ */
+function equalArrays(array, other, equalFunc, customizer, isLoose, stackA, stackB) {
+  var index = -1,
+      arrLength = array.length,
+      othLength = other.length;
+
+  if (arrLength != othLength && !(isLoose && othLength > arrLength)) {
+    return false;
+  }
+  // Ignore non-index properties.
+  while (++index < arrLength) {
+    var arrValue = array[index],
+        othValue = other[index],
+        result = customizer ? customizer(isLoose ? othValue : arrValue, isLoose ? arrValue : othValue, index) : undefined;
+
+    if (result !== undefined) {
+      if (result) {
+        continue;
+      }
+      return false;
+    }
+    // Recursively compare arrays (susceptible to call stack limits).
+    if (isLoose) {
+      if (!arraySome(other, function (othValue) {
+        return arrValue === othValue || equalFunc(arrValue, othValue, customizer, isLoose, stackA, stackB);
+      })) {
+        return false;
+      }
+    } else if (!(arrValue === othValue || equalFunc(arrValue, othValue, customizer, isLoose, stackA, stackB))) {
+      return false;
+    }
+  }
+  return true;
+}
+
+module.exports = equalArrays;
+
+},{"./arraySome":35}],73:[function(require,module,exports){
+'use strict';
+
+/** `Object#toString` result references. */
+var boolTag = '[object Boolean]',
+    dateTag = '[object Date]',
+    errorTag = '[object Error]',
+    numberTag = '[object Number]',
+    regexpTag = '[object RegExp]',
+    stringTag = '[object String]';
+
+/**
+ * A specialized version of `baseIsEqualDeep` for comparing objects of
+ * the same `toStringTag`.
+ *
+ * **Note:** This function only supports comparing values with tags of
+ * `Boolean`, `Date`, `Error`, `Number`, `RegExp`, or `String`.
+ *
+ * @private
+ * @param {Object} object The object to compare.
+ * @param {Object} other The other object to compare.
+ * @param {string} tag The `toStringTag` of the objects to compare.
+ * @returns {boolean} Returns `true` if the objects are equivalent, else `false`.
+ */
+function equalByTag(object, other, tag) {
+  switch (tag) {
+    case boolTag:
+    case dateTag:
+      // Coerce dates and booleans to numbers, dates to milliseconds and booleans
+      // to `1` or `0` treating invalid dates coerced to `NaN` as not equal.
+      return +object == +other;
+
+    case errorTag:
+      return object.name == other.name && object.message == other.message;
+
+    case numberTag:
+      // Treat `NaN` vs. `NaN` as equal.
+      return object != +object ? other != +other : object == +other;
+
+    case regexpTag:
+    case stringTag:
+      // Coerce regexes to strings and treat strings primitives and string
+      // objects as equal. See https://es5.github.io/#x15.10.6.4 for more details.
+      return object == other + '';
+  }
+  return false;
+}
+
+module.exports = equalByTag;
+
+},{}],74:[function(require,module,exports){
+'use strict';
+
+var keys = require('../object/keys');
+
+/** Used for native method references. */
+var objectProto = Object.prototype;
+
+/** Used to check objects for own properties. */
+var hasOwnProperty = objectProto.hasOwnProperty;
+
+/**
+ * A specialized version of `baseIsEqualDeep` for objects with support for
+ * partial deep comparisons.
+ *
+ * @private
+ * @param {Object} object The object to compare.
+ * @param {Object} other The other object to compare.
+ * @param {Function} equalFunc The function to determine equivalents of values.
+ * @param {Function} [customizer] The function to customize comparing values.
+ * @param {boolean} [isLoose] Specify performing partial comparisons.
+ * @param {Array} [stackA] Tracks traversed `value` objects.
+ * @param {Array} [stackB] Tracks traversed `other` objects.
+ * @returns {boolean} Returns `true` if the objects are equivalent, else `false`.
+ */
+function equalObjects(object, other, equalFunc, customizer, isLoose, stackA, stackB) {
+  var objProps = keys(object),
+      objLength = objProps.length,
+      othProps = keys(other),
+      othLength = othProps.length;
+
+  if (objLength != othLength && !isLoose) {
+    return false;
+  }
+  var index = objLength;
+  while (index--) {
+    var key = objProps[index];
+    if (!(isLoose ? key in other : hasOwnProperty.call(other, key))) {
+      return false;
+    }
+  }
+  var skipCtor = isLoose;
+  while (++index < objLength) {
+    key = objProps[index];
+    var objValue = object[key],
+        othValue = other[key],
+        result = customizer ? customizer(isLoose ? othValue : objValue, isLoose ? objValue : othValue, key) : undefined;
+
+    // Recursively compare objects (susceptible to call stack limits).
+    if (!(result === undefined ? equalFunc(objValue, othValue, customizer, isLoose, stackA, stackB) : result)) {
+      return false;
+    }
+    skipCtor || (skipCtor = key == 'constructor');
+  }
+  if (!skipCtor) {
+    var objCtor = object.constructor,
+        othCtor = other.constructor;
+
+    // Non `Object` object instances with different constructors are not equal.
+    if (objCtor != othCtor && 'constructor' in object && 'constructor' in other && !(typeof objCtor == 'function' && objCtor instanceof objCtor && typeof othCtor == 'function' && othCtor instanceof othCtor)) {
+      return false;
+    }
+  }
+  return true;
+}
+
+module.exports = equalObjects;
+
+},{"../object/keys":105}],75:[function(require,module,exports){
+'use strict';
+
+var metaMap = require('./metaMap'),
+    noop = require('../utility/noop');
+
+/**
+ * Gets metadata for `func`.
+ *
+ * @private
+ * @param {Function} func The function to query.
+ * @returns {*} Returns the metadata for `func`.
+ */
+var getData = !metaMap ? noop : function (func) {
+  return metaMap.get(func);
+};
+
+module.exports = getData;
+
+},{"../utility/noop":109,"./metaMap":89}],76:[function(require,module,exports){
+'use strict';
+
+var realNames = require('./realNames');
+
+/**
+ * Gets the name of `func`.
+ *
+ * @private
+ * @param {Function} func The function to query.
+ * @returns {string} Returns the function name.
+ */
+function getFuncName(func) {
+  var result = func.name + '',
+      array = realNames[result],
+      length = array ? array.length : 0;
+
+  while (length--) {
+    var data = array[length],
+        otherFunc = data.func;
+    if (otherFunc == null || otherFunc == func) {
+      return data.name;
+    }
+  }
+  return result;
+}
+
+module.exports = getFuncName;
+
+},{"./realNames":90}],77:[function(require,module,exports){
+'use strict';
+
+var baseProperty = require('./baseProperty');
+
+/**
+ * Gets the "length" property value of `object`.
+ *
+ * **Note:** This function is used to avoid a [JIT bug](https://bugs.webkit.org/show_bug.cgi?id=142792)
+ * that affects Safari on at least iOS 8.1-8.3 ARM64.
+ *
+ * @private
+ * @param {Object} object The object to query.
+ * @returns {*} Returns the "length" value.
+ */
+var getLength = baseProperty('length');
+
+module.exports = getLength;
+
+},{"./baseProperty":54}],78:[function(require,module,exports){
+'use strict';
+
+var isStrictComparable = require('./isStrictComparable'),
+    pairs = require('../object/pairs');
+
+/**
+ * Gets the propery names, values, and compare flags of `object`.
+ *
+ * @private
+ * @param {Object} object The object to query.
+ * @returns {Array} Returns the match data of `object`.
+ */
+function getMatchData(object) {
+  var result = pairs(object),
+      length = result.length;
+
+  while (length--) {
+    result[length][2] = isStrictComparable(result[length][1]);
+  }
+  return result;
+}
+
+module.exports = getMatchData;
+
+},{"../object/pairs":107,"./isStrictComparable":87}],79:[function(require,module,exports){
+'use strict';
+
+var isNative = require('../lang/isNative');
+
+/**
+ * Gets the native function at `key` of `object`.
+ *
+ * @private
+ * @param {Object} object The object to query.
+ * @param {string} key The key of the method to get.
+ * @returns {*} Returns the function if it's native, else `undefined`.
+ */
+function getNative(object, key) {
+  var value = object == null ? undefined : object[key];
+  return isNative(value) ? value : undefined;
+}
+
+module.exports = getNative;
+
+},{"../lang/isNative":101}],80:[function(require,module,exports){
+'use strict';
+
+var getLength = require('./getLength'),
+    isLength = require('./isLength');
+
+/**
+ * Checks if `value` is array-like.
+ *
+ * @private
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is array-like, else `false`.
+ */
+function isArrayLike(value) {
+  return value != null && isLength(getLength(value));
+}
+
+module.exports = isArrayLike;
+
+},{"./getLength":77,"./isLength":85}],81:[function(require,module,exports){
+'use strict';
+
+/** Used to detect unsigned integer values. */
+var reIsUint = /^\d+$/;
+
+/**
+ * Used as the [maximum length](http://ecma-international.org/ecma-262/6.0/#sec-number.max_safe_integer)
+ * of an array-like value.
+ */
+var MAX_SAFE_INTEGER = 9007199254740991;
+
+/**
+ * Checks if `value` is a valid array-like index.
+ *
+ * @private
+ * @param {*} value The value to check.
+ * @param {number} [length=MAX_SAFE_INTEGER] The upper bounds of a valid index.
+ * @returns {boolean} Returns `true` if `value` is a valid index, else `false`.
+ */
+function isIndex(value, length) {
+  value = typeof value == 'number' || reIsUint.test(value) ? +value : -1;
+  length = length == null ? MAX_SAFE_INTEGER : length;
+  return value > -1 && value % 1 == 0 && value < length;
+}
+
+module.exports = isIndex;
+
+},{}],82:[function(require,module,exports){
+'use strict';
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+var isArrayLike = require('./isArrayLike'),
+    isIndex = require('./isIndex'),
+    isObject = require('../lang/isObject');
+
+/**
+ * Checks if the provided arguments are from an iteratee call.
+ *
+ * @private
+ * @param {*} value The potential iteratee value argument.
+ * @param {*} index The potential iteratee index or key argument.
+ * @param {*} object The potential iteratee object argument.
+ * @returns {boolean} Returns `true` if the arguments are from an iteratee call, else `false`.
+ */
+function isIterateeCall(value, index, object) {
+  if (!isObject(object)) {
+    return false;
+  }
+  var type = typeof index === 'undefined' ? 'undefined' : _typeof(index);
+  if (type == 'number' ? isArrayLike(object) && isIndex(index, object.length) : type == 'string' && index in object) {
+    var other = object[index];
+    return value === value ? value === other : other !== other;
+  }
+  return false;
+}
+
+module.exports = isIterateeCall;
+
+},{"../lang/isObject":102,"./isArrayLike":80,"./isIndex":81}],83:[function(require,module,exports){
+'use strict';
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+var isArray = require('../lang/isArray'),
+    toObject = require('./toObject');
+
+/** Used to match property names within property paths. */
+var reIsDeepProp = /\.|\[(?:[^[\]]*|(["'])(?:(?!\1)[^\n\\]|\\.)*?\1)\]/,
+    reIsPlainProp = /^\w*$/;
+
+/**
+ * Checks if `value` is a property name and not a property path.
+ *
+ * @private
+ * @param {*} value The value to check.
+ * @param {Object} [object] The object to query keys on.
+ * @returns {boolean} Returns `true` if `value` is a property name, else `false`.
+ */
+function isKey(value, object) {
+  var type = typeof value === 'undefined' ? 'undefined' : _typeof(value);
+  if (type == 'string' && reIsPlainProp.test(value) || type == 'number') {
+    return true;
+  }
+  if (isArray(value)) {
+    return false;
+  }
+  var result = !reIsDeepProp.test(value);
+  return result || object != null && value in toObject(object);
+}
+
+module.exports = isKey;
+
+},{"../lang/isArray":99,"./toObject":95}],84:[function(require,module,exports){
+'use strict';
+
+var LazyWrapper = require('./LazyWrapper'),
+    getData = require('./getData'),
+    getFuncName = require('./getFuncName'),
+    lodash = require('../chain/lodash');
+
+/**
+ * Checks if `func` has a lazy counterpart.
+ *
+ * @private
+ * @param {Function} func The function to check.
+ * @returns {boolean} Returns `true` if `func` has a lazy counterpart, else `false`.
+ */
+function isLaziable(func) {
+  var funcName = getFuncName(func),
+      other = lodash[funcName];
+
+  if (typeof other != 'function' || !(funcName in LazyWrapper.prototype)) {
+    return false;
+  }
+  if (func === other) {
+    return true;
+  }
+  var data = getData(other);
+  return !!data && func === data[0];
+}
+
+module.exports = isLaziable;
+
+},{"../chain/lodash":23,"./LazyWrapper":30,"./getData":75,"./getFuncName":76}],85:[function(require,module,exports){
+'use strict';
+
+/**
+ * Used as the [maximum length](http://ecma-international.org/ecma-262/6.0/#sec-number.max_safe_integer)
+ * of an array-like value.
+ */
+var MAX_SAFE_INTEGER = 9007199254740991;
+
+/**
+ * Checks if `value` is a valid array-like length.
+ *
+ * **Note:** This function is based on [`ToLength`](http://ecma-international.org/ecma-262/6.0/#sec-tolength).
+ *
+ * @private
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a valid length, else `false`.
+ */
+function isLength(value) {
+  return typeof value == 'number' && value > -1 && value % 1 == 0 && value <= MAX_SAFE_INTEGER;
+}
+
+module.exports = isLength;
+
+},{}],86:[function(require,module,exports){
+'use strict';
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+/**
+ * Checks if `value` is object-like.
+ *
+ * @private
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is object-like, else `false`.
+ */
+function isObjectLike(value) {
+  return !!value && (typeof value === 'undefined' ? 'undefined' : _typeof(value)) == 'object';
+}
+
+module.exports = isObjectLike;
+
+},{}],87:[function(require,module,exports){
+'use strict';
+
+var isObject = require('../lang/isObject');
+
+/**
+ * Checks if `value` is suitable for strict equality comparisons, i.e. `===`.
+ *
+ * @private
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` if suitable for strict
+ *  equality comparisons, else `false`.
+ */
+function isStrictComparable(value) {
+  return value === value && !isObject(value);
+}
+
+module.exports = isStrictComparable;
+
+},{"../lang/isObject":102}],88:[function(require,module,exports){
+'use strict';
+
+var arrayCopy = require('./arrayCopy'),
+    composeArgs = require('./composeArgs'),
+    composeArgsRight = require('./composeArgsRight'),
+    replaceHolders = require('./replaceHolders');
+
+/** Used to compose bitmasks for wrapper metadata. */
+var BIND_FLAG = 1,
+    CURRY_BOUND_FLAG = 4,
+    CURRY_FLAG = 8,
+    ARY_FLAG = 128,
+    REARG_FLAG = 256;
+
+/** Used as the internal argument placeholder. */
+var PLACEHOLDER = '__lodash_placeholder__';
+
+/* Native method references for those with the same name as other `lodash` methods. */
+var nativeMin = Math.min;
+
+/**
+ * Merges the function metadata of `source` into `data`.
+ *
+ * Merging metadata reduces the number of wrappers required to invoke a function.
+ * This is possible because methods like `_.bind`, `_.curry`, and `_.partial`
+ * may be applied regardless of execution order. Methods like `_.ary` and `_.rearg`
+ * augment function arguments, making the order in which they are executed important,
+ * preventing the merging of metadata. However, we make an exception for a safe
+ * common case where curried functions have `_.ary` and or `_.rearg` applied.
+ *
+ * @private
+ * @param {Array} data The destination metadata.
+ * @param {Array} source The source metadata.
+ * @returns {Array} Returns `data`.
+ */
+function mergeData(data, source) {
+  var bitmask = data[1],
+      srcBitmask = source[1],
+      newBitmask = bitmask | srcBitmask,
+      isCommon = newBitmask < ARY_FLAG;
+
+  var isCombo = srcBitmask == ARY_FLAG && bitmask == CURRY_FLAG || srcBitmask == ARY_FLAG && bitmask == REARG_FLAG && data[7].length <= source[8] || srcBitmask == (ARY_FLAG | REARG_FLAG) && bitmask == CURRY_FLAG;
+
+  // Exit early if metadata can't be merged.
+  if (!(isCommon || isCombo)) {
+    return data;
+  }
+  // Use source `thisArg` if available.
+  if (srcBitmask & BIND_FLAG) {
+    data[2] = source[2];
+    // Set when currying a bound function.
+    newBitmask |= bitmask & BIND_FLAG ? 0 : CURRY_BOUND_FLAG;
+  }
+  // Compose partial arguments.
+  var value = source[3];
+  if (value) {
+    var partials = data[3];
+    data[3] = partials ? composeArgs(partials, value, source[4]) : arrayCopy(value);
+    data[4] = partials ? replaceHolders(data[3], PLACEHOLDER) : arrayCopy(source[4]);
+  }
+  // Compose partial right arguments.
+  value = source[5];
+  if (value) {
+    partials = data[5];
+    data[5] = partials ? composeArgsRight(partials, value, source[6]) : arrayCopy(value);
+    data[6] = partials ? replaceHolders(data[5], PLACEHOLDER) : arrayCopy(source[6]);
+  }
+  // Use source `argPos` if available.
+  value = source[7];
+  if (value) {
+    data[7] = arrayCopy(value);
+  }
+  // Use source `ary` if it's smaller.
+  if (srcBitmask & ARY_FLAG) {
+    data[8] = data[8] == null ? source[8] : nativeMin(data[8], source[8]);
+  }
+  // Use source `arity` if one is not provided.
+  if (data[9] == null) {
+    data[9] = source[9];
+  }
+  // Use source `func` and merge bitmasks.
+  data[0] = source[0];
+  data[1] = newBitmask;
+
+  return data;
+}
+
+module.exports = mergeData;
+
+},{"./arrayCopy":32,"./composeArgs":60,"./composeArgsRight":61,"./replaceHolders":92}],89:[function(require,module,exports){
+(function (global){
+'use strict';
+
+var getNative = require('./getNative');
+
+/** Native method references. */
+var WeakMap = getNative(global, 'WeakMap');
+
+/** Used to store function metadata. */
+var metaMap = WeakMap && new WeakMap();
+
+module.exports = metaMap;
+
+}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{"./getNative":79}],90:[function(require,module,exports){
+"use strict";
+
+/** Used to lookup unminified function names. */
+var realNames = {};
+
+module.exports = realNames;
+
+},{}],91:[function(require,module,exports){
+'use strict';
+
+var arrayCopy = require('./arrayCopy'),
+    isIndex = require('./isIndex');
+
+/* Native method references for those with the same name as other `lodash` methods. */
+var nativeMin = Math.min;
+
+/**
+ * Reorder `array` according to the specified indexes where the element at
+ * the first index is assigned as the first element, the element at
+ * the second index is assigned as the second element, and so on.
+ *
+ * @private
+ * @param {Array} array The array to reorder.
+ * @param {Array} indexes The arranged array indexes.
+ * @returns {Array} Returns `array`.
+ */
+function reorder(array, indexes) {
+  var arrLength = array.length,
+      length = nativeMin(indexes.length, arrLength),
+      oldArray = arrayCopy(array);
+
+  while (length--) {
+    var index = indexes[length];
+    array[length] = isIndex(index, arrLength) ? oldArray[index] : undefined;
+  }
+  return array;
+}
+
+module.exports = reorder;
+
+},{"./arrayCopy":32,"./isIndex":81}],92:[function(require,module,exports){
+'use strict';
+
+/** Used as the internal argument placeholder. */
+var PLACEHOLDER = '__lodash_placeholder__';
+
+/**
+ * Replaces all `placeholder` elements in `array` with an internal placeholder
+ * and returns an array of their indexes.
+ *
+ * @private
+ * @param {Array} array The array to modify.
+ * @param {*} placeholder The placeholder to replace.
+ * @returns {Array} Returns the new array of placeholder indexes.
+ */
+function replaceHolders(array, placeholder) {
+  var index = -1,
+      length = array.length,
+      resIndex = -1,
+      result = [];
+
+  while (++index < length) {
+    if (array[index] === placeholder) {
+      array[index] = PLACEHOLDER;
+      result[++resIndex] = index;
+    }
+  }
+  return result;
+}
+
+module.exports = replaceHolders;
+
+},{}],93:[function(require,module,exports){
+'use strict';
+
+var baseSetData = require('./baseSetData'),
+    now = require('../date/now');
+
+/** Used to detect when a function becomes hot. */
+var HOT_COUNT = 150,
+    HOT_SPAN = 16;
+
+/**
+ * Sets metadata for `func`.
+ *
+ * **Note:** If this function becomes hot, i.e. is invoked a lot in a short
+ * period of time, it will trip its breaker and transition to an identity function
+ * to avoid garbage collection pauses in V8. See [V8 issue 2070](https://code.google.com/p/v8/issues/detail?id=2070)
+ * for more details.
+ *
+ * @private
+ * @param {Function} func The function to associate metadata with.
+ * @param {*} data The metadata.
+ * @returns {Function} Returns `func`.
+ */
+var setData = function () {
+  var count = 0,
+      lastCalled = 0;
+
+  return function (key, value) {
+    var stamp = now(),
+        remaining = HOT_SPAN - (stamp - lastCalled);
+
+    lastCalled = stamp;
+    if (remaining > 0) {
+      if (++count >= HOT_COUNT) {
+        return key;
+      }
+    } else {
+      count = 0;
+    }
+    return baseSetData(key, value);
+  };
+}();
+
+module.exports = setData;
+
+},{"../date/now":27,"./baseSetData":56}],94:[function(require,module,exports){
+'use strict';
+
+var isArguments = require('../lang/isArguments'),
+    isArray = require('../lang/isArray'),
+    isIndex = require('./isIndex'),
+    isLength = require('./isLength'),
+    keysIn = require('../object/keysIn');
+
+/** Used for native method references. */
+var objectProto = Object.prototype;
+
+/** Used to check objects for own properties. */
+var hasOwnProperty = objectProto.hasOwnProperty;
+
+/**
+ * A fallback implementation of `Object.keys` which creates an array of the
+ * own enumerable property names of `object`.
+ *
+ * @private
+ * @param {Object} object The object to query.
+ * @returns {Array} Returns the array of property names.
+ */
+function shimKeys(object) {
+  var props = keysIn(object),
+      propsLength = props.length,
+      length = propsLength && object.length;
+
+  var allowIndexes = !!length && isLength(length) && (isArray(object) || isArguments(object));
+
+  var index = -1,
+      result = [];
+
+  while (++index < propsLength) {
+    var key = props[index];
+    if (allowIndexes && isIndex(key, length) || hasOwnProperty.call(object, key)) {
+      result.push(key);
+    }
+  }
+  return result;
+}
+
+module.exports = shimKeys;
+
+},{"../lang/isArguments":98,"../lang/isArray":99,"../object/keysIn":106,"./isIndex":81,"./isLength":85}],95:[function(require,module,exports){
+'use strict';
+
+var isObject = require('../lang/isObject');
+
+/**
+ * Converts `value` to an object if it's not one.
+ *
+ * @private
+ * @param {*} value The value to process.
+ * @returns {Object} Returns the object.
+ */
+function toObject(value) {
+  return isObject(value) ? value : Object(value);
+}
+
+module.exports = toObject;
+
+},{"../lang/isObject":102}],96:[function(require,module,exports){
+'use strict';
+
+var baseToString = require('./baseToString'),
+    isArray = require('../lang/isArray');
+
+/** Used to match property names within property paths. */
+var rePropName = /[^.[\]]+|\[(?:(-?\d+(?:\.\d+)?)|(["'])((?:(?!\2)[^\n\\]|\\.)*?)\2)\]/g;
+
+/** Used to match backslashes in property paths. */
+var reEscapeChar = /\\(\\)?/g;
+
+/**
+ * Converts `value` to property path array if it's not one.
+ *
+ * @private
+ * @param {*} value The value to process.
+ * @returns {Array} Returns the property path array.
+ */
+function toPath(value) {
+  if (isArray(value)) {
+    return value;
+  }
+  var result = [];
+  baseToString(value).replace(rePropName, function (match, number, quote, string) {
+    result.push(quote ? string.replace(reEscapeChar, '$1') : number || match);
+  });
+  return result;
+}
+
+module.exports = toPath;
+
+},{"../lang/isArray":99,"./baseToString":58}],97:[function(require,module,exports){
+'use strict';
+
+var LazyWrapper = require('./LazyWrapper'),
+    LodashWrapper = require('./LodashWrapper'),
+    arrayCopy = require('./arrayCopy');
+
+/**
+ * Creates a clone of `wrapper`.
+ *
+ * @private
+ * @param {Object} wrapper The wrapper to clone.
+ * @returns {Object} Returns the cloned wrapper.
+ */
+function wrapperClone(wrapper) {
+    return wrapper instanceof LazyWrapper ? wrapper.clone() : new LodashWrapper(wrapper.__wrapped__, wrapper.__chain__, arrayCopy(wrapper.__actions__));
+}
+
+module.exports = wrapperClone;
+
+},{"./LazyWrapper":30,"./LodashWrapper":31,"./arrayCopy":32}],98:[function(require,module,exports){
+'use strict';
+
+var isArrayLike = require('../internal/isArrayLike'),
+    isObjectLike = require('../internal/isObjectLike');
+
+/** Used for native method references. */
+var objectProto = Object.prototype;
+
+/** Used to check objects for own properties. */
+var hasOwnProperty = objectProto.hasOwnProperty;
+
+/** Native method references. */
+var propertyIsEnumerable = objectProto.propertyIsEnumerable;
+
+/**
+ * Checks if `value` is classified as an `arguments` object.
+ *
+ * @static
+ * @memberOf _
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is correctly classified, else `false`.
+ * @example
+ *
+ * _.isArguments(function() { return arguments; }());
+ * // => true
+ *
+ * _.isArguments([1, 2, 3]);
+ * // => false
+ */
+function isArguments(value) {
+    return isObjectLike(value) && isArrayLike(value) && hasOwnProperty.call(value, 'callee') && !propertyIsEnumerable.call(value, 'callee');
+}
+
+module.exports = isArguments;
+
+},{"../internal/isArrayLike":80,"../internal/isObjectLike":86}],99:[function(require,module,exports){
+'use strict';
+
+var getNative = require('../internal/getNative'),
+    isLength = require('../internal/isLength'),
+    isObjectLike = require('../internal/isObjectLike');
+
+/** `Object#toString` result references. */
+var arrayTag = '[object Array]';
+
+/** Used for native method references. */
+var objectProto = Object.prototype;
+
+/**
+ * Used to resolve the [`toStringTag`](http://ecma-international.org/ecma-262/6.0/#sec-object.prototype.tostring)
+ * of values.
+ */
+var objToString = objectProto.toString;
+
+/* Native method references for those with the same name as other `lodash` methods. */
+var nativeIsArray = getNative(Array, 'isArray');
+
+/**
+ * Checks if `value` is classified as an `Array` object.
+ *
+ * @static
+ * @memberOf _
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is correctly classified, else `false`.
+ * @example
+ *
+ * _.isArray([1, 2, 3]);
+ * // => true
+ *
+ * _.isArray(function() { return arguments; }());
+ * // => false
+ */
+var isArray = nativeIsArray || function (value) {
+  return isObjectLike(value) && isLength(value.length) && objToString.call(value) == arrayTag;
+};
+
+module.exports = isArray;
+
+},{"../internal/getNative":79,"../internal/isLength":85,"../internal/isObjectLike":86}],100:[function(require,module,exports){
+'use strict';
+
+var isObject = require('./isObject');
+
+/** `Object#toString` result references. */
+var funcTag = '[object Function]';
+
+/** Used for native method references. */
+var objectProto = Object.prototype;
+
+/**
+ * Used to resolve the [`toStringTag`](http://ecma-international.org/ecma-262/6.0/#sec-object.prototype.tostring)
+ * of values.
+ */
+var objToString = objectProto.toString;
+
+/**
+ * Checks if `value` is classified as a `Function` object.
+ *
+ * @static
+ * @memberOf _
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is correctly classified, else `false`.
+ * @example
+ *
+ * _.isFunction(_);
+ * // => true
+ *
+ * _.isFunction(/abc/);
+ * // => false
+ */
+function isFunction(value) {
+  // The use of `Object#toString` avoids issues with the `typeof` operator
+  // in older versions of Chrome and Safari which return 'function' for regexes
+  // and Safari 8 which returns 'object' for typed array constructors.
+  return isObject(value) && objToString.call(value) == funcTag;
+}
+
+module.exports = isFunction;
+
+},{"./isObject":102}],101:[function(require,module,exports){
+'use strict';
+
+var isFunction = require('./isFunction'),
+    isObjectLike = require('../internal/isObjectLike');
+
+/** Used to detect host constructors (Safari > 5). */
+var reIsHostCtor = /^\[object .+?Constructor\]$/;
+
+/** Used for native method references. */
+var objectProto = Object.prototype;
+
+/** Used to resolve the decompiled source of functions. */
+var fnToString = Function.prototype.toString;
+
+/** Used to check objects for own properties. */
+var hasOwnProperty = objectProto.hasOwnProperty;
+
+/** Used to detect if a method is native. */
+var reIsNative = RegExp('^' + fnToString.call(hasOwnProperty).replace(/[\\^$.*+?()[\]{}|]/g, '\\$&').replace(/hasOwnProperty|(function).*?(?=\\\()| for .+?(?=\\\])/g, '$1.*?') + '$');
+
+/**
+ * Checks if `value` is a native function.
+ *
+ * @static
+ * @memberOf _
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a native function, else `false`.
+ * @example
+ *
+ * _.isNative(Array.prototype.push);
+ * // => true
+ *
+ * _.isNative(_);
+ * // => false
+ */
+function isNative(value) {
+  if (value == null) {
+    return false;
+  }
+  if (isFunction(value)) {
+    return reIsNative.test(fnToString.call(value));
+  }
+  return isObjectLike(value) && reIsHostCtor.test(value);
+}
+
+module.exports = isNative;
+
+},{"../internal/isObjectLike":86,"./isFunction":100}],102:[function(require,module,exports){
+'use strict';
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+/**
+ * Checks if `value` is the [language type](https://es5.github.io/#x8) of `Object`.
+ * (e.g. arrays, functions, objects, regexes, `new Number(0)`, and `new String('')`)
+ *
+ * @static
+ * @memberOf _
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is an object, else `false`.
+ * @example
+ *
+ * _.isObject({});
+ * // => true
+ *
+ * _.isObject([1, 2, 3]);
+ * // => true
+ *
+ * _.isObject(1);
+ * // => false
+ */
+function isObject(value) {
+  // Avoid a V8 JIT bug in Chrome 19-20.
+  // See https://code.google.com/p/v8/issues/detail?id=2291 for more details.
+  var type = typeof value === 'undefined' ? 'undefined' : _typeof(value);
+  return !!value && (type == 'object' || type == 'function');
+}
+
+module.exports = isObject;
+
+},{}],103:[function(require,module,exports){
+'use strict';
+
+var isLength = require('../internal/isLength'),
+    isObjectLike = require('../internal/isObjectLike');
+
+/** `Object#toString` result references. */
+var argsTag = '[object Arguments]',
+    arrayTag = '[object Array]',
+    boolTag = '[object Boolean]',
+    dateTag = '[object Date]',
+    errorTag = '[object Error]',
+    funcTag = '[object Function]',
+    mapTag = '[object Map]',
+    numberTag = '[object Number]',
+    objectTag = '[object Object]',
+    regexpTag = '[object RegExp]',
+    setTag = '[object Set]',
+    stringTag = '[object String]',
+    weakMapTag = '[object WeakMap]';
+
+var arrayBufferTag = '[object ArrayBuffer]',
+    float32Tag = '[object Float32Array]',
+    float64Tag = '[object Float64Array]',
+    int8Tag = '[object Int8Array]',
+    int16Tag = '[object Int16Array]',
+    int32Tag = '[object Int32Array]',
+    uint8Tag = '[object Uint8Array]',
+    uint8ClampedTag = '[object Uint8ClampedArray]',
+    uint16Tag = '[object Uint16Array]',
+    uint32Tag = '[object Uint32Array]';
+
+/** Used to identify `toStringTag` values of typed arrays. */
+var typedArrayTags = {};
+typedArrayTags[float32Tag] = typedArrayTags[float64Tag] = typedArrayTags[int8Tag] = typedArrayTags[int16Tag] = typedArrayTags[int32Tag] = typedArrayTags[uint8Tag] = typedArrayTags[uint8ClampedTag] = typedArrayTags[uint16Tag] = typedArrayTags[uint32Tag] = true;
+typedArrayTags[argsTag] = typedArrayTags[arrayTag] = typedArrayTags[arrayBufferTag] = typedArrayTags[boolTag] = typedArrayTags[dateTag] = typedArrayTags[errorTag] = typedArrayTags[funcTag] = typedArrayTags[mapTag] = typedArrayTags[numberTag] = typedArrayTags[objectTag] = typedArrayTags[regexpTag] = typedArrayTags[setTag] = typedArrayTags[stringTag] = typedArrayTags[weakMapTag] = false;
+
+/** Used for native method references. */
+var objectProto = Object.prototype;
+
+/**
+ * Used to resolve the [`toStringTag`](http://ecma-international.org/ecma-262/6.0/#sec-object.prototype.tostring)
+ * of values.
+ */
+var objToString = objectProto.toString;
+
+/**
+ * Checks if `value` is classified as a typed array.
+ *
+ * @static
+ * @memberOf _
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is correctly classified, else `false`.
+ * @example
+ *
+ * _.isTypedArray(new Uint8Array);
+ * // => true
+ *
+ * _.isTypedArray([]);
+ * // => false
+ */
+function isTypedArray(value) {
+    return isObjectLike(value) && isLength(value.length) && !!typedArrayTags[objToString.call(value)];
+}
+
+module.exports = isTypedArray;
+
+},{"../internal/isLength":85,"../internal/isObjectLike":86}],104:[function(require,module,exports){
+'use strict';
+
+var assignWith = require('../internal/assignWith'),
+    baseAssign = require('../internal/baseAssign'),
+    createAssigner = require('../internal/createAssigner');
+
+/**
+ * Assigns own enumerable properties of source object(s) to the destination
+ * object. Subsequent sources overwrite property assignments of previous sources.
+ * If `customizer` is provided it's invoked to produce the assigned values.
+ * The `customizer` is bound to `thisArg` and invoked with five arguments:
+ * (objectValue, sourceValue, key, object, source).
+ *
+ * **Note:** This method mutates `object` and is based on
+ * [`Object.assign`](http://ecma-international.org/ecma-262/6.0/#sec-object.assign).
+ *
+ * @static
+ * @memberOf _
+ * @alias extend
+ * @category Object
+ * @param {Object} object The destination object.
+ * @param {...Object} [sources] The source objects.
+ * @param {Function} [customizer] The function to customize assigned values.
+ * @param {*} [thisArg] The `this` binding of `customizer`.
+ * @returns {Object} Returns `object`.
+ * @example
+ *
+ * _.assign({ 'user': 'barney' }, { 'age': 40 }, { 'user': 'fred' });
+ * // => { 'user': 'fred', 'age': 40 }
+ *
+ * // using a customizer callback
+ * var defaults = _.partialRight(_.assign, function(value, other) {
+ *   return _.isUndefined(value) ? other : value;
+ * });
+ *
+ * defaults({ 'user': 'barney' }, { 'age': 36 }, { 'user': 'fred' });
+ * // => { 'user': 'barney', 'age': 36 }
+ */
+var assign = createAssigner(function (object, source, customizer) {
+    return customizer ? assignWith(object, source, customizer) : baseAssign(object, source);
+});
+
+module.exports = assign;
+
+},{"../internal/assignWith":36,"../internal/baseAssign":37,"../internal/createAssigner":62}],105:[function(require,module,exports){
+'use strict';
+
+var getNative = require('../internal/getNative'),
+    isArrayLike = require('../internal/isArrayLike'),
+    isObject = require('../lang/isObject'),
+    shimKeys = require('../internal/shimKeys');
+
+/* Native method references for those with the same name as other `lodash` methods. */
+var nativeKeys = getNative(Object, 'keys');
+
+/**
+ * Creates an array of the own enumerable property names of `object`.
+ *
+ * **Note:** Non-object values are coerced to objects. See the
+ * [ES spec](http://ecma-international.org/ecma-262/6.0/#sec-object.keys)
+ * for more details.
+ *
+ * @static
+ * @memberOf _
+ * @category Object
+ * @param {Object} object The object to query.
+ * @returns {Array} Returns the array of property names.
+ * @example
+ *
+ * function Foo() {
+ *   this.a = 1;
+ *   this.b = 2;
+ * }
+ *
+ * Foo.prototype.c = 3;
+ *
+ * _.keys(new Foo);
+ * // => ['a', 'b'] (iteration order is not guaranteed)
+ *
+ * _.keys('hi');
+ * // => ['0', '1']
+ */
+var keys = !nativeKeys ? shimKeys : function (object) {
+  var Ctor = object == null ? undefined : object.constructor;
+  if (typeof Ctor == 'function' && Ctor.prototype === object || typeof object != 'function' && isArrayLike(object)) {
+    return shimKeys(object);
+  }
+  return isObject(object) ? nativeKeys(object) : [];
+};
+
+module.exports = keys;
+
+},{"../internal/getNative":79,"../internal/isArrayLike":80,"../internal/shimKeys":94,"../lang/isObject":102}],106:[function(require,module,exports){
+'use strict';
+
+var isArguments = require('../lang/isArguments'),
+    isArray = require('../lang/isArray'),
+    isIndex = require('../internal/isIndex'),
+    isLength = require('../internal/isLength'),
+    isObject = require('../lang/isObject');
+
+/** Used for native method references. */
+var objectProto = Object.prototype;
+
+/** Used to check objects for own properties. */
+var hasOwnProperty = objectProto.hasOwnProperty;
+
+/**
+ * Creates an array of the own and inherited enumerable property names of `object`.
+ *
+ * **Note:** Non-object values are coerced to objects.
+ *
+ * @static
+ * @memberOf _
+ * @category Object
+ * @param {Object} object The object to query.
+ * @returns {Array} Returns the array of property names.
+ * @example
+ *
+ * function Foo() {
+ *   this.a = 1;
+ *   this.b = 2;
+ * }
+ *
+ * Foo.prototype.c = 3;
+ *
+ * _.keysIn(new Foo);
+ * // => ['a', 'b', 'c'] (iteration order is not guaranteed)
+ */
+function keysIn(object) {
+  if (object == null) {
+    return [];
+  }
+  if (!isObject(object)) {
+    object = Object(object);
+  }
+  var length = object.length;
+  length = length && isLength(length) && (isArray(object) || isArguments(object)) && length || 0;
+
+  var Ctor = object.constructor,
+      index = -1,
+      isProto = typeof Ctor == 'function' && Ctor.prototype === object,
+      result = Array(length),
+      skipIndexes = length > 0;
+
+  while (++index < length) {
+    result[index] = index + '';
+  }
+  for (var key in object) {
+    if (!(skipIndexes && isIndex(key, length)) && !(key == 'constructor' && (isProto || !hasOwnProperty.call(object, key)))) {
+      result.push(key);
+    }
+  }
+  return result;
+}
+
+module.exports = keysIn;
+
+},{"../internal/isIndex":81,"../internal/isLength":85,"../lang/isArguments":98,"../lang/isArray":99,"../lang/isObject":102}],107:[function(require,module,exports){
+'use strict';
+
+var keys = require('./keys'),
+    toObject = require('../internal/toObject');
+
+/**
+ * Creates a two dimensional array of the key-value pairs for `object`,
+ * e.g. `[[key1, value1], [key2, value2]]`.
+ *
+ * @static
+ * @memberOf _
+ * @category Object
+ * @param {Object} object The object to query.
+ * @returns {Array} Returns the new array of key-value pairs.
+ * @example
+ *
+ * _.pairs({ 'barney': 36, 'fred': 40 });
+ * // => [['barney', 36], ['fred', 40]] (iteration order is not guaranteed)
+ */
+function pairs(object) {
+  object = toObject(object);
+
+  var index = -1,
+      props = keys(object),
+      length = props.length,
+      result = Array(length);
+
+  while (++index < length) {
+    var key = props[index];
+    result[index] = [key, object[key]];
+  }
+  return result;
+}
+
+module.exports = pairs;
+
+},{"../internal/toObject":95,"./keys":105}],108:[function(require,module,exports){
+"use strict";
+
+/**
+ * This method returns the first argument provided to it.
+ *
+ * @static
+ * @memberOf _
+ * @category Utility
+ * @param {*} value Any value.
+ * @returns {*} Returns `value`.
+ * @example
+ *
+ * var object = { 'user': 'fred' };
+ *
+ * _.identity(object) === object;
+ * // => true
+ */
+function identity(value) {
+  return value;
+}
+
+module.exports = identity;
+
+},{}],109:[function(require,module,exports){
+"use strict";
+
+/**
+ * A no-operation function that returns `undefined` regardless of the
+ * arguments it receives.
+ *
+ * @static
+ * @memberOf _
+ * @category Utility
+ * @example
+ *
+ * var object = { 'user': 'fred' };
+ *
+ * _.noop(object) === undefined;
+ * // => true
+ */
+function noop() {
+  // No operation performed.
+}
+
+module.exports = noop;
+
+},{}],110:[function(require,module,exports){
+'use strict';
+
+var baseProperty = require('../internal/baseProperty'),
+    basePropertyDeep = require('../internal/basePropertyDeep'),
+    isKey = require('../internal/isKey');
+
+/**
+ * Creates a function that returns the property value at `path` on a
+ * given object.
+ *
+ * @static
+ * @memberOf _
+ * @category Utility
+ * @param {Array|string} path The path of the property to get.
+ * @returns {Function} Returns the new function.
+ * @example
+ *
+ * var objects = [
+ *   { 'a': { 'b': { 'c': 2 } } },
+ *   { 'a': { 'b': { 'c': 1 } } }
+ * ];
+ *
+ * _.map(objects, _.property('a.b.c'));
+ * // => [2, 1]
+ *
+ * _.pluck(_.sortBy(objects, _.property(['a', 'b', 'c'])), 'a.b.c');
+ * // => [1, 2]
+ */
+function property(path) {
+  return isKey(path) ? baseProperty(path) : basePropertyDeep(path);
+}
+
+module.exports = property;
+
+},{"../internal/baseProperty":54,"../internal/basePropertyDeep":55,"../internal/isKey":83}],111:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, '__esModule', { value: true });
+
+/**
+ * Set attribute `name` to `val`, or get attr `name`.
+ *
+ * @param {Element} el
+ * @param {String} name
+ * @param {String} [val]
+ * @api public
+ */
+function attr(el, name, val) {
+  // get
+  if (arguments.length == 2) {
+    return el.getAttribute(name);
+  }
+
+  // remove
+  if (val === null) {
+    return el.removeAttribute(name);
+  }
+
+  // set
+  el.setAttribute(name, val);
+
+  return el;
+}
+
+var indexOf = [].indexOf;
+
+var indexof = function indexof(arr, obj) {
+  if (indexOf) return arr.indexOf(obj);
+  for (var i = 0; i < arr.length; ++i) {
+    if (arr[i] === obj) return i;
+  }
+  return -1;
+};
+
+/**
+ * Taken from https://github.com/component/classes
+ *
+ * Without the component bits.
+ */
+
+/**
+ * Whitespace regexp.
+ */
+
+var re = /\s+/;
+
+/**
+ * toString reference.
+ */
+
+var toString = Object.prototype.toString;
+
+/**
+ * Wrap `el` in a `ClassList`.
+ *
+ * @param {Element} el
+ * @return {ClassList}
+ * @api public
+ */
+
+function classes(el) {
+  return new ClassList(el);
+}
+
+/**
+ * Initialize a new ClassList for `el`.
+ *
+ * @param {Element} el
+ * @api private
+ */
+
+function ClassList(el) {
+  if (!el || !el.nodeType) {
+    throw new Error('A DOM element reference is required');
+  }
+  this.el = el;
+  this.list = el.classList;
+}
+
+/**
+ * Add class `name` if not already present.
+ *
+ * @param {String} name
+ * @return {ClassList}
+ * @api public
+ */
+
+ClassList.prototype.add = function (name) {
+  // classList
+  if (this.list) {
+    this.list.add(name);
+    return this;
+  }
+
+  // fallback
+  var arr = this.array();
+  var i = indexof(arr, name);
+  if (!~i) arr.push(name);
+  this.el.className = arr.join(' ');
+  return this;
+};
+
+/**
+ * Remove class `name` when present, or
+ * pass a regular expression to remove
+ * any which match.
+ *
+ * @param {String|RegExp} name
+ * @return {ClassList}
+ * @api public
+ */
+
+ClassList.prototype.remove = function (name) {
+  if ('[object RegExp]' == toString.call(name)) {
+    return this.removeMatching(name);
+  }
+
+  // classList
+  if (this.list) {
+    this.list.remove(name);
+    return this;
+  }
+
+  // fallback
+  var arr = this.array();
+  var i = indexof(arr, name);
+  if (~i) arr.splice(i, 1);
+  this.el.className = arr.join(' ');
+  return this;
+};
+
+/**
+ * Remove all classes matching `re`.
+ *
+ * @param {RegExp} re
+ * @return {ClassList}
+ * @api private
+ */
+
+ClassList.prototype.removeMatching = function (re) {
+  var arr = this.array();
+  for (var i = 0; i < arr.length; i++) {
+    if (re.test(arr[i])) {
+      this.remove(arr[i]);
+    }
+  }
+  return this;
+};
+
+/**
+ * Toggle class `name`, can force state via `force`.
+ *
+ * For browsers that support classList, but do not support `force` yet,
+ * the mistake will be detected and corrected.
+ *
+ * @param {String} name
+ * @param {Boolean} force
+ * @return {ClassList}
+ * @api public
+ */
+
+ClassList.prototype.toggle = function (name, force) {
+  // classList
+  if (this.list) {
+    if ('undefined' !== typeof force) {
+      if (force !== this.list.toggle(name, force)) {
+        this.list.toggle(name); // toggle again to correct
+      }
+    } else {
+      this.list.toggle(name);
+    }
+    return this;
+  }
+
+  // fallback
+  if ('undefined' !== typeof force) {
+    if (!force) {
+      this.remove(name);
+    } else {
+      this.add(name);
+    }
+  } else {
+    if (this.has(name)) {
+      this.remove(name);
+    } else {
+      this.add(name);
+    }
+  }
+
+  return this;
+};
+
+/**
+ * Return an array of classes.
+ *
+ * @return {Array}
+ * @api public
+ */
+
+ClassList.prototype.array = function () {
+  var className = this.el.getAttribute('class') || '';
+  var str = className.replace(/^\s+|\s+$/g, '');
+  var arr = str.split(re);
+  if ('' === arr[0]) arr.shift();
+  return arr;
+};
+
+/**
+ * Check if class `name` is present.
+ *
+ * @param {String} name
+ * @return {ClassList}
+ * @api public
+ */
+
+ClassList.prototype.has = ClassList.prototype.contains = function (name) {
+  return this.list ? this.list.contains(name) : !!~indexof(this.array(), name);
+};
+
+/**
+ * Remove all children from the given element.
+ */
+function clear(el) {
+
+  var c;
+
+  while (el.childNodes.length) {
+    c = el.childNodes[0];
+    el.removeChild(c);
+  }
+
+  return el;
+}
+
+/**
+ * Element prototype.
+ */
+
+var proto = Element.prototype;
+
+/**
+ * Vendor function.
+ */
+
+var vendor = proto.matchesSelector || proto.webkitMatchesSelector || proto.mozMatchesSelector || proto.msMatchesSelector || proto.oMatchesSelector;
+
+/**
+ * Expose `match()`.
+ */
+
+var matchesSelector = match;
+
+/**
+ * Match `el` to `selector`.
+ *
+ * @param {Element} el
+ * @param {String} selector
+ * @return {Boolean}
+ * @api public
+ */
+
+function match(el, selector) {
+  if (vendor) return vendor.call(el, selector);
+  var nodes = el.parentNode.querySelectorAll(selector);
+  for (var i = 0; i < nodes.length; ++i) {
+    if (nodes[i] == el) return true;
+  }
+  return false;
+}
+
+var closest = function closest(element, selector, checkYoSelf) {
+  var parent = checkYoSelf ? element : element.parentNode;
+
+  while (parent && parent !== document) {
+    if (matchesSelector(parent, selector)) return parent;
+    parent = parent.parentNode;
+  }
+};
+
+var bind = window.addEventListener ? 'addEventListener' : 'attachEvent',
+    unbind = window.removeEventListener ? 'removeEventListener' : 'detachEvent',
+    prefix = bind !== 'addEventListener' ? 'on' : '';
+
+/**
+ * Bind `el` event `type` to `fn`.
+ *
+ * @param {Element} el
+ * @param {String} type
+ * @param {Function} fn
+ * @param {Boolean} capture
+ * @return {Function}
+ * @api public
+ */
+
+var bind_1 = function bind_1(el, type, fn, capture) {
+  el[bind](prefix + type, fn, capture || false);
+  return fn;
+};
+
+/**
+ * Unbind `el` event `type`'s callback `fn`.
+ *
+ * @param {Element} el
+ * @param {String} type
+ * @param {Function} fn
+ * @param {Boolean} capture
+ * @return {Function}
+ * @api public
+ */
+
+var unbind_1 = function unbind_1(el, type, fn, capture) {
+  el[unbind](prefix + type, fn, capture || false);
+  return fn;
+};
+
+var componentEvent = {
+  bind: bind_1,
+  unbind: unbind_1
+};
+
+/**
+ * Module dependencies.
+ */
+
+/**
+ * Delegate event `type` to `selector`
+ * and invoke `fn(e)`. A callback function
+ * is returned which may be passed to `.unbind()`.
+ *
+ * @param {Element} el
+ * @param {String} selector
+ * @param {String} type
+ * @param {Function} fn
+ * @param {Boolean} capture
+ * @return {Function}
+ * @api public
+ */
+
+// Some events don't bubble, so we want to bind to the capture phase instead
+// when delegating.
+var forceCaptureEvents = ['focus', 'blur'];
+
+var bind$1 = function bind$1(el, selector, type, fn, capture) {
+  if (forceCaptureEvents.indexOf(type) !== -1) capture = true;
+
+  return componentEvent.bind(el, type, function (e) {
+    var target = e.target || e.srcElement;
+    e.delegateTarget = closest(target, selector, true, el);
+    if (e.delegateTarget) fn.call(el, e);
+  }, capture);
+};
+
+/**
+ * Unbind event `type`'s callback `fn`.
+ *
+ * @param {Element} el
+ * @param {String} type
+ * @param {Function} fn
+ * @param {Boolean} capture
+ * @api public
+ */
+
+var unbind$1 = function unbind$1(el, type, fn, capture) {
+  if (forceCaptureEvents.indexOf(type) !== -1) capture = true;
+
+  componentEvent.unbind(el, type, fn, capture);
+};
+
+var delegateEvents = {
+  bind: bind$1,
+  unbind: unbind$1
+};
+
+/**
+ * Expose `parse`.
+ */
+
+var domify = parse;
+
+/**
+ * Tests for browser support.
+ */
+
+var innerHTMLBug = false;
+var bugTestDiv;
+if (typeof document !== 'undefined') {
+  bugTestDiv = document.createElement('div');
+  // Setup
+  bugTestDiv.innerHTML = '  <link/><table></table><a href="/a">a</a><input type="checkbox"/>';
+  // Make sure that link elements get serialized correctly by innerHTML
+  // This requires a wrapper element in IE
+  innerHTMLBug = !bugTestDiv.getElementsByTagName('link').length;
+  bugTestDiv = undefined;
+}
+
+/**
+ * Wrap map from jquery.
+ */
+
+var map = {
+  legend: [1, '<fieldset>', '</fieldset>'],
+  tr: [2, '<table><tbody>', '</tbody></table>'],
+  col: [2, '<table><tbody></tbody><colgroup>', '</colgroup></table>'],
+  // for script/link/style tags to work in IE6-8, you have to wrap
+  // in a div with a non-whitespace character in front, ha!
+  _default: innerHTMLBug ? [1, 'X<div>', '</div>'] : [0, '', '']
+};
+
+map.td = map.th = [3, '<table><tbody><tr>', '</tr></tbody></table>'];
+
+map.option = map.optgroup = [1, '<select multiple="multiple">', '</select>'];
+
+map.thead = map.tbody = map.colgroup = map.caption = map.tfoot = [1, '<table>', '</table>'];
+
+map.polyline = map.ellipse = map.polygon = map.circle = map.text = map.line = map.path = map.rect = map.g = [1, '<svg xmlns="http://www.w3.org/2000/svg" version="1.1">', '</svg>'];
+
+/**
+ * Parse `html` and return a DOM Node instance, which could be a TextNode,
+ * HTML DOM Node of some kind (<div> for example), or a DocumentFragment
+ * instance, depending on the contents of the `html` string.
+ *
+ * @param {String} html - HTML string to "domify"
+ * @param {Document} doc - The `document` instance to create the Node for
+ * @return {DOMNode} the TextNode, DOM Node, or DocumentFragment instance
+ * @api private
+ */
+
+function parse(html, doc) {
+  if ('string' != typeof html) throw new TypeError('String expected');
+
+  // default to the global `document` object
+  if (!doc) doc = document;
+
+  // tag name
+  var m = /<([\w:]+)/.exec(html);
+  if (!m) return doc.createTextNode(html);
+
+  html = html.replace(/^\s+|\s+$/g, ''); // Remove leading/trailing whitespace
+
+  var tag = m[1];
+
+  // body support
+  if (tag == 'body') {
+    var el = doc.createElement('html');
+    el.innerHTML = html;
+    return el.removeChild(el.lastChild);
+  }
+
+  // wrap map
+  var wrap = map[tag] || map._default;
+  var depth = wrap[0];
+  var prefix = wrap[1];
+  var suffix = wrap[2];
+  var el = doc.createElement('div');
+  el.innerHTML = prefix + html + suffix;
+  while (depth--) {
+    el = el.lastChild;
+  } // one element
+  if (el.firstChild == el.lastChild) {
+    return el.removeChild(el.firstChild);
+  }
+
+  // several elements
+  var fragment = doc.createDocumentFragment();
+  while (el.firstChild) {
+    fragment.appendChild(el.removeChild(el.firstChild));
+  }
+
+  return fragment;
+}
+
+var proto$1 = typeof Element !== 'undefined' ? Element.prototype : {};
+var vendor$1 = proto$1.matches || proto$1.matchesSelector || proto$1.webkitMatchesSelector || proto$1.mozMatchesSelector || proto$1.msMatchesSelector || proto$1.oMatchesSelector;
+
+var matchesSelector$1 = match$1;
+
+/**
+ * Match `el` to `selector`.
+ *
+ * @param {Element} el
+ * @param {String} selector
+ * @return {Boolean}
+ * @api public
+ */
+
+function match$1(el, selector) {
+  if (!el || el.nodeType !== 1) return false;
+  if (vendor$1) return vendor$1.call(el, selector);
+  var nodes = el.parentNode.querySelectorAll(selector);
+  for (var i = 0; i < nodes.length; i++) {
+    if (nodes[i] == el) return true;
+  }
+  return false;
+}
+
+function query(selector, el) {
+  el = el || document;
+
+  return el.querySelector(selector);
+}
+
+function all(selector, el) {
+  el = el || document;
+
+  return el.querySelectorAll(selector);
+}
+
+function remove(el) {
+  el.parentNode && el.parentNode.removeChild(el);
+}
+
+exports.attr = attr;
+exports.classes = classes;
+exports.clear = clear;
+exports.closest = closest;
+exports.delegate = delegateEvents;
+exports.domify = domify;
+exports.event = componentEvent;
+exports.matches = matchesSelector$1;
+exports.query = query;
+exports.queryAll = all;
+exports.remove = remove;
+
+},{}],112:[function(require,module,exports){
+'use strict';
+
+/**
+ * Calculate the selection update for the given
+ * current and new input values.
+ *
+ * @param {Object} currentSelection as {start, end}
+ * @param {String} currentValue
+ * @param {String} newValue
+ *
+ * @return {Object} newSelection as {start, end}
+ */
+
+function calculateUpdate(currentSelection, currentValue, newValue) {
+
+  var currentCursor = currentSelection.start,
+      newCursor = currentCursor,
+      diff = newValue.length - currentValue.length,
+      idx;
+
+  var lengthDelta = newValue.length - currentValue.length;
+
+  var currentTail = currentValue.substring(currentCursor);
+
+  // check if we can remove common ending from the equation
+  // to be able to properly detect a selection change for
+  // the following scenarios:
+  //
+  //  * (AAATTT|TF) => (AAAT|TF)
+  //  * (AAAT|TF) =>  (AAATTT|TF)
+  //
+  if (newValue.lastIndexOf(currentTail) === newValue.length - currentTail.length) {
+    currentValue = currentValue.substring(0, currentValue.length - currentTail.length);
+    newValue = newValue.substring(0, newValue.length - currentTail.length);
+  }
+
+  // diff
+  var diff = createDiff(currentValue, newValue);
+
+  if (diff) {
+    if (diff.type === 'remove') {
+      newCursor = diff.newStart;
+    } else {
+      newCursor = diff.newEnd;
+    }
+  }
+
+  return range(newCursor);
+}
+
+module.exports = calculateUpdate;
+
+function createDiff(currentValue, newValue) {
+
+  var insert;
+
+  var l_str,
+      l_char,
+      l_idx = 0,
+      s_str,
+      s_char,
+      s_idx = 0;
+
+  if (newValue.length > currentValue.length) {
+    l_str = newValue;
+    s_str = currentValue;
+  } else {
+    l_str = currentValue;
+    s_str = newValue;
+  }
+
+  // assume there will be only one insert / remove and
+  // detect that _first_ edit operation only
+  while (l_idx < l_str.length) {
+
+    l_char = l_str.charAt(l_idx);
+    s_char = s_str.charAt(s_idx);
+
+    // chars no not equal
+    if (l_char !== s_char) {
+
+      if (!insert) {
+        insert = {
+          l_start: l_idx,
+          s_start: s_idx
+        };
+      }
+
+      l_idx++;
+    }
+
+    // chars equal (again?)
+    else {
+
+        if (insert && !insert.complete) {
+          insert.l_end = l_idx;
+          insert.s_end = s_idx;
+          insert.complete = true;
+        }
+
+        s_idx++;
+        l_idx++;
+      }
+  }
+
+  if (insert && !insert.complete) {
+    insert.complete = true;
+    insert.s_end = s_str.length;
+    insert.l_end = l_str.length;
+  }
+
+  // no diff
+  if (!insert) {
+    return;
+  }
+
+  if (newValue.length > currentValue.length) {
+    return {
+      newStart: insert.l_start,
+      newEnd: insert.l_end,
+      type: 'add'
+    };
+  } else {
+    return {
+      newStart: insert.s_start,
+      newEnd: insert.s_end,
+      type: newValue.length < currentValue.length ? 'remove' : 'replace'
+    };
+  }
+}
+
+/**
+ * Utility method for creating a new selection range {start, end} object.
+ *
+ * @param {Number} start
+ * @param {Number} [end]
+ *
+ * @return {Object} selection range as {start, end}
+ */
+function range(start, end) {
+  return {
+    start: start,
+    end: end === undefined ? start : end
+  };
+}
+
+module.exports.range = range;
+
+function splitStr(str, position) {
+  return {
+    before: str.substring(0, position),
+    after: str.substring(position)
+  };
+}
+
+},{}]},{},[2]);
