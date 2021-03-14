@@ -22,6 +22,36 @@
           "name": "machineUrl",
           "isAttr": true,
           "type": "String"
+        },
+        {
+          "name": "userDirectoryUrl",
+          "isAttr": true,
+          "type": "String"
+        },
+        {
+          "name": "paradigmaUrl",
+          "isAttr": true,
+          "type": "String"
+        },
+        {
+          "name": "globalContextEventEndpoint",
+          "isAttr": true,
+          "type": "String"
+        },
+        {
+          "name": "globalRuleSetUrl",
+          "isAttr": true,
+          "type": "String"
+        },
+        {
+          "name": "globalRuleSetName",
+          "isAttr": true,
+          "type": "String"
+        },
+        {
+          "name": "globalRuleSetRules",
+          "isAttr": true,
+          "type": "String"
         }
       ]
     }

@@ -5,22 +5,32 @@ var inherits = require('inherits');
 var PropertiesActivator = require('bpmn-js-properties-panel/lib/PropertiesActivator');
 
 // Require your custom property entries.
-var spellProps = require('./parts/SpellProps');
+var contextProps = require('./parts/contextProps');
+var globalRuleSetProps = require('./parts/globalRuleSetProps');
 
 // Create the custom paradigma tab
 function createParadigmaTabGroups(element, elementRegistry) {
-  // Create a group called "Paradigm".
-  var blackParadigmaGroup = {
-    id: 'paradigma-group',
-    label: 'Paradigma',
+  // Create a group called "Context".
+  var contextGroup = {
+    id: 'context-group',
+    label: 'Context',
     entries: []
   };
 
   // Add the spell props to the black paradigma group.
-  spellProps(blackParadigmaGroup, element);
+  contextProps(contextGroup, element);
+
+  var globalRuleSetGroup = {
+    id: 'global-rule-set-group',
+    label: 'GlobalRuleSet',
+    entries: []
+  };
+
+  globalRuleSetProps(globalRuleSetGroup, element);
 
   return [
-    blackParadigmaGroup
+    contextGroup,
+    globalRuleSetGroup
   ];
 }
 
