@@ -47,13 +47,12 @@
     "webpack-cli": "^3.3.2"
   },
   "dependencies": {
-    "all": "0.0.0",
     "bpmn-js": "^2.4.0",
-    "bpmn-js-properties-panel": "^0.41.0",
+    "bpmn-js-properties-panel": "^0.25.2",
     "camunda-bpmn-moddle": "^3.2.0",
-    "diagram-js": "^2.6.2",
+    "diagram-js": "^2.5.1",
     "inherits": "^2.0.1",
-    "jquery": "^3.6.0",
+    "jquery": "^3.4.1",
     "lodash": "^3.0.0"
   }
 }
