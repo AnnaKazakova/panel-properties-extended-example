@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-  name: 'Panel Properties Paradigma Moddle Extension',
+  name: 'paradigma',
   script: './client/client-bundle.js',
   style: './client/style.css'
 };
