@@ -1,0 +1,298 @@
+[
+    {
+        "name": "PARADIGMA Process - NonWorking",
+        "id": "de.paradigma.CONTEXT_PROCESS",
+        "isDefault": true,
+        "version": 1,
+        "appliesTo": [
+            "bpmn:Process"
+        ],
+        "properties":[
+            {
+                "label": "Resource URL",
+                "description": "tbd",
+                "type": "String",
+                "binding": {
+                    "type": "camunda:inputParameter",
+                    "name": "resourceUrl"
+                }
+            }
+        ]
+    },
+    {
+        "name": "PARADIGMA Context Aware Start Event - NonWorking",
+        "id": "de.paradigma.CONTEXT_START_EVENT",
+        "description": "description tbd",
+        "isDefault": true,
+        "version": 1,
+        "appliesTo": [
+            "bpmn:StartEvent"
+        ],
+        "properties":[
+            {
+                "label": "Resource URL",
+                "description": "tbd",
+                "type": "String",
+                "binding": {
+                    "type": "camunda:inputParameter",
+                    "name": "resourceUrl"
+                }
+            },
+            {
+                "label": "Machine URL",
+                "description": "tbd",
+                "type": "String",
+                "binding": {
+                    "type": "camunda:inputParameter",
+                    "name": "machineUrl"
+                }
+            },
+            {
+                "label": "UserDirectory URL",
+                "description": "tbd",
+                "type": "String",
+                "binding": {
+                    "type": "camunda:inputParameter",
+                    "name": "userDirectoryUrl"
+                }
+            },
+            {
+                "label": "Paradigma URL",
+                "description": "tbd",
+                "type": "String",
+                "binding": {
+                    "type": "camunda:inputParameter",
+                    "name": "paradigmaUrl"
+                }
+            },
+            {
+                "label": "GlobalContextEventEndpoint",
+                "description": "tbd",
+                "type": "String",
+                "binding": {
+                    "type": "camunda:inputParameter",
+                    "name": "globalContextEventEndpoint"
+                }
+            },
+            {
+                "label": "GlobalRuleSet URL",
+                "description": "tbd",
+                "type": "String",
+                "binding": {
+                    "type": "camunda:inputParameter",
+                    "name": "globalRuleSetUrl"
+                }
+            },
+            {
+                "label": "GlobalRuleSet Name",
+                "description": "tbd",
+                "type": "String",
+                "binding": {
+                    "type": "camunda:inputParameter",
+                    "name": "globalRuleSetName"
+                }
+            },
+            {
+                "label": "GlobalRuleSet Rules",
+                "description": "tbd",
+                "type": "String",
+                "binding": {
+                    "type": "camunda:inputParameter",
+                    "name": "globalRuleSetRules"
+                }
+            }
+        ]
+    },
+    {
+        "name": "PARADIGMA AR-Task",
+        "id": "de.paradigma.AR_TASK",
+        "description": "description tbd",
+        "isDefault": true,
+        "version": 1,
+        "appliesTo": [
+            "bpmn:UserTask"
+        ],
+        "properties":[
+            {
+                "label": "Machine",
+                "description": "Machine required to be used for this job, specify yb ID. Leave this field empty, if no machine is required.",
+                "type": "String",
+                "value": "${init_machine}",
+                "binding": {
+                    "type": "camunda:inputParameter",
+                    "name": "machine"
+                }
+            },
+            {
+                "label": "Resources and Object",
+                "description": "Resources or objects required to work on this task, e.g. specific tools and materials, specified by their ID.\nSeparate multiple values with a , \n Leave this empty, if no resources and objects are required.",
+                "type": "String",
+                "binding": {
+                    "type": "camunda:inputParameter",
+                    "name": "resources"
+                }
+            },
+            {
+                "label": "AR - Component",
+                "description": "Select the required AR-template. It will then be displayed to the assigned worker in the AR-Client.",
+                "type": "Dropdown",
+                "value": "1",
+                "choices": [
+                    {"name": "Image Overlay", "value": "1"},
+                    {"name": "Checklist", "value": "2"},
+                    {"name": "Video", "value": "3"},
+                    {"name": "Text", "value": "4"},
+                    {"name": "3D Overlay", "value": "5"},
+                    {"name": "Document", "value": "6"},
+                    {"name": "Formular", "value": "7"}
+                ],
+                "binding": {
+                    "type": "camunda:inputParameter",
+                    "name": "ar"
+                },
+                "constraints":{
+                    "notEmpty": true
+                }
+            },
+            {
+                "label": "Qualification Requirements",
+                "description": "Specify the qualification required to complete this activity.",
+                "type": "String",
+                "binding": {
+                    "type": "camunda:inputParameter",
+                    "name": "qualification"
+                },
+                "value": "{'electric': 5, 'computer': 0, 'social': 0, 'bio_chemical': 0}" ,
+                "constraints":{
+                    "notEmpty": true
+                }
+            },
+            {
+                "label": "Dangers",
+                "description": "Specify the dangers connected to this activity. If no dangers are provided, they will be calculated from the used machinery.",
+                "type": "String",
+                "binding": {
+                    "type": "camunda:inputParameter",
+                    "name": "dangers"
+                },
+                "value": "{'noise': 0.01, 'heat': 0.03, 'electricity': 0.05, 'chemicals': 0.02}",
+                "constraints":{
+                    "notEmpty": true
+                }
+            },
+            {
+                "label": "Task Preconditions",
+                "description": "Subject to change. Not quite sure how to handle them correctly",
+                "type": "String",
+                "binding": {
+                    "type": "camunda:inputParameter",
+                    "name": "preconditions"
+                }
+            },
+            {"label": "Position",
+                "description": "If a machine, resource or Object is used their position will be used automatically. Else it is required to define a position here.",
+                "type": "String",
+                "binding": {
+                    "type": "camunda:inputParameter",
+                    "name": "position"
+                },
+                "value": "{'x': 3, 'y': 3, 'z': 0}",
+                "constraints":{
+                    "notEmpty": true
+                }
+            }
+        ]
+    },
+    {
+        "name": "PARADIGMA AR-Assignment - NonWorking",
+        "id": "de.paradigma.AR_ASSIGNMENT_SERVICETASK",
+        "description": "description tbd",
+        "isDefault": true,
+        "version": 1,
+        "appliesTo": [
+            "bpmn:ServiceTask"
+        ],
+        "properties":[],
+        "scopes": {
+            "camunda:Connector": {
+              "properties": [
+                {
+                  "label": "ConnectorId",
+                  "type": "Hidden",
+                  "value": "http-connector",
+                  "binding": {
+                    "type": "property",
+                    "name": "connectorId"
+                  }
+                },
+                {
+                  "label": "Method",
+                  "type": "String",
+                  "value": "POST",
+                  "binding": {
+                    "type": "camunda:inputParameter",
+                    "name": "method"
+                  }
+                },
+                {
+                  "label": "URL",
+                  "type": "String",
+                  "value": "http://141.18.48.4:5000/api/assignment/request/",
+                  "binding": {
+                    "type": "camunda:inputParameter",
+                    "name": "url"
+                  }
+                },
+                {
+                  "label": "Headers",
+                  "type": "Text",
+                  "value": "header = {contentType: 'application/json', 'Authorization': 'Basic Y21kX3VzZXI6Y2FtdW5kYUBjYy5wYXJh'};\n\rheader",
+                  "binding": {
+                    "type": "camunda:inputParameter",
+                    "scriptFormat": "JavaScript",
+                    "name": "headers"
+                  }
+                },          
+                {
+                  "label": "Body",
+                  "type": "Text",
+                  "value": "var id = execution.getProcessInstanceId();\r\npayload = JSON.stringify({'processInstanceId': id});\r\npayload",
+                  "binding": {
+                    "type": "camunda:inputParameter",
+                    "scriptFormat": "JavaScript",
+                    "name": "payload"
+                  }
+                }
+              ]
+            }
+        }
+    },
+    {
+        "name": "PARADIGMA AR-Assignment Script - NonWorking",
+        "id": "de.paradigma.AR_ASSIGNMENT_SCRIPTTASK",
+        "description": "description tbd",
+        "isDefault": true,
+        "version": 1,
+        "appliesTo": [
+            "bpmn:ScriptTask"
+        ],
+        "properties":[],
+        "scopes": {
+            "camunda:Connector": {
+              "properties": [
+                {
+                    "label": "IA-Assignment Call",
+                    "description": "The request to the CamundaClient to calculate and conduct the assignment",
+                    "type": "Text",
+                    "value": "var httpConnector = org.camunda.connect.Connectors.http();\r\nvar id = execution.getProcessInstanceId();\r\nhttpConnector.createRequest()\r\n\r\n  .post()\r\n  .url('http://141.18.48.4:5000/api/assignment/request/')\r\n  .contentType('application/json')\r\n.header('Authorization', 'Basic Y21kX3VzZXI6Y2FtdW5kYUBjYy5wYXJh')\r\n  .payload(JSON.stringify({'processInstanceId': id})\r\n  .execute()",
+                    "binding": {
+                        "type": "camunda:inputParameter",
+                        "scriptFormat": "JavaScript",
+                        "name": "ia_assignment_script"
+                    }
+                }
+              ]
+            }
+        }
+    }
+]
