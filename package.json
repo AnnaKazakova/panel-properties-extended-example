@@ -1,7 +1,7 @@
 {
-  "name": "panel-properties-extended-example",
-  "version": "1.0.0",
-  "description": "A small example for bpmn-js Plugin panel extension with moddle plugin",
+  "name": "camunda-modeler-paradigma-plugin",
+  "version": "0.0.1",
+  "description": "Extending a BPMN2 Editor for Augmented Reality and Context",
   "main": "index.js",
   "scripts": {
     "build": "browserify -g babelify client/client.js > client/client-bundle.js",
@@ -12,22 +12,16 @@
     "lint": "eslint ."
   },
   "repository": {
-    "type": "git",
-    "url": "git+https://github.com/sharedchains/panel-properties-extended-example.git"
+    "type": "bitbucket",
+    "url": "https://bitbucket.org/roberhau/20w_mpa_kazakova/src/master/"
   },
   "keywords": [
     "camunda",
     "modeler",
     "plugin",
-    "moddle",
-    "example"
+    "moddle"
   ],
-  "author": "Luca Bonora <luca.bonora@sharedchains.com>",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/sharedchains/panel-properties-extended-example/issues"
-  },
-  "homepage": "https://github.com/sharedchains/panel-properties-extended-example#readme",
+  "author": "Anna Kazakova <anna.kazakova@studmail.htw-aalen.de>",
   "devDependencies": {
     "@babel/core": "^7.13.10",
     "@babel/preset-env": "^7.13.10",
